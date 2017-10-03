@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VlogRoom.Services.Data", "V
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VlogRoom.Services.Common", "VlogRoom.Services.Common\VlogRoom.Services.Common.csproj", "{7CD7D964-594B-4668-94CA-1073A858A581}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VlogRoom.Web.Common", "VlogRoom.Web.Common\VlogRoom.Web.Common.csproj", "{CA1E1BCC-1FD1-4099-9F08-C81F02F28085}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{7CD7D964-594B-4668-94CA-1073A858A581}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CD7D964-594B-4668-94CA-1073A858A581}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CD7D964-594B-4668-94CA-1073A858A581}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA1E1BCC-1FD1-4099-9F08-C81F02F28085}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA1E1BCC-1FD1-4099-9F08-C81F02F28085}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA1E1BCC-1FD1-4099-9F08-C81F02F28085}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA1E1BCC-1FD1-4099-9F08-C81F02F28085}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,5 +63,6 @@ Global
 		{37B99228-DD05-4117-B263-BFFE3411230F} = {DC6CD21C-05D8-4028-B696-59E23E8D7016}
 		{E30BBD6A-1BD0-427A-8D83-81E3336B2C3C} = {12134FE2-1EB5-4E10-863F-B07AFF8C4CC0}
 		{7CD7D964-594B-4668-94CA-1073A858A581} = {12134FE2-1EB5-4E10-863F-B07AFF8C4CC0}
+		{CA1E1BCC-1FD1-4099-9F08-C81F02F28085} = {7BD98014-B5C6-48B0-9F7B-4C13E364ED93}
 	EndGlobalSection
 EndGlobal

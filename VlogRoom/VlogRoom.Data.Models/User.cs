@@ -15,7 +15,7 @@ namespace VlogRoom.Data.Models
     public class User : IdentityUser, IAuditable, IDeletable
     {
         [DataType(DataType.DateTime)]
-        public DateTime CreatedOn { get; set; }
+        public DateTime? CreatedOn { get; set; }
 
         [DataType(DataType.DateTime)]
         public DateTime? ModifiedOn { get; set; }

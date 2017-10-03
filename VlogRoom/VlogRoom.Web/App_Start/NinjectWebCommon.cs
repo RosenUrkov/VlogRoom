@@ -10,21 +10,32 @@ namespace VlogRoom.Web.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using Ninject.Web.Mvc.FilterBindingSyntax;
+    using VlogRoom.Data.UnitOfWork;
+    using Ninject.Extensions.Conventions;
+    using System.Data.Entity;
+    using VlogRoom.Data;
+    using Data.Repository;
+    using VlogRoom.Web.Common.ActionFilters;
+    using VlogRoom.Web.Common.Attributes;
+    using System.Web.Mvc;
+    using VlogRoom.Services.Common.Contracts;
+    using VlogRoom.Services.Common;
 
-    public static class NinjectWebCommon 
+    public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
         /// </summary>
-        public static void Start() 
+        public static void Start()
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
         }
-        
+
         /// <summary>
         /// Stops the application.
         /// </summary>
@@ -32,7 +43,7 @@ namespace VlogRoom.Web.App_Start
         {
             bootstrapper.ShutDown();
         }
-        
+
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
@@ -61,6 +72,26 @@ namespace VlogRoom.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-        }        
+            kernel.Bind(x =>
+            {
+                x.FromThisAssembly()
+                 .SelectAllClasses()
+                 .BindDefaultInterface();
+            });
+
+            kernel.Bind(x =>
+            {
+                x.From("VlogRoom.Services.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+                    "VlogRoom.Services.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")
+                 .SelectAllClasses()
+                 .BindDefaultInterface();
+            });
+
+            kernel.Bind(typeof(DbContext), typeof(MsSqlDbContext)).To<MsSqlDbContext>().InRequestScope();
+            kernel.Bind(typeof(IEfRepository<>)).To(typeof(EfRepository<>));
+            kernel.Bind<IUnitOfWork>().To<EfUnitOfWork>();
+
+            kernel.BindFilter<SaveChangesFilter>(FilterScope.Controller, 0).WhenActionMethodHas<SaveChangesAttribute>();
+        }
     }
 }

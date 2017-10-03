@@ -40,7 +40,7 @@ namespace VlogRoom.Data.Migrations
                 {
                     UserName = AdministratorUserName,
                     Email = AdministratorUserName,
-                    EmailConfirmed = true
+                    EmailConfirmed = true                    
                 };
 
                 userManager.Create(user, AdministratorPassword);

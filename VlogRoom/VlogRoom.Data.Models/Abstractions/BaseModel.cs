@@ -20,7 +20,7 @@ namespace VlogRoom.Data.Models.Abstractions
         public Guid Id { get; set; }
 
         [DataType(DataType.DateTime)]
-        public DateTime CreatedOn { get; set; }
+        public DateTime? CreatedOn { get; set; }
 
         [DataType(DataType.DateTime)]
         public DateTime? ModifiedOn { get; set; }

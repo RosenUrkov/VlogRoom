@@ -66,6 +66,9 @@
     <Reference Include="Glimpse.Mvc5, Version=1.5.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Glimpse.Mvc5.1.5.3\lib\net45\Glimpse.Mvc5.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -222,6 +225,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\Managers\ApplicationSignInManager.cs" />
@@ -229,6 +233,10 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Contracts\IHaveCustomMappings.cs" />
+    <Compile Include="Contracts\IMap.cs" />
+    <Compile Include="Contracts\IServiceLocator.cs" />
+    <Compile Include="Common\ServiceLocator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -257,6 +265,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\log.txt" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -327,7 +336,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
-    <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -340,6 +348,18 @@
     <ProjectReference Include="..\VlogRoom.Data\VlogRoom.Data.csproj">
       <Project>{F17EB094-08A5-4AF6-831C-4B15A387ED9E}</Project>
       <Name>VlogRoom.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VlogRoom.Services.Common\VlogRoom.Services.Common.csproj">
+      <Project>{7cd7d964-594b-4668-94ca-1073a858a581}</Project>
+      <Name>VlogRoom.Services.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VlogRoom.Services.Data\VlogRoom.Services.Data.csproj">
+      <Project>{e30bbd6a-1bd0-427a-8d83-81e3336b2c3c}</Project>
+      <Name>VlogRoom.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VlogRoom.Web.Common\VlogRoom.Web.Common.csproj">
+      <Project>{ca1e1bcc-1fd1-4099-9f08-c81f02f28085}</Project>
+      <Name>VlogRoom.Web.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

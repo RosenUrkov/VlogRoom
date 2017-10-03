@@ -9,12 +9,12 @@ using VlogRoom.Data.Models.Contracts;
 
 namespace VlogRoom.Data.Repository
 {
-    public class EfRepostory<T>
+    public class EfRepository<T> : IEfRepository<T>
         where T : class, IDeletable
     {
         private readonly MsSqlDbContext context;
 
-        public EfRepostory(MsSqlDbContext context)
+        public EfRepository(MsSqlDbContext context)
         {
             this.context = context;
         }

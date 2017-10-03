@@ -7,6 +7,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using VlogRoom.Web.Models;
+using VlogRoom.Web.App_Start.Managers;
+using VlogRoom.Web.Models.ManageViewModels;
 
 namespace VlogRoom.Web.Controllers
 {

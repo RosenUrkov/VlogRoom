@@ -21,6 +21,8 @@ namespace VlogRoom.Web.App_Start
     using System.Web.Mvc;
     using VlogRoom.Services.Common.Contracts;
     using VlogRoom.Services.Common;
+    using System.Reflection;
+    using VlogRoom.Services.Data;
 
     public static class NinjectWebCommon
     {
@@ -81,15 +83,15 @@ namespace VlogRoom.Web.App_Start
 
             kernel.Bind(x =>
             {
-                x.From("VlogRoom.Services.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
-                    "VlogRoom.Services.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null")
+                x.From(Assembly.GetAssembly(typeof(LoggerService)).FullName,
+                    Assembly.GetAssembly(typeof(UserDataService)).FullName)
                  .SelectAllClasses()
                  .BindDefaultInterface();
             });
 
             kernel.Bind(typeof(DbContext), typeof(MsSqlDbContext)).To<MsSqlDbContext>().InRequestScope();
             kernel.Bind(typeof(IEfRepository<>)).To(typeof(EfRepository<>));
-            kernel.Bind<IUnitOfWork>().To<EfUnitOfWork>();
+            kernel.Bind(typeof(IUnitOfWork)).To(typeof(EfUnitOfWork));
 
             kernel.BindFilter<SaveChangesFilter>(FilterScope.Controller, 0).WhenActionMethodHas<SaveChangesAttribute>();
         }

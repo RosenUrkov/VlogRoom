@@ -17,7 +17,7 @@ namespace VlogRoom.Web.Controllers
     {   
         public ActionResult Index()
         {
-
+            return null;
         }
     }
 }

@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Account";
+}
+
+<h2>Account</h2>
+
+@using (Html.BeginForm("UploadVideo", "Users", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken();
+
+    <input type="file" name="video" />
+    <button type="submit">Submit!</button>
+}
+

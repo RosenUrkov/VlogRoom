@@ -23,11 +23,13 @@ namespace VlogRoom.Web.Controllers
 
         public ActionResult Index()
         {
-            var videos = this.videoDataService
-                        .GetAllVideos(5)
-                        .Map<VideoSnippetServiceModel, VideoDataViewModel>();
+            //var videos = this.videoDataService
+            //            .GetAllVideos(5)
+            //            .Map<VideoSnippetServiceModel, VideoDataViewModel>();
 
-            return View(videos);
+            //return View(videos);
+
+            return this.Content("I have limited requests daily...");
         }
     }
 }

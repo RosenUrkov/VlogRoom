@@ -1,6 +1,7 @@
 ﻿using Bytes2you.Validation;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,11 @@ namespace VlogRoom.Services.Data
         public IEnumerable<VideoSnippetServiceModel> GetAllVideos(int maxResultsLength)
         {
             return this.youTubeService.GetVideoSnippets(maxResultsLength);
+        }
+
+        public void UploadVideo(Stream videoStream)
+        {
+            this.youTubeService.UploadVideo(videoStream);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,5 +11,7 @@ namespace VlogRoom.Services.Data.Contracts
     public interface IVideoDataService
     {
         IEnumerable<VideoSnippetServiceModel> GetAllVideos(int resultsLength);
+
+        void UploadVideo(Stream videoStream);
     }
 }

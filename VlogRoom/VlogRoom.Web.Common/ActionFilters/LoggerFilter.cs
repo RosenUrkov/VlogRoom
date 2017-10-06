@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bytes2you.Validation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace VlogRoom.Web.Common.ActionFilters
 
         public LoggerFilter(ILoggerService logger)
         {
+            Guard.WhenArgument(logger, "logger").IsNull().Throw();
             this.logger = logger;
         }
 

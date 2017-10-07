@@ -12,6 +12,6 @@ namespace VlogRoom.Services.Common.Contracts
     {
         IEnumerable<VideoSnippetServiceModel> GetVideoSnippets(int resultsLength);
 
-        void UploadVideo(Stream videoStream);
+        Task UploadVideo(Stream videoStream);
     }
 }

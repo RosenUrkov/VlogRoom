@@ -14,6 +14,7 @@ using System.IO;
 using Google.Apis.Upload;
 using System.Threading;
 using Google.Apis.Auth.OAuth2.Flows;
+using Google.Apis.Auth.OAuth2.Responses;
 
 namespace VlogRoom.Services.Common
 {
@@ -22,39 +23,16 @@ namespace VlogRoom.Services.Common
         private const string ApiKey = "AIzaSyCOpBHSZp8jqgImoRnY7ErzrsnMhibTGxU";
         private const string ApplicationName = "VlogRoom";
         private const string PlayListId = "PLuAZD7L_R_m20wOxJPjRRgjMAJSbXIoeL";
-        private const string ChannelId = "UCKjXXtiCQP2OXtFj-bfi61Q";
-        
-        private Google.Apis.YouTube.v3.YouTubeService youTubeService = new Google.Apis.YouTube.v3.YouTubeService();
+
+        private Google.Apis.YouTube.v3.YouTubeService youTubeService;
 
         public YouTubeService()
         {
-            lock (this.youTubeService)
-            {
-                this.Authorize();
-            }
-        }
-
-        private async void Authorize()
-        {
-            UserCredential credential;
-            using (var stream = new FileStream(
-                AppDomain.CurrentDomain.BaseDirectory + "/App_Data/client_secrets.json",
-                FileMode.Open, FileAccess.Read))
-            {
-                credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    GoogleClientSecrets.Load(stream).Secrets,
-                    new[] { Google.Apis.YouTube.v3.YouTubeService.Scope.YoutubeUpload },
-                    "rosen.urkov@gmail.com",
-                    CancellationToken.None
-                );
-            }
-
             this.youTubeService = new Google.Apis.YouTube.v3.YouTubeService(
                 new BaseClientService.Initializer()
                 {
                     ApiKey = ApiKey,
                     ApplicationName = ApplicationName,
-                    HttpClientInitializer = credential,
                 });
         }
 
@@ -76,8 +54,10 @@ namespace VlogRoom.Services.Common
                 });
         }
 
-        public void UploadVideo(Stream videoStream)
+        public async Task UploadVideo(Stream videoStream)
         {
+            await this.Authorize();
+
             var snippet = new VideoSnippet();
             snippet.Title = "Video upload title";
             snippet.Description = "Description of uploaded video.";
@@ -93,30 +73,32 @@ namespace VlogRoom.Services.Common
             using (videoStream)
             {
                 var videosInsertRequest = this.youTubeService.Videos.Insert(video, "snippet,status", videoStream, "video/*");
-                //videosInsertRequest.ProgressChanged += ProgressChanged;
-                //videosInsertRequest.ResponseReceived += ResponseReceived;
-
-                videosInsertRequest.Upload();
+                var result = await videosInsertRequest.UploadAsync();
             }
         }
 
-        private void ProgressChanged(IUploadProgress progress)
+        private async Task Authorize()
         {
-            switch (progress.Status)
+            UserCredential credential;
+            using (var stream = new FileStream(
+                AppDomain.CurrentDomain.BaseDirectory + "/App_Data/client_secret.json",
+                FileMode.Open, FileAccess.Read))
             {
-                case UploadStatus.Uploading:
-                    Console.WriteLine("{0} bytes sent.", progress.BytesSent);
-                    break;
-
-                case UploadStatus.Failed:
-                    Console.WriteLine("An error prevented the upload from completing.\n{0}", progress.Exception);
-                    break;
+                credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
+                    GoogleClientSecrets.Load(stream).Secrets,
+                    new[] { Google.Apis.YouTube.v3.YouTubeService.Scope.Youtube },
+                    "user",
+                    CancellationToken.None
+                );
             }
-        }
 
-        private void ResponseReceived(Video video)
-        {
-            Console.WriteLine("Video id '{0}' was successfully uploaded.", video.Id);
+            this.youTubeService = new Google.Apis.YouTube.v3.YouTubeService(
+                new BaseClientService.Initializer()
+                {
+                    ApiKey = ApiKey,
+                    ApplicationName = ApplicationName,
+                    HttpClientInitializer = credential,
+                });
         }
     }
 }

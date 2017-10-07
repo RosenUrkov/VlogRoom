@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bytes2you.Validation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace VlogRoom.Web.Controllers
 
         public UsersController(IVideoDataService videoDataService)
         {
+            Guard.WhenArgument(videoDataService, "videoDataService").IsNull().Throw();
             this.videoDataService = videoDataService;
         }
 
@@ -32,10 +34,10 @@ namespace VlogRoom.Web.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult UploadVideo(HttpPostedFileBase video)
+        public async Task<ActionResult> UploadVideo(HttpPostedFileBase video)
         {
-            this.videoDataService.UploadVideo(video.InputStream);
-            return this.Content("Pls work");
+            await this.videoDataService.UploadVideo(video.InputStream);
+            return this.RedirectToAction("Account");
         }
     }
 }

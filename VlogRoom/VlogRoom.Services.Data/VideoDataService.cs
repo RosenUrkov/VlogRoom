@@ -26,9 +26,9 @@ namespace VlogRoom.Services.Data
             return this.youTubeService.GetVideoSnippets(maxResultsLength);
         }
 
-        public async Task UploadVideo(Stream videoStream)
+        public async Task<string> UploadVideo(Stream videoStream)
         {
-            await this.youTubeService.UploadVideo(videoStream);
+            return await this.youTubeService.UploadVideoIntoThePlaylist(videoStream);
         }
     }
 }

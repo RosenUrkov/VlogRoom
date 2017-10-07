@@ -36,7 +36,7 @@ namespace VlogRoom.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> UploadVideo(HttpPostedFileBase video)
         {
-            await this.videoDataService.UploadVideo(video.InputStream);
+            var videoId = await this.videoDataService.UploadVideo(video.InputStream);
             return this.RedirectToAction("Account");
         }
     }

@@ -20,8 +20,8 @@ namespace VlogRoom.Services.Common
 {
     public class YouTubeService : IYouTubeService
     {
-        private const string ApiKey = "AIzaSyCOpBHSZp8jqgImoRnY7ErzrsnMhibTGxU";
         private const string ApplicationName = "VlogRoom";
+        private const string ApiKey = "AIzaSyCOpBHSZp8jqgImoRnY7ErzrsnMhibTGxU";
         private const string PlayListId = "PLuAZD7L_R_m20wOxJPjRRgjMAJSbXIoeL";
 
         private Google.Apis.YouTube.v3.YouTubeService youTubeService;
@@ -54,7 +54,7 @@ namespace VlogRoom.Services.Common
                 });
         }
 
-        public async Task UploadVideo(Stream videoStream)
+        public async Task<string> UploadVideoIntoThePlaylist(Stream videoStream)
         {
             await this.Authorize();
 
@@ -70,11 +70,15 @@ namespace VlogRoom.Services.Common
             video.Snippet = snippet;
             video.Status = status;
 
+            VideosResource.InsertMediaUpload videoInsertRequest;
             using (videoStream)
             {
-                var videosInsertRequest = this.youTubeService.Videos.Insert(video, "snippet,status", videoStream, "video/*");
-                var result = await videosInsertRequest.UploadAsync();
+                videoInsertRequest = this.youTubeService.Videos.Insert(video, "snippet,status", videoStream, "video/*");
+                await videoInsertRequest.UploadAsync();
             }
+
+            this.AddVideoToThePlaylist(videoInsertRequest.ResponseBody.Id);
+            return videoInsertRequest.ResponseBody.Id;
         }
 
         private async Task Authorize()
@@ -99,6 +103,24 @@ namespace VlogRoom.Services.Common
                     ApplicationName = ApplicationName,
                     HttpClientInitializer = credential,
                 });
+        }
+
+        private void AddVideoToThePlaylist(string videoId)
+        {
+            ResourceId resourceId = new ResourceId();
+            resourceId.Kind = "youtube#video";
+            resourceId.VideoId = videoId;
+
+            var snippet = new PlaylistItemSnippet();
+            snippet.PlaylistId = PlayListId;
+            snippet.Position = 1;
+            snippet.ResourceId = resourceId;
+
+            var playlistItem = new PlaylistItem();
+            playlistItem.Snippet = snippet;
+
+            var playlistItemsInsertRequest = this.youTubeService.PlaylistItems.Insert(playlistItem, "snippet");
+            playlistItemsInsertRequest.Execute();
         }
     }
 }

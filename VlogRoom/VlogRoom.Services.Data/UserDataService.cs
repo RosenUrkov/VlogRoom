@@ -19,9 +19,25 @@ namespace VlogRoom.Services.Data
             this.usersRepo = usersRepo;
         }
 
+        public User GetUserById(string userId)
+        {
+            return this.usersRepo.All.FirstOrDefault(x => x.Id == userId);
+        }
+
+        public User GetUserByUsername(string username)
+        {
+            return this.usersRepo.All.FirstOrDefault(x => x.UserName == username);
+        }
+
         public IEnumerable<User> GetAllUsers()
         {
             return this.usersRepo.All.AsEnumerable();
+        }  
+        
+        public void Subscribe(User userToBeSubscribed, User userToSubscribeTo)
+        {
+            userToSubscribeTo.Subscribers.Add(userToBeSubscribed);
+            this.usersRepo.Update(userToSubscribeTo);
         }
     }
 }

@@ -30,7 +30,7 @@ namespace VlogRoom.Services.Data
             this.youTubeService = youTubeService;
         }
 
-        public Video GetVideo(string serviceVideoId)
+        public Video GetVideoByServiceId(string serviceVideoId)
         {
            return this.videosRepo.All.FirstOrDefault(x => x.ServiceVideoId == serviceVideoId);
         }

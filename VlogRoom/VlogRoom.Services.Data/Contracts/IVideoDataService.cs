@@ -10,7 +10,7 @@ namespace VlogRoom.Services.Data.Contracts
 {
     public interface IVideoDataService
     {
-        Video GetVideo(string videoId);
+        Video GetVideoByServiceId(string videoId);
 
         IEnumerable<Video> GetAllVideos();
 

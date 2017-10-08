@@ -1,0 +1,20 @@
+﻿@model VlogRoom.Web.Models.UserDataViewModel
+
+@{
+    ViewBag.Title = "Room";
+}
+
+<h2>@Model.UserName</h2>
+
+@using (Html.BeginForm("SubscribeToUser", "Users", FormMethod.Post))
+{
+    @Html.AntiForgeryToken();
+    <input type="hidden" name="userId" value="@Model.Id" />
+    <button type="submit">Subscribe!</button>
+}
+
+@foreach (var video in Model.Videos)
+{
+    @Html.Partial("_VideoData", video);
+}
+

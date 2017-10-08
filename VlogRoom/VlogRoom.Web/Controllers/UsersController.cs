@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using VlogRoom.Services.Common;
 using VlogRoom.Services.Data;
 using VlogRoom.Services.Data.Contracts;
 using VlogRoom.Web.Common.Attributes;
@@ -15,16 +16,24 @@ namespace VlogRoom.Web.Controllers
     public class UsersController : Controller
     {
         private readonly IVideoDataService videoDataService;
+        private readonly IUserDataService userDataService;
 
-        public UsersController(IVideoDataService videoDataService)
+        public UsersController(IUserDataService userDataService, IVideoDataService videoDataService)
         {
             Guard.WhenArgument(videoDataService, "videoDataService").IsNull().Throw();
+            Guard.WhenArgument(userDataService, "userDataService").IsNull().Throw();
+
+            this.userDataService = userDataService;
             this.videoDataService = videoDataService;
         }
 
-        public ActionResult Room(int id)
+        public ActionResult Room(string id)
         {
-            return View();
+            var user = this.userDataService.GetUserById(id);
+            Guard.WhenArgument(user, "user").IsNull().Throw();
+
+            var userModel = MappingService.Provider.Map<UserDataViewModel>(user);
+            return View(userModel);
         }
 
         [Authorize]
@@ -49,7 +58,7 @@ namespace VlogRoom.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteVideo(string videoId)
         {
-            var video = this.videoDataService.GetVideo(videoId);
+            var video = this.videoDataService.GetVideoByServiceId(videoId);
             this.videoDataService.RemoveVideo(video);
             return this.RedirectToAction("Account");
         }
@@ -60,8 +69,21 @@ namespace VlogRoom.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> HardDeleteVideo(string videoId)
         {
-            var video = this.videoDataService.GetVideo(videoId);
+            var video = this.videoDataService.GetVideoByServiceId(videoId);
             await this.videoDataService.HardRemoveVideo(video);
+            return this.RedirectToAction("Account");
+        }
+
+        [SaveChanges]
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SubscribeToUser(string userId)
+        {
+            var currentUser = this.userDataService.GetUserByUsername(this.User.Identity.Name);
+            var userToBeSubscribedTo = this.userDataService.GetUserById(userId);
+
+            this.userDataService.Subscribe(currentUser, userToBeSubscribedTo);
             return this.RedirectToAction("Account");
         }
     }

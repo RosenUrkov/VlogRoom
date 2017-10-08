@@ -463,6 +463,7 @@
     <Compile Include="Models\ManageViewModels\ManageLoginsViewModel.cs" />
     <Compile Include="Models\ManageViewModels\SetPasswordViewModel.cs" />
     <Compile Include="Models\ManageViewModels\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="Models\UserDataViewModel.cs" />
     <Compile Include="Models\VideoDataViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -539,6 +540,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_VideoData.cshtml" />
     <Content Include="Views\Users\Account.cshtml" />
+    <Content Include="Views\Users\Room.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

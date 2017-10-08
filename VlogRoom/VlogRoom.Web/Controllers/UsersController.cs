@@ -5,10 +5,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using VlogRoom.Data.Models;
 using VlogRoom.Services.Common;
 using VlogRoom.Services.Data;
 using VlogRoom.Services.Data.Contracts;
 using VlogRoom.Web.Common.Attributes;
+using VlogRoom.Web.Common.Extensions;
 using VlogRoom.Web.Models;
 
 namespace VlogRoom.Web.Controllers
@@ -40,6 +42,22 @@ namespace VlogRoom.Web.Controllers
         public ActionResult Account()
         {
             return View();
+        }
+
+        public ActionResult AllUsers()
+        {
+            var model = this.userDataService.GetAllUsers().Map<User, UserDataViewModel>();
+
+            throw new NotImplementedException();
+        }
+
+        [Authorize]
+        public ActionResult DailyFeed()
+        {
+            var currentUser = this.userDataService.GetUserByUsername(this.User.Identity.Name);
+            var model = currentUser.Subscribers.SelectMany(x => x.Videos);
+
+            throw new NotImplementedException();
         }
 
         [SaveChanges]

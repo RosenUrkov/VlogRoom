@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using VlogRoom.Services.Data.Contracts;
@@ -21,15 +22,12 @@ namespace VlogRoom.Web.Controllers
             this.videoDataService = videoDataService;
         }
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            //var videos = this.videoDataService
-            //            .GetAllVideos(5)
-            //            .Map<VideoSnippetServiceModel, VideoDataViewModel>();
+            var videos = await this.videoDataService.GetAllVideos(5);
+            var videosData = videos.Map<VideoSnippetServiceModel, VideoDataViewModel>();
 
-            //return View(videos);
-
-            return this.Content("I have limited requests daily...");
+            return View(videosData);
         }
     }
 }

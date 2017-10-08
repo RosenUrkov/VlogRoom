@@ -36,8 +36,10 @@ namespace VlogRoom.Services.Common
                 });
         }
 
-        public IEnumerable<VideoSnippetServiceModel> GetVideoSnippets(int maxResultsLength)
+        public async Task<IEnumerable<VideoSnippetServiceModel>> GetVideoSnippets(int maxResultsLength)
         {
+            await this.Authorize();
+
             var playlistItemsListByPlaylistIdRequest = this.youTubeService.PlaylistItems.List("snippet");
             playlistItemsListByPlaylistIdRequest.MaxResults = maxResultsLength;
             playlistItemsListByPlaylistIdRequest.PlaylistId = PlayListId;
@@ -54,7 +56,7 @@ namespace VlogRoom.Services.Common
                 });
         }
 
-        public async Task<string> UploadVideoIntoThePlaylist(Stream videoStream)
+        public async Task<VideoDataServiceModel> UploadVideo(Stream videoStream)
         {
             await this.Authorize();
 
@@ -77,8 +79,25 @@ namespace VlogRoom.Services.Common
                 await videoInsertRequest.UploadAsync();
             }
 
-            this.AddVideoToThePlaylist(videoInsertRequest.ResponseBody.Id);
-            return videoInsertRequest.ResponseBody.Id;
+            var videoServiceId = this.AddVideoToThePlaylist(videoInsertRequest.ResponseBody.Id);
+
+            var videoModel = new VideoDataServiceModel()
+            {
+                VideoId = videoInsertRequest.ResponseBody.Id,
+                PlayListItemId = videoServiceId
+            };
+
+            return videoModel;
+        }
+
+        public async Task DeleteVideo(VideoDataServiceModel videoData)
+        {
+            await this.Authorize();
+
+            var playlistItemsDeleteRequest = this.youTubeService.PlaylistItems.Delete(videoData.PlayListItemId);
+            playlistItemsDeleteRequest.Execute();
+
+            this.DeleteVideoFromService(videoData.VideoId);
         }
 
         private async Task Authorize()
@@ -105,7 +124,7 @@ namespace VlogRoom.Services.Common
                 });
         }
 
-        private void AddVideoToThePlaylist(string videoId)
+        private string AddVideoToThePlaylist(string videoId)
         {
             ResourceId resourceId = new ResourceId();
             resourceId.Kind = "youtube#video";
@@ -120,7 +139,15 @@ namespace VlogRoom.Services.Common
             playlistItem.Snippet = snippet;
 
             var playlistItemsInsertRequest = this.youTubeService.PlaylistItems.Insert(playlistItem, "snippet");
-            playlistItemsInsertRequest.Execute();
+            var response = playlistItemsInsertRequest.Execute();
+
+            return response.Id;
+        }
+
+        private void DeleteVideoFromService(string videoId)
+        {
+            var videosDeleteRequest = this.youTubeService.Videos.Delete(videoId);
+            videosDeleteRequest.Execute();
         }
     }
 }

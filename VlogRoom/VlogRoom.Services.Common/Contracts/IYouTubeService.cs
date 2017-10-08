@@ -10,8 +10,10 @@ namespace VlogRoom.Services.Common.Contracts
 {
     public interface IYouTubeService
     {
-        IEnumerable<VideoSnippetServiceModel> GetVideoSnippets(int resultsLength);
+        Task<IEnumerable<VideoSnippetServiceModel>> GetVideoSnippets(int resultsLength);
 
-        Task<string> UploadVideoIntoThePlaylist(Stream videoStream);
+        Task<VideoDataServiceModel> UploadVideo(Stream videoStream);
+
+        Task DeleteVideo(VideoDataServiceModel videoData);
     }
 }

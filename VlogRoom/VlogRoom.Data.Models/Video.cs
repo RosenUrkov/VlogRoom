@@ -10,6 +10,10 @@ namespace VlogRoom.Data.Models
 {
     public class Video : BaseModel, IAuditable, IDeletable
     {
+        public string ServiceVideoId { get; set; }
 
+        public string ServiceListItemId { get; set; }
+
+        public virtual User User { get; set; }
     }
 }

@@ -14,6 +14,11 @@ namespace VlogRoom.Data.Models
 {
     public class User : IdentityUser, IAuditable, IDeletable
     {
+        public User() : base()
+        {
+            this.Videos = new HashSet<Video>();
+        }
+
         [DataType(DataType.DateTime)]
         public DateTime? CreatedOn { get; set; }
 
@@ -25,6 +30,8 @@ namespace VlogRoom.Data.Models
 
         [DataType(DataType.DateTime)]
         public DateTime? DeletedOn { get; set; }
+
+        public virtual ICollection<Video> Videos { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {

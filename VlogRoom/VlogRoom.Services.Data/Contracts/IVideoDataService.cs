@@ -11,10 +11,12 @@ namespace VlogRoom.Services.Data.Contracts
 {
     public interface IVideoDataService
     {
-        Task<IEnumerable<VideoSnippetServiceModel>> GetAllVideos(int resultsLength);
+        VideoDataServiceModel GetVideo(string videoId);
 
-        Task AddVideo(Stream videoStream);
+        Task<IEnumerable<VideoSnippetServiceModel>> GetAllVideosSnippets(int resultsLength);
 
-        Task RemoveVideo(Video video);
+        Task AddVideo(Stream videoStream, string ownerUsername);
+
+        Task RemoveVideo(VideoDataServiceModel video);
     }
 }

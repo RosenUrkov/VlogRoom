@@ -26,16 +26,6 @@ namespace VlogRoom.Services.Common
 
         private Google.Apis.YouTube.v3.YouTubeService youTubeService;
 
-        public YouTubeService()
-        {
-            this.youTubeService = new Google.Apis.YouTube.v3.YouTubeService(
-                new BaseClientService.Initializer()
-                {
-                    ApiKey = ApiKey,
-                    ApplicationName = ApplicationName,
-                });
-        }
-
         public async Task<IEnumerable<VideoSnippetServiceModel>> GetVideoSnippets(int maxResultsLength)
         {
             await this.Authorize();
@@ -83,8 +73,8 @@ namespace VlogRoom.Services.Common
 
             var videoModel = new VideoDataServiceModel()
             {
-                VideoId = videoInsertRequest.ResponseBody.Id,
-                PlayListItemId = videoServiceId
+                ServiceVideoId = videoInsertRequest.ResponseBody.Id,
+                ServiceListItemId = videoServiceId
             };
 
             return videoModel;
@@ -94,10 +84,10 @@ namespace VlogRoom.Services.Common
         {
             await this.Authorize();
 
-            var playlistItemsDeleteRequest = this.youTubeService.PlaylistItems.Delete(videoData.PlayListItemId);
+            var playlistItemsDeleteRequest = this.youTubeService.PlaylistItems.Delete(videoData.ServiceListItemId);
             playlistItemsDeleteRequest.Execute();
 
-            this.DeleteVideoFromService(videoData.VideoId);
+            this.DeleteVideoFromService(videoData.ServiceVideoId);
         }
 
         private async Task Authorize()

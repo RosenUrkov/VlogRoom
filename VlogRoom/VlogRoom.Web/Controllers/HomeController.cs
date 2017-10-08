@@ -24,7 +24,7 @@ namespace VlogRoom.Web.Controllers
 
         public async Task<ActionResult> Index()
         {
-            var videos = await this.videoDataService.GetAllVideos(5);
+            var videos = await this.videoDataService.GetAllVideosSnippets(5);
             var videosData = videos.Map<VideoSnippetServiceModel, VideoDataViewModel>();
 
             return View(videosData);

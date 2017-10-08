@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using VlogRoom.Services.Common.Contracts;
 using VlogRoom.Services.Models;
-using VlogRoom.Web.Contracts;
 
 namespace VlogRoom.Web.Models
 {

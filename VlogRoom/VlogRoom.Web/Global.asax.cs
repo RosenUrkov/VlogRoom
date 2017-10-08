@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using VlogRoom.Data;
+using VlogRoom.Services.Models;
 using VlogRoom.Web.App_Start;
 
 namespace VlogRoom.Web
@@ -20,7 +21,7 @@ namespace VlogRoom.Web
             Database.SetInitializer<MsSqlDbContext>(null);
 
             log4net.Config.XmlConfigurator.Configure();
-            AutoMapperConfig.Initialize(Assembly.GetExecutingAssembly());
+            AutoMapperConfig.Initialize(new List<Assembly>() { Assembly.GetAssembly(typeof(VideoDataServiceModel)) , Assembly.GetExecutingAssembly() });
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

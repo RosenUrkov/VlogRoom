@@ -10,8 +10,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using VlogRoom.Web.Models;
 using VlogRoom.Web.App_Start.Managers;
-using VlogRoom.Data.Models;
 using VlogRoom.Web.Models.AccountViewModels;
+using VlogRoom.Data.Models;
 
 namespace VlogRoom.Web.Controllers
 {

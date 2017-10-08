@@ -41,7 +41,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VideoDataServiceModel.cs" />
     <Compile Include="VideoSnippetServiceModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VlogRoom.Data.Models\VlogRoom.Data.Models.csproj">
+      <Project>{37B99228-DD05-4117-B263-BFFE3411230F}</Project>
+      <Name>VlogRoom.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VlogRoom.Services.Common\VlogRoom.Services.Common.csproj">
+      <Project>{7CD7D964-594B-4668-94CA-1073A858A581}</Project>
+      <Name>VlogRoom.Services.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Web;
-using VlogRoom.Web.Contracts;
+using VlogRoom.Services.Common.Contracts;
 
 namespace VlogRoom.Web.App_Start
 {
@@ -12,12 +12,12 @@ namespace VlogRoom.Web.App_Start
     {
         public static IMapperConfigurationExpression Configuration { get; private set; }
 
-        public static void Initialize(Assembly assembly)
+        public static void Initialize(IEnumerable<Assembly> assemblies)
         {
             Mapper.Initialize(
                 cfg =>
                 {
-                    var types = assembly.GetExportedTypes();
+                    var types = assemblies.SelectMany(x => x.GetExportedTypes());
                     LoadStandardMappings(types, cfg);
                     LoadCustomMappings(types, cfg);
                     Configuration = cfg;

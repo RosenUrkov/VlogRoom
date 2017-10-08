@@ -434,8 +434,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
-    <Compile Include="Contracts\IHaveCustomMappings.cs" />
-    <Compile Include="Contracts\IMap.cs" />
     <Compile Include="Contracts\IServiceLocator.cs" />
     <Compile Include="Common\ServiceLocator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -550,11 +548,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VlogRoom.Data.Models\VlogRoom.Data.Models.csproj">
-      <Project>{37B99228-DD05-4117-B263-BFFE3411230F}</Project>
+      <Project>{37b99228-dd05-4117-b263-bffe3411230f}</Project>
       <Name>VlogRoom.Data.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\VlogRoom.Data\VlogRoom.Data.csproj">
-      <Project>{F17EB094-08A5-4AF6-831C-4B15A387ED9E}</Project>
+      <Project>{f17eb094-08a5-4af6-831c-4b15a387ed9e}</Project>
       <Name>VlogRoom.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\VlogRoom.Services.Common\VlogRoom.Services.Common.csproj">

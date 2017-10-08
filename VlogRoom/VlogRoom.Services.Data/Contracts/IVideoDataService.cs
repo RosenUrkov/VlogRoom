@@ -5,18 +5,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VlogRoom.Data.Models;
-using VlogRoom.Services.Models;
 
 namespace VlogRoom.Services.Data.Contracts
 {
     public interface IVideoDataService
     {
-        VideoDataServiceModel GetVideo(string videoId);
+        Video GetVideo(string videoId);
 
-        Task<IEnumerable<VideoSnippetServiceModel>> GetAllVideosSnippets(int resultsLength);
+        IEnumerable<Video> GetAllVideos();
+
+        Task<IEnumerable<Video>> GetAllVideosFromService(int resultsLength);
 
         Task AddVideo(Stream videoStream, string ownerUsername);
 
-        Task RemoveVideo(VideoDataServiceModel video);
+        void RemoveVideo(Video video);
+
+        Task HardRemoveVideo(Video video);
     }
 }

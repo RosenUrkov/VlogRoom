@@ -19,7 +19,6 @@ namespace VlogRoom.Web.Controllers
         public UsersController(IVideoDataService videoDataService)
         {
             Guard.WhenArgument(videoDataService, "videoDataService").IsNull().Throw();
-
             this.videoDataService = videoDataService;
         }
 
@@ -48,10 +47,21 @@ namespace VlogRoom.Web.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteVideo(string videoId)
+        public ActionResult DeleteVideo(string videoId)
         {
             var video = this.videoDataService.GetVideo(videoId);
-            await this.videoDataService.RemoveVideo(video);
+            this.videoDataService.RemoveVideo(video);
+            return this.RedirectToAction("Account");
+        }
+
+        [SaveChanges]
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> HardDeleteVideo(string videoId)
+        {
+            var video = this.videoDataService.GetVideo(videoId);
+            await this.videoDataService.HardRemoveVideo(video);
             return this.RedirectToAction("Account");
         }
     }

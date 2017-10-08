@@ -10,6 +10,7 @@ namespace VlogRoom.Data.Repository
 
         void Add(T entity);
         void Delete(T entity);
+        void HardDelete(T entity);
         void Update(T entity);
     }
 }

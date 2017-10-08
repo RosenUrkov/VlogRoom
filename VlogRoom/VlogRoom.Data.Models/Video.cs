@@ -14,6 +14,12 @@ namespace VlogRoom.Data.Models
 
         public string ServiceListItemId { get; set; }
 
+        public string Title { get; set; }
+
+        public string Description { get; set; }
+
+        public string ImageUrl { get; set; }
+
         public virtual User User { get; set; }
     }
 }

@@ -10,7 +10,6 @@ using VlogRoom.Data.Repository;
 using VlogRoom.Services.Common;
 using VlogRoom.Services.Common.Contracts;
 using VlogRoom.Services.Data.Contracts;
-using VlogRoom.Services.Models;
 
 namespace VlogRoom.Services.Data
 {
@@ -31,13 +30,22 @@ namespace VlogRoom.Services.Data
             this.youTubeService = youTubeService;
         }
 
-        public VideoDataServiceModel GetVideo(string videoId)
+        public Video GetVideo(string serviceVideoId)
         {
-            var video = this.videosRepo.All.FirstOrDefault(x => x.ServiceVideoId == videoId);
-            return MappingService.Provider.Map<VideoDataServiceModel>(video);
+           return this.videosRepo.All.FirstOrDefault(x => x.ServiceVideoId == serviceVideoId);
         }
 
-        public async Task<IEnumerable<VideoSnippetServiceModel>> GetAllVideosSnippets(int maxResultsLength)
+        public Video GetVideoWithDeleted(string serviceVideoId)
+        {
+            return this.videosRepo.AllAndDeleted.FirstOrDefault(x => x.ServiceVideoId == serviceVideoId);
+        }
+
+        public IEnumerable<Video> GetAllVideos()
+        {
+            return this.videosRepo.All.AsEnumerable();
+        }
+
+        public async Task<IEnumerable<Video>> GetAllVideosFromService(int maxResultsLength)
         {
             return await this.youTubeService.GetVideoSnippets(maxResultsLength);
         }       
@@ -53,11 +61,15 @@ namespace VlogRoom.Services.Data
             this.videosRepo.Add(video);
         }
 
-        public async Task RemoveVideo(VideoDataServiceModel videoData)
+        public void RemoveVideo(Video video)
         {
-            await this.youTubeService.DeleteVideo(videoData);
-            var video = this.videosRepo.All.FirstOrDefault(x => x.ServiceVideoId == videoData.ServiceVideoId);
             this.videosRepo.Delete(video);
+        }
+
+        public async Task HardRemoveVideo(Video video)
+        {
+            await this.youTubeService.DeleteVideo(video);
+            this.videosRepo.HardDelete(video);
         }
     }
 }

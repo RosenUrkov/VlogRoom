@@ -58,9 +58,15 @@ namespace VlogRoom.Data.Repository
             entry.State = EntityState.Modified;
         }
 
+        public void HardDelete(T entity)
+        {
+            var entry = this.context.Entry(entity);
+            entry.State = EntityState.Deleted;
+        }
+
         public void Update(T entity)
         {
-            DbEntityEntry entry = this.context.Entry(entity);
+            var entry = this.context.Entry(entity);
             if (entry.State == EntityState.Detached)
             {
                 this.context.Set<T>().Attach(entity);

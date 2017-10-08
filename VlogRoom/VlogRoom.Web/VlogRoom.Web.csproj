@@ -434,6 +434,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Contracts\IHaveCustomMappings.cs" />
+    <Compile Include="Contracts\IMap.cs" />
     <Compile Include="Contracts\IServiceLocator.cs" />
     <Compile Include="Common\ServiceLocator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -466,6 +468,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\log.txt" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -562,10 +565,6 @@
     <ProjectReference Include="..\VlogRoom.Services.Data\VlogRoom.Services.Data.csproj">
       <Project>{e30bbd6a-1bd0-427a-8d83-81e3336b2c3c}</Project>
       <Name>VlogRoom.Services.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VlogRoom.Services.Models\VlogRoom.Services.Models.csproj">
-      <Project>{7133918B-D0FB-4B37-9F1F-15F110F05486}</Project>
-      <Name>VlogRoom.Services.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\VlogRoom.Web.Common\VlogRoom.Web.Common.csproj">
       <Project>{ca1e1bcc-1fd1-4099-9f08-c81f02f28085}</Project>

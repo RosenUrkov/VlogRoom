@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using VlogRoom.Data.Models;
 using VlogRoom.Services.Common.Contracts;
-using VlogRoom.Services.Models;
+using VlogRoom.Web.Contracts;
 
 namespace VlogRoom.Web.Models
 {
-    public class VideoDataViewModel : IMap<VideoSnippetServiceModel>
+    public class VideoDataViewModel : IMap<Video>
     {
-        public string Id { get; set; }
+        public string ServiceVideoId { get; set; }
 
         public string Title { get; set; }
 

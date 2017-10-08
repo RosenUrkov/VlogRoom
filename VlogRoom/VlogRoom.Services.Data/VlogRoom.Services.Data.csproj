@@ -116,10 +116,6 @@
       <Project>{7CD7D964-594B-4668-94CA-1073A858A581}</Project>
       <Name>VlogRoom.Services.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VlogRoom.Services.Models\VlogRoom.Services.Models.csproj">
-      <Project>{7133918b-d0fb-4b37-9f1f-15f110f05486}</Project>
-      <Name>VlogRoom.Services.Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

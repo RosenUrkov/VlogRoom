@@ -8,7 +8,6 @@ using Google.Apis.Services;
 using Google.Apis.Util.Store;
 using Google.Apis.YouTube.v3;
 using Google.Apis.YouTube.v3.Data;
-using VlogRoom.Services.Models;
 using VlogRoom.Services.Common.Contracts;
 using System.IO;
 using Google.Apis.Upload;
@@ -26,7 +25,7 @@ namespace VlogRoom.Services.Common
 
         private Google.Apis.YouTube.v3.YouTubeService youTubeService;
 
-        public async Task<IEnumerable<VideoSnippetServiceModel>> GetVideoSnippets(int maxResultsLength)
+        public async Task<IEnumerable<VlogRoom.Data.Models.Video>> GetVideoSnippets(int maxResultsLength)
         {
             await this.Authorize();
 
@@ -37,16 +36,16 @@ namespace VlogRoom.Services.Common
             var response = playlistItemsListByPlaylistIdRequest.Execute();
             return response
                 .Items
-                .Select(x => new VideoSnippetServiceModel()
+                .Select(x => new VlogRoom.Data.Models.Video()
                 {
-                    Id = x.Snippet.ResourceId.VideoId,
+                    ServiceVideoId = x.Snippet.ResourceId.VideoId,
                     Description = x.Snippet.Description,
                     ImageUrl = x.Snippet.Thumbnails.Default__.Url,
                     Title = x.Snippet.Title
                 });
-        }
+        }              
 
-        public async Task<VideoDataServiceModel> UploadVideo(Stream videoStream)
+        public async Task<VlogRoom.Data.Models.Video> UploadVideo(Stream videoStream)
         {
             await this.Authorize();
 
@@ -71,7 +70,7 @@ namespace VlogRoom.Services.Common
 
             var videoServiceId = this.AddVideoToThePlaylist(videoInsertRequest.ResponseBody.Id);
 
-            var videoModel = new VideoDataServiceModel()
+            var videoModel = new VlogRoom.Data.Models.Video()
             {
                 ServiceVideoId = videoInsertRequest.ResponseBody.Id,
                 ServiceListItemId = videoServiceId
@@ -80,7 +79,7 @@ namespace VlogRoom.Services.Common
             return videoModel;
         }
 
-        public async Task DeleteVideo(VideoDataServiceModel videoData)
+        public async Task DeleteVideo(VlogRoom.Data.Models.Video videoData)
         {
             await this.Authorize();
 

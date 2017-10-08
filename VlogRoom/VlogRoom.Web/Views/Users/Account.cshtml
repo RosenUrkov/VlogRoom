@@ -21,3 +21,11 @@
     <button type="submit">Delete!</button>
 }
 
+@using (Html.BeginForm("HardDeleteVideo", "Users", FormMethod.Post))
+{
+    @Html.AntiForgeryToken();
+
+    <input type="text" name="videoId" />
+    <button type="submit">Hard Delete!</button>
+}
+

@@ -2,7 +2,7 @@
 
 <div class="video">
     <label class="video_title">@Model.Title</label>
-    <a href="@Model.Id" class="video_link" target="_blank">YouTube Link</a>
+    <a href="@Model.ServiceVideoId" class="video_link" target="_blank">YouTube Link</a>
     <label class="video_description">@Model.Description</label>
-    <iframe width="854" height="480" src="@("https://www.youtube.com/embed/" + Model.Id)" frameborder="0" allowfullscreen></iframe>
+    <iframe width="854" height="480" src="@("https://www.youtube.com/embed/" + Model.ServiceVideoId)" frameborder="0" allowfullscreen></iframe>
 </div>

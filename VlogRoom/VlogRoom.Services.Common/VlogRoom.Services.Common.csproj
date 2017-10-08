@@ -62,9 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IHaveCustomMappings.cs" />
     <Compile Include="Contracts\ILoggerService.cs" />
-    <Compile Include="Contracts\IMap.cs" />
     <Compile Include="Contracts\IMappingService.cs" />
     <Compile Include="LoggerService.cs" />
     <Compile Include="MappingService.cs" />

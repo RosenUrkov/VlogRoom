@@ -34,6 +34,11 @@ namespace VlogRoom.Web.Controllers
             var user = this.userDataService.GetUserById(id);
             Guard.WhenArgument(user, "user").IsNull().Throw();
 
+            if (this.User.Identity.IsAuthenticated && user.UserName == this.User.Identity.Name)
+            {
+                return this.RedirectToAction("Account");
+            }
+
             var userModel = MappingService.Provider.Map<UserDataViewModel>(user);
             return View(userModel);
         }
@@ -55,7 +60,7 @@ namespace VlogRoom.Web.Controllers
         public ActionResult DailyFeed()
         {
             var currentUser = this.userDataService.GetUserByUsername(this.User.Identity.Name);
-            var model = currentUser.Subscribers.SelectMany(x => x.Videos);
+            var model = currentUser.Subscribers.SelectMany(x => x.Videos).Where(x => x.CreatedOn.Value.Day == DateTime.Now.Day);
 
             throw new NotImplementedException();
         }

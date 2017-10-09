@@ -1,10 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@using Kendo.Mvc.UI;
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/kendo-css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -41,7 +44,11 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/kendo")
     @Scripts.Render("~/bundles/bootstrap")
+    
+    @Html.Kendo().DeferredScripts()
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -53,7 +53,7 @@ form.navbar-form.navbar-right {
 }
 
 .top-search form input[type="text"] {
-    width: 100%;
+    min-width: 100%;
     position: relative;
     padding: 6px 43px 6px 12px;
     outline: none;
@@ -1596,9 +1596,11 @@ span.glyphicon.glyphicon-time.about-clock :before {
 }
 
 span.glyphicon.glyphicon-user {
-    color: #CACACA;
+    /*color: #CACACA;
     font-size: 7em;
-    line-height: 1.3em;
+    line-height: 1.3em;*/
+    margin: 0 2em 0 0;
+    font-size: 16px !important;
 }
 
 .about-left-img span.glyphicon-envelope {

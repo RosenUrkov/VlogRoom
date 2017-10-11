@@ -12,10 +12,5 @@ namespace VlogRoom.Web
         {
             ConfigureAuth(app);
         }
-
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc().AddTypedRouting();
-        }
     }
 }

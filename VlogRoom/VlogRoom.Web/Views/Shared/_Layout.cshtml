@@ -1,40 +1,42 @@
-﻿@using Kendo.Mvc.UI;
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>Vlog room</title>
+
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/template-css")
     @Styles.Render("~/Content/kendo-css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a class="navbar-brand" href="index.html"><h1><img src="~/Images/logo.png"/></h1></a>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Rooms", "AllUsers", "Users")</li>
-
-                    @if (Request.IsAuthenticated)
-                    {
-                        <li>@Html.ActionLink("DailyFeed", "DailyFeed", "Users")</li>
-                    }
-                </ul>
-                @Html.Partial("_LoginPartial")
+            <div id="navbar" class="navbar-collapse collapse">
+                <div class="top-search">
+                    <form class="navbar-form navbar-right">
+                        <input type="text" class="form-control" placeholder="Search...">
+                        <input type="submit" value=" ">
+                    </form>
+                </div>
+                @Html.Partial("_LoginPartial")              
             </div>
+            <div class="clearfix"> </div>
         </div>
-    </div>
+    </nav>
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -46,9 +48,25 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/kendo")
     @Scripts.Render("~/bundles/bootstrap")
-    
-    @Html.Kendo().DeferredScripts()
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/template")
 
+
+    @Html.Kendo().DeferredScripts()
     @RenderSection("scripts", required: false)
+
+    @if (TempData[GlobalConstants.SuccessMessage] != null)
+    {
+        <script>
+            toastr.options.closeOnHover = true;
+            toastr.info("@TempData[GlobalConstants.SuccessMessage]")
+        </script>
+    }
+    else if (TempData[GlobalConstants.ErrorMessage] != null)
+    {
+        <script>
+            toastr.error("@TempData[GlobalConstants.ErrorMessage]")
+        </script>
+    }
 </body>
 </html>

@@ -73,6 +73,7 @@
     <Compile Include="Attributes\AjaxOnlyAttribute.cs" />
     <Compile Include="Attributes\AlreadyLoggedInAttribute.cs" />
     <Compile Include="Attributes\SaveChangesAttribute.cs" />
+    <Compile Include="Constants\GlobalConstants.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -90,5 +91,6 @@
       <Name>VlogRoom.Services.Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

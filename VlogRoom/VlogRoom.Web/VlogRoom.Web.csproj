@@ -658,6 +658,7 @@
     <Content Include="Views\Shared\_RecentVideo.cshtml" />
     <Content Include="Views\Shared\_ViralVideo.cshtml" />
     <Content Include="Views\Shared\_RecommendedVideo.cshtml" />
+    <Content Include="Views\VIdeo\Video.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

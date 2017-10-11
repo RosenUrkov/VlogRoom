@@ -1,6 +1,60 @@
-﻿@model IEnumerable<VlogRoom.Web.Models.VideoDataViewModel>
+﻿@*@model IEnumerable<VlogRoom.Web.Models.VideoDataViewModel>
 
-@foreach (var video in Model)
-{
-    @Html.Partial("_VideoData", video);
-}
+    @foreach (var video in Model)
+    {
+        @Html.Partial("_VideoData", video);
+    }*@
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div class="main-grids">
+        <div class="top-grids">
+            <div class="recommended-info">
+                <h3>Recent Videos</h3>
+            </div>
+            @for (int i = 0; i < 3; i++)
+            {
+                @Html.Partial("_RecentVideo");
+            }
+            <div class="clearfix"> </div>
+        </div>
+        <div class="recommended">
+            <div class="recommended-grids">
+                <div class="recommended-info">
+                    <h3>Animated Cartoon</h3>
+                </div>
+                <div id="top" class="callbacks_container">
+                    <ul class="rslides" id="slider3">
+                        @for (int i = 0; i < 3; i++)
+                        {
+                            <li>
+                                <div class="animated-grids">
+                                    @for (int j = 0; j < 4; j++)
+                                    {
+                                        @Html.Partial("_ViralVideo");
+                                    }
+
+                                    <div class="clearfix"> </div>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="recommended">
+            <div class="recommended-info">
+                <h3>Recommended</h3>
+            </div>
+            @for (int i = 0; i < 2; i++)
+            {
+                <div class="recommended-grids">
+                    @for (int j = 0; j < 4; j++)
+                    {
+                        @Html.Partial("_RecommendedVideo");
+                    }
+                    <div class="clearfix"> </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

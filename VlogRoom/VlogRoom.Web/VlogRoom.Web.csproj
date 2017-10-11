@@ -655,6 +655,9 @@
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
     <Content Include="Views\Shared\_SideMenu.cshtml" />
+    <Content Include="Views\Shared\_RecentVideo.cshtml" />
+    <Content Include="Views\Shared\_ViralVideo.cshtml" />
+    <Content Include="Views\Shared\_RecommendedVideo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

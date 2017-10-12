@@ -18,6 +18,7 @@ namespace VlogRoom.Data.Models
         {
             this.Videos = new HashSet<Video>();
             this.Subscribers = new HashSet<User>();
+            this.Subscribtions = new HashSet<User>();
         }
 
         [DataType(DataType.DateTime)]
@@ -35,6 +36,8 @@ namespace VlogRoom.Data.Models
         public virtual ICollection<Video> Videos { get; set; }
 
         public virtual ICollection<User> Subscribers { get; set; }
+
+        public virtual ICollection<User> Subscribtions { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {

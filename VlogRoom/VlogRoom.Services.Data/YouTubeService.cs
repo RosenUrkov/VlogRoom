@@ -14,6 +14,7 @@ using Google.Apis.Upload;
 using System.Threading;
 using Google.Apis.Auth.OAuth2.Flows;
 using Google.Apis.Auth.OAuth2.Responses;
+using System.Xml;
 
 namespace VlogRoom.Services.Common
 {
@@ -25,33 +26,13 @@ namespace VlogRoom.Services.Common
 
         private Google.Apis.YouTube.v3.YouTubeService youTubeService;
 
-        public async Task<IEnumerable<VlogRoom.Data.Models.Video>> GetVideoSnippets(int maxResultsLength)
-        {
-            await this.Authorize();
-
-            var playlistItemsListByPlaylistIdRequest = this.youTubeService.PlaylistItems.List("snippet");
-            playlistItemsListByPlaylistIdRequest.MaxResults = maxResultsLength;
-            playlistItemsListByPlaylistIdRequest.PlaylistId = PlayListId;
-
-            var response = playlistItemsListByPlaylistIdRequest.Execute();
-            return response
-                .Items
-                .Select(x => new VlogRoom.Data.Models.Video()
-                {
-                    ServiceVideoId = x.Snippet.ResourceId.VideoId,
-                    Description = x.Snippet.Description,
-                    ImageUrl = x.Snippet.Thumbnails.Default__.Url,
-                    Title = x.Snippet.Title
-                });
-        }              
-
-        public async Task<VlogRoom.Data.Models.Video> UploadVideo(Stream videoStream)
+        public async Task<VlogRoom.Data.Models.Video> UploadVideo(Stream videoStream, string videoTitle, string videoDescription)
         {
             await this.Authorize();
 
             var snippet = new VideoSnippet();
-            snippet.Title = "Video upload title";
-            snippet.Description = "Description of uploaded video.";
+            snippet.Title = videoTitle;
+            snippet.Description = videoDescription;
             snippet.CategoryId = "22";
 
             var status = new VideoStatus();
@@ -64,16 +45,25 @@ namespace VlogRoom.Services.Common
             VideosResource.InsertMediaUpload videoInsertRequest;
             using (videoStream)
             {
-                videoInsertRequest = this.youTubeService.Videos.Insert(video, "snippet,status", videoStream, "video/*");
+                videoInsertRequest = this.youTubeService.Videos.Insert(video, "snippet,status,contentDetails", videoStream, "video/*");
                 await videoInsertRequest.UploadAsync();
             }
 
             var videoServiceId = this.AddVideoToThePlaylist(videoInsertRequest.ResponseBody.Id);
+            var duration = XmlConvert.ToTimeSpan(videoInsertRequest.ResponseBody.ContentDetails.Duration);
+            var displayDuration = (duration.Hours < 1 ? "" : duration.Hours.ToString() + ":") +
+                                   duration.Minutes + ":" +
+                                  (duration.Seconds < 10 ? "0" + duration.Seconds : duration.Seconds.ToString());
 
             var videoModel = new VlogRoom.Data.Models.Video()
             {
                 ServiceVideoId = videoInsertRequest.ResponseBody.Id,
-                ServiceListItemId = videoServiceId
+                ServiceListItemId = videoServiceId,
+                ImageUrl = videoInsertRequest.ResponseBody.Snippet.Thumbnails.Default__.Url,
+                Description = videoInsertRequest.ResponseBody.Snippet.Description,
+                Duration = displayDuration,
+                Title = videoInsertRequest.ResponseBody.Snippet.Title,
+                Views = 0,
             };
 
             return videoModel;

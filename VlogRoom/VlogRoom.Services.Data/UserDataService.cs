@@ -37,6 +37,8 @@ namespace VlogRoom.Services.Data
         public void Subscribe(User userToBeSubscribed, User userToSubscribeTo)
         {
             userToSubscribeTo.Subscribers.Add(userToBeSubscribed);
+            userToBeSubscribed.Subscribtions.Add(userToSubscribeTo);
+
             this.usersRepo.Update(userToSubscribeTo);
         }
     }

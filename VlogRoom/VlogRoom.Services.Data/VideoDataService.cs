@@ -32,10 +32,10 @@ namespace VlogRoom.Services.Data
 
         public Video GetVideoByServiceId(string serviceVideoId)
         {
-           return this.videosRepo.All.FirstOrDefault(x => x.ServiceVideoId == serviceVideoId);
+            return this.videosRepo.All.FirstOrDefault(x => x.ServiceVideoId == serviceVideoId);
         }
 
-        public Video GetVideoWithDeleted(string serviceVideoId)
+        public Video GetVideoBtServiceIdWithDeleted(string serviceVideoId)
         {
             return this.videosRepo.AllAndDeleted.FirstOrDefault(x => x.ServiceVideoId == serviceVideoId);
         }
@@ -45,16 +45,34 @@ namespace VlogRoom.Services.Data
             return this.videosRepo.All.AsEnumerable();
         }
 
-        public async Task<IEnumerable<Video>> GetAllVideosFromService(int maxResultsLength)
+        public IEnumerable<Video> GetAllVideosWithDeleted()
         {
-            return await this.youTubeService.GetVideoSnippets(maxResultsLength);
-        }       
+            return this.videosRepo.AllAndDeleted.AsEnumerable();
+        }
 
-        public async Task AddVideo(Stream videoStream, string ownerUsername)
+        public IEnumerable<Video> GetMostRecentVideos(int count)
         {
-            var videoData = await this.youTubeService.UploadVideo(videoStream);
+            return this.videosRepo.All.OrderByDescending(x => x.CreatedOn).Take(count).AsEnumerable();
+        }
 
-            var video = MappingService.Provider.Map<Video>(videoData);
+        public IEnumerable<Video> GetMostViralVideos(int count)
+        {
+            return this.videosRepo.All.OrderByDescending(x => x.Views).Take(count).AsEnumerable();
+        }
+
+        public IEnumerable<Video> GetRecommendedVideos(User currentUser, int count)
+        {
+            return currentUser
+                .Subscribtions
+                .SelectMany(x => x.Videos)
+                .OrderByDescending(x => x.CreatedOn)
+                .Take(count).AsEnumerable();
+        }
+
+        public async Task AddVideo(Stream videoStream, string videoTitle, string videoDescription, string ownerUsername)
+        {
+            var video = await this.youTubeService.UploadVideo(videoStream, videoTitle, videoDescription);
+
             var user = this.usersRepo.All.FirstOrDefault(x => x.UserName == ownerUsername);
             video.User = user;
 

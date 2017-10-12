@@ -10,13 +10,21 @@ namespace VlogRoom.Services.Data.Contracts
 {
     public interface IVideoDataService
     {
-        Video GetVideoByServiceId(string videoId);
+        Video GetVideoByServiceId(string serviceVideoId);
+
+        Video GetVideoBtServiceIdWithDeleted(string serviceVideoId);
 
         IEnumerable<Video> GetAllVideos();
 
-        Task<IEnumerable<Video>> GetAllVideosFromService(int resultsLength);
+        IEnumerable<Video> GetAllVideosWithDeleted();
 
-        Task AddVideo(Stream videoStream, string ownerUsername);
+        IEnumerable<Video> GetMostRecentVideos(int count);
+
+        IEnumerable<Video> GetMostViralVideos(int count);
+
+        IEnumerable<Video> GetRecommendedVideos(User currentUser, int count);
+
+        Task AddVideo(Stream videoStream, string videoTitle, string videoDescription, string ownerUsername);
 
         void RemoveVideo(Video video);
 

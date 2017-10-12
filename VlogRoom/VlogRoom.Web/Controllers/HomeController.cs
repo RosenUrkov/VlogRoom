@@ -15,23 +15,20 @@ namespace VlogRoom.Web.Controllers
     public class HomeController : Controller
     {
         private readonly IVideoDataService videoDataService;
-        private readonly IUserDataService userDataService;
 
         public HomeController(IUserDataService userDataService, IVideoDataService videoDataService)
         {
             Guard.WhenArgument(videoDataService, "videoDataService").IsNull().Throw();
-            Guard.WhenArgument(userDataService, "userDataService").IsNull().Throw();
-
             this.videoDataService = videoDataService;
-            this.userDataService = userDataService;
         }
 
         public ActionResult Index()
         {
-            var videos = this.videoDataService.GetAllVideos();
-            var videosViewModel = videos.Map<Video, VideoDataViewModel>();
+            var videoCollectionsModel = new VideoCollectionsViewModel();
+            videoCollectionsModel.RecentVideos = this.videoDataService.GetMostRecentVideos(5).Map<Video, VideoDataViewModel>();
+            videoCollectionsModel.ViralVideos = this.videoDataService.GetMostViralVideos(5).Map<Video, VideoDataViewModel>().ToList();
 
-            return View(videosViewModel);
+            return View(videoCollectionsModel);
         }
     }
 }

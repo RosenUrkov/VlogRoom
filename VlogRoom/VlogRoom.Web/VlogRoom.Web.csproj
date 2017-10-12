@@ -447,6 +447,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\VideosController.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -469,6 +470,7 @@
     <Compile Include="Models\ManageViewModels\SetPasswordViewModel.cs" />
     <Compile Include="Models\ManageViewModels\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="Models\UserDataViewModel.cs" />
+    <Compile Include="Models\VideoCollectionsViewModel.cs" />
     <Compile Include="Models\VideoDataViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -635,7 +637,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\_VideoData.cshtml" />
     <Content Include="Views\Users\Account.cshtml" />
     <Content Include="Views\Users\Room.cshtml" />
     <Content Include="Scripts\Kendo\kendo.aspnetmvc.min.js.map" />
@@ -658,7 +659,8 @@
     <Content Include="Views\Shared\_RecentVideo.cshtml" />
     <Content Include="Views\Shared\_ViralVideo.cshtml" />
     <Content Include="Views\Shared\_RecommendedVideo.cshtml" />
-    <Content Include="Views\VIdeo\Video.cshtml" />
+    <Content Include="Views\Videos\Video.cshtml" />
+    <Content Include="Views\Videos\UploadVideo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

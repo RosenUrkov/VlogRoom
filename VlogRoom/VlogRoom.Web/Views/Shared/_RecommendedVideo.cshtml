@@ -1,18 +1,20 @@
-﻿<div class="col-md-3 resent-grid recommended-grid">
+﻿@model VlogRoom.Web.Models.VideoDataViewModel
+
+<div class="col-md-3 resent-grid recommended-grid">
     <div class="resent-grid-img recommended-grid-img">
-        <a href="single.html"><img src="images/r1.jpg" alt="" /></a>
+        <a href="@(Url.Action<VlogRoom.Web.Controllers.VideosController>(c => c.Index(Model.ServiceVideoId )))"><img src="@Model.ImageUrl" alt="" /></a>
         <div class="time small-time">
-            <p>2:34</p>
+            <p>@Model.Duration</p>
         </div>
         <div class="clck small-clck">
             <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
         </div>
     </div>
     <div class="resent-grid-info recommended-grid-info video-info-grid">
-        <h5><a href="single.html" class="title">Varius sit sed viverra viverra nullam nullam interdum metus</a></h5>
+        <h5><a href="@(Url.Action<VlogRoom.Web.Controllers.VideosController>(c => c.Index(Model.ServiceVideoId )))" class="title">@Model.Title</a></h5>
         <ul>
-            <li><p class="author author-info"><a href="#" class="author">John Maniya</a></p></li>
-            <li class="right-list"><p class="views views-info">2,114,200 views</p></li>
+            <li><p class="author author-info"><a href="@(Url.Action<UsersController>(c => c.Room(Model.OwnerId)))" class="author">@Model.OwnerUsername</a></p></li>
+            <li class="right-list"><p class="views views-info">@Model.Views views</p></li>
         </ul>
     </div>
 </div>

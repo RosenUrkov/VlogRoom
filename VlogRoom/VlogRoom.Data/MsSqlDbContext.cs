@@ -59,6 +59,7 @@ namespace VlogRoom.Data
             modelBuilder.Entity<IdentityRole>().ToTable("Roles");
 
             modelBuilder.Entity<User>().HasMany(m => m.Subscribers).WithMany();
+            modelBuilder.Entity<User>().HasMany(m => m.Subscribtions).WithMany();
         }
     }
 }

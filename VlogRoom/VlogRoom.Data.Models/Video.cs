@@ -16,6 +16,10 @@ namespace VlogRoom.Data.Models
 
         public string Title { get; set; }
 
+        public int Views { get; set; }
+
+        public string Duration { get; set; }
+
         public string Description { get; set; }
 
         public string ImageUrl { get; set; }

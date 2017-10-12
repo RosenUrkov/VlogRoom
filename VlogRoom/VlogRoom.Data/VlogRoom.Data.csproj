@@ -73,6 +73,10 @@
     <Compile Include="Migrations\201710081728187_Added user many-to-many.Designer.cs">
       <DependentUpon>201710081728187_Added user many-to-many.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710121438044_Update video and user models.cs" />
+    <Compile Include="Migrations\201710121438044_Update video and user models.Designer.cs">
+      <DependentUpon>201710121438044_Update video and user models.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MsSqlDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -106,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710081728187_Added user many-to-many.resx">
       <DependentUpon>201710081728187_Added user many-to-many.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710121438044_Update video and user models.resx">
+      <DependentUpon>201710121438044_Update video and user models.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

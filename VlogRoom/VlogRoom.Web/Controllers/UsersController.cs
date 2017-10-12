@@ -49,13 +49,6 @@ namespace VlogRoom.Web.Controllers
             return View();
         }
 
-        public ActionResult AllUsers()
-        {
-            var model = this.userDataService.GetAllUsers().Map<User, UserDataViewModel>();
-
-            throw new NotImplementedException();
-        }
-
         [Authorize]
         public ActionResult DailyFeed()
         {
@@ -63,28 +56,7 @@ namespace VlogRoom.Web.Controllers
             var model = currentUser.Subscribers.SelectMany(x => x.Videos).Where(x => x.CreatedOn.Value.Day == DateTime.Now.Day);
 
             throw new NotImplementedException();
-        }
-
-        [SaveChanges]
-        [Authorize]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> UploadVideo(HttpPostedFileBase video)
-        {
-            await this.videoDataService.AddVideo(video.InputStream, this.User.Identity.Name);
-            return this.RedirectToAction("Account");
-        }
-
-        [SaveChanges]
-        [Authorize]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteVideo(string videoId)
-        {
-            var video = this.videoDataService.GetVideoByServiceId(videoId);
-            this.videoDataService.RemoveVideo(video);
-            return this.RedirectToAction("Account");
-        }
+        }        
 
         [SaveChanges]
         [Authorize]

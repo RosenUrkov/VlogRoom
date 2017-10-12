@@ -1,0 +1,31 @@
+﻿<!-- upload -->
+<div class="upload">
+    <!-- container -->
+    <div class="container">
+        <div class="upload-grids">
+            <div class="upload-right">
+                <div class="upload-file">
+                    <div class="services-icon">
+                        <span class="glyphicon glyphicon-open" aria-hidden="true"></span>
+                    </div>
+                    @using (Html.BeginForm("UploadVideo", "Videos", FormMethod.Post, new { enctype = "multipart/form-data", id = "upload-form" }))
+                    {
+                        @Html.AntiForgeryToken();
+
+                        <input type="text" name="videoTitle" class="form-control" placeholder="Video title"/>
+
+                        <input type="file" name="video" value="Choose file.."  id="upload-input"/>
+
+                        <input type="text" name="videoDescription" class="form-control" placeholder="Video description" />
+                    }
+                </div>
+                <div class="upload-info">
+                    <h5>Select files to upload</h5>
+                    <span>or</span>
+                    <p>Drag and drop files</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //container -->
+</div>

@@ -16,5 +16,7 @@ namespace VlogRoom.Services.Data.Contracts
         IEnumerable<User> GetAllUsers();
 
         void Subscribe(User userToBeSubscribed, User userToSubscribeTo);
+
+        void Unsubscribe(User userToBeUnsubscribed, User userToBeUnsubscribedFrom);
     }
 }

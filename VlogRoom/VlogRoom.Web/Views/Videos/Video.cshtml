@@ -1,4 +1,4 @@
-﻿@model VideoDataViewModel
+﻿@model SingleVideoViewModel
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <div class="show-top-grids">
@@ -15,11 +15,7 @@
                 <div class="share">
                     <h5>Share this</h5>
                     <ul>
-                        <li><a href="#" class="icon fb-icon">Facebook</a></li>
-                        <li><a href="#" class="icon dribbble-icon">Dribbble</a></li>
-                        <li><a href="#" class="icon twitter-icon">Twitter</a></li>
-                        <li><a href="#" class="icon pinterest-icon">Pinterest</a></li>
-                        <li><a href="#" class="icon whatsapp-icon">Whatsapp</a></li>
+                        <li><a href="#" class="icon whatsapp-icon">Owner</a></li>
                         <li><a href="#" class="icon like">Like</a></li>
                         <li><a href="#" class="icon comment-icon">Comments</a></li>
                         <li class="view">200 Views</li>
@@ -31,22 +27,9 @@
                 <div class="load_more">
                     <ul id="myList">
                         <li>
-                            <h4>Published on 15 June 2015</h4>
-                            <p>Nullam fringilla sagittis tortor ut rhoncus. Nam vel ultricies erat, vel sodales leo. Maecenas pellentesque, est suscipit laoreet tincidunt, ipsum tortor vestibulum leo, ac dignissim diam velit id tellus. Morbi luctus velit quis semper egestas. Nam condimentum sem eget ex iaculis bibendum. Nam tortor felis, commodo faucibus sollicitudin ac, luctus a turpis. Donec congue pretium nisl, sed fringilla tellus tempus in.</p>
-                        </li>
-                        <li>
-                            <p>Nullam fringilla sagittis tortor ut rhoncus. Nam vel ultricies erat, vel sodales leo. Maecenas pellentesque, est suscipit laoreet tincidunt, ipsum tortor vestibulum leo, ac dignissim diam velit id tellus. Morbi luctus velit quis semper egestas. Nam condimentum sem eget ex iaculis bibendum. Nam tortor felis, commodo faucibus sollicitudin ac, luctus a turpis. Donec congue pretium nisl, sed fringilla tellus tempus in.</p>
-                            <p>Nullam fringilla sagittis tortor ut rhoncus. Nam vel ultricies erat, vel sodales leo. Maecenas pellentesque, est suscipit laoreet tincidunt, ipsum tortor vestibulum leo, ac dignissim diam velit id tellus. Morbi luctus velit quis semper egestas. Nam condimentum sem eget ex iaculis bibendum. Nam tortor felis, commodo faucibus sollicitudin ac, luctus a turpis. Donec congue pretium nisl, sed fringilla tellus tempus in.</p>
-                            <div class="load-grids">
-                                <div class="load-grid">
-                                    <p>Category</p>
-                                </div>
-                                <div class="load-grid">
-                                    <a href="movies.html">Entertainment</a>
-                                </div>
-                                <div class="clearfix"> </div>
-                            </div>
-                        </li>
+                            <h4>Published on @Model.CreatedOn.Value</h4>
+                            <p>@Model.Description</p>
+                        </li>                        
                     </ul>
                 </div>
             </div>

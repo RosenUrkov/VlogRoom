@@ -7,7 +7,7 @@
             <a href="@(Url.Action<VideosController>(c=>c.UploadVideo()))">Upload</a>
         </div>
 
-        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right play-icon" }))
         {
             @Html.AntiForgeryToken()
 

@@ -1,31 +1,23 @@
-﻿
-@{
-    ViewBag.Title = "Account";
-}
+﻿@model UserDataViewModel
 
-<h2>Account</h2>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div class="main-grids">
+        <div class="recommended">
+            <div class="recommended-grids english-grid">
+                <div class="recommended-info">
+                    <div class="heading">
+                        <h3>@Model.UserName</h3>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+               
+                @foreach(var video in Model.Videos)
+                {
+                    @Html.Partial("_RoomVideo", video);
+                }
 
-@using (Html.BeginForm("UploadVideo", "Users", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken();
-
-    <input type="file" name="video" />
-    <button type="submit">Submit!</button>
-}
-
-@using (Html.BeginForm("DeleteVideo", "Users", FormMethod.Post))
-{
-    @Html.AntiForgeryToken();
-
-    <input type="text" name="videoId" />
-    <button type="submit">Delete!</button>
-}
-
-@using (Html.BeginForm("HardDeleteVideo", "Users", FormMethod.Post))
-{
-    @Html.AntiForgeryToken();
-
-    <input type="text" name="videoId" />
-    <button type="submit">Hard Delete!</button>
-}
-
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+</div>

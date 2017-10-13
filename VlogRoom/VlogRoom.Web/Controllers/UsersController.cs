@@ -17,16 +17,12 @@ namespace VlogRoom.Web.Controllers
 {
     public class UsersController : Controller
     {
-        private readonly IVideoDataService videoDataService;
         private readonly IUserDataService userDataService;
 
         public UsersController(IUserDataService userDataService, IVideoDataService videoDataService)
         {
-            Guard.WhenArgument(videoDataService, "videoDataService").IsNull().Throw();
             Guard.WhenArgument(userDataService, "userDataService").IsNull().Throw();
-
             this.userDataService = userDataService;
-            this.videoDataService = videoDataService;
         }
 
         public ActionResult Room(string id)
@@ -46,7 +42,10 @@ namespace VlogRoom.Web.Controllers
         [Authorize]
         public ActionResult Account()
         {
-            return View();
+            var user = this.userDataService.GetUserByUsername(this.User.Identity.Name);
+            var userModel = MappingService.Provider.Map<UserDataViewModel>(user);
+
+            return View(userModel);
         }
 
         [Authorize]
@@ -56,17 +55,6 @@ namespace VlogRoom.Web.Controllers
             var model = currentUser.Subscribers.SelectMany(x => x.Videos).Where(x => x.CreatedOn.Value.Day == DateTime.Now.Day);
 
             throw new NotImplementedException();
-        }        
-
-        [SaveChanges]
-        [Authorize]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> HardDeleteVideo(string videoId)
-        {
-            var video = this.videoDataService.GetVideoByServiceId(videoId);
-            await this.videoDataService.HardRemoveVideo(video);
-            return this.RedirectToAction("Account");
         }
 
         [SaveChanges]
@@ -79,7 +67,20 @@ namespace VlogRoom.Web.Controllers
             var userToBeSubscribedTo = this.userDataService.GetUserById(userId);
 
             this.userDataService.Subscribe(currentUser, userToBeSubscribedTo);
-            return this.RedirectToAction("Account");
+            return this.Redirect(Request.UrlReferrer.ToString());
+        }
+
+        [SaveChanges]
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UnsubscribeFromUser(string userId)
+        {
+            var currentUser = this.userDataService.GetUserByUsername(this.User.Identity.Name);
+            var userToBeUnsubscribedFrom = this.userDataService.GetUserById(userId);
+
+            this.userDataService.Unsubscribe(currentUser, userToBeUnsubscribedFrom);
+            return this.Redirect(Request.UrlReferrer.ToString());
         }
     }
 }

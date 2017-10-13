@@ -1,36 +1,42 @@
-﻿// You can also use "$(window).load(function() {"
-$(function () {
+﻿$(() => {
     $("#slider3").responsiveSlides({
         auto: true,
         pager: false,
         nav: true,
         speed: 500,
         namespace: "callbacks",
-        before: function () {
+        before: () => {
             $('.events').append("<li>before event fired.</li>");
         },
-        after: function () {
+        after: () => {
             $('.events').append("<li>after event fired.</li>");
         }
     });
 });
 
-$(document).ready(function () {
+$(() => {
     size_li = $("#myList li").length;
     x = 1;
     $('#myList li:lt(' + x + ')').show();
-    $('#loadMore').click(function () {
+
+    $('#loadMore').on("click", () => {
         x = (x + 1 <= size_li) ? x + 1 : size_li;
         $('#myList li:lt(' + x + ')').show();
     });
-    $('#showLess').click(function () {
+
+    $('#showLess').on("click", () => {
         x = (x - 1 < 0) ? 1 : x - 1;
         $('#myList li').not(':lt(' + x + ')').hide();
     });
 });
 
 $(() => {
-    $("#upload-input").change(() => {
+    $(".container").on("change", "#upload-input", () => {
         $("#upload-form").submit();
+    });
+
+    $(".container").on("click", "#subscribe-button", (ev) => {
+        ev.preventDefault();
+        $("#subscribe-form").submit();
     });
 });

@@ -3,6 +3,7 @@
     <!-- container -->
     <div class="container">
         <div class="upload-grids">
+            <input type="text" name="videoTitle" class="form-control" placeholder="Video title" />
             <div class="upload-right">
                 <div class="upload-file">
                     <div class="services-icon">
@@ -12,11 +13,7 @@
                     {
                         @Html.AntiForgeryToken();
 
-                        <input type="text" name="videoTitle" class="form-control" placeholder="Video title"/>
-
-                        <input type="file" name="video" value="Choose file.."  id="upload-input"/>
-
-                        <input type="text" name="videoDescription" class="form-control" placeholder="Video description" />
+                        <input type="file" name="video" value="Choose file.." id="upload-input" />
                     }
                 </div>
                 <div class="upload-info">
@@ -25,6 +22,7 @@
                     <p>Drag and drop files</p>
                 </div>
             </div>
+            <input type="text" name="videoDescription" class="form-control" placeholder="Video description" />
         </div>
     </div>
     <!-- //container -->

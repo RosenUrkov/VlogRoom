@@ -2,7 +2,7 @@
 
 <div class="col-md-4 resent-grid recommended-grid slider-top-grids">
     <div class="resent-grid-img recommended-grid-img">
-        <a href="@(Url.Action<VideosController>(c => c.Index(Model.ServiceVideoId )))"><img src="@Model.ImageUrl" alt="" /></a>
+        <a href="@(Url.Action<VideosController>(c => c.Single(Model.ServiceVideoId )))"><img src="@Model.ImageUrl" alt="" /></a>
         <div class="time">
             <p>@Model.Duration</p>
         </div>
@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="resent-grid-info recommended-grid-info">
-        <h3><a href="@(Url.Action<VideosController>(c => c.Index(Model.ServiceVideoId )))" class="title title-info">@Model.Title</a></h3>
+        <h3><a href="@(Url.Action<VideosController>(c => c.Single(Model.ServiceVideoId )))" class="title title-info">@Model.Title</a></h3>
         <ul>
             <li><p class="author author-info"><a href="@(Url.Action<UsersController>(c => c.Room(Model.OwnerId)))" class="author">@Model.OwnerUsername</a></p></li>
             <li class="right-list"><p class="views views-info">@Model.Views views</p></li>

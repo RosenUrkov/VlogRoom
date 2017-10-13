@@ -469,6 +469,7 @@
     <Compile Include="Models\ManageViewModels\ManageLoginsViewModel.cs" />
     <Compile Include="Models\ManageViewModels\SetPasswordViewModel.cs" />
     <Compile Include="Models\ManageViewModels\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="Models\SingleVideoViewModel.cs" />
     <Compile Include="Models\UserDataViewModel.cs" />
     <Compile Include="Models\VideoCollectionsViewModel.cs" />
     <Compile Include="Models\VideoDataViewModel.cs" />
@@ -661,6 +662,7 @@
     <Content Include="Views\Shared\_RecommendedVideo.cshtml" />
     <Content Include="Views\Videos\Video.cshtml" />
     <Content Include="Views\Videos\UploadVideo.cshtml" />
+    <Content Include="Views\Shared\_RoomVideo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

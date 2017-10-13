@@ -1,20 +1,44 @@
-﻿@model VlogRoom.Web.Models.UserDataViewModel
+﻿@model UserDataViewModel
 
-@{
-    ViewBag.Title = "Room";
-}
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div class="main-grids">
+        <div class="recommended">
+            <div class="recommended-grids english-grid">
+                <div class="recommended-info">
+                    <div class="heading">
+                        <h3>@Model.UserName</h3>
+                    </div>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <div class="heading-right">
+                            @if (Model.SubscribtionsNames.Any(x => x == User.Identity.Name))
+                            {
+                                using (Html.BeginForm<UsersController>(c => c.UnsubscribeFromUser(Model.Id), FormMethod.Post, null, new { id = "subscribe-form" }))
+                                {
+                                    @Html.AntiForgeryToken();
+                                    <a href="#" class="play-icon" id="subscribe-button">Unsubscribe</a>
+                                }
+                            }
+                            else
+                            {
+                                using (Html.BeginForm<UsersController>(c => c.SubscribeToUser(Model.Id), FormMethod.Post, null, new { id = "subscribe-form" }))
+                                {
+                                    @Html.AntiForgeryToken();
+                                    <a href="#" class="play-icon" id="subscribe-button">Subscribe</a>
+                                }
+                            }
+                        </div>
+                    }
+                    <div class="clearfix"> </div>
+                </div>
 
-<h2>@Model.UserName</h2>
+                @foreach (var video in Model.Videos)
+                {
+                    @Html.Partial("_RoomVideo", video);
+                }
 
-@using (Html.BeginForm("SubscribeToUser", "Users", FormMethod.Post))
-{
-    @Html.AntiForgeryToken();
-    <input type="hidden" name="userId" value="@Model.Id" />
-    <button type="submit">Subscribe!</button>
-}
-
-@foreach (var video in Model.Videos)
-{
-    @Html.Partial("_VideoData", video);
-}
-
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+</div>

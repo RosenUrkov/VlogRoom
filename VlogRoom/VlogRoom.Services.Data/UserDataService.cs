@@ -41,5 +41,13 @@ namespace VlogRoom.Services.Data
 
             this.usersRepo.Update(userToSubscribeTo);
         }
+
+        public void Unsubscribe(User userToBeUnsubscribed, User userToBeUnsubscribedFrom)
+        {
+            userToBeUnsubscribedFrom.Subscribers.Remove(userToBeUnsubscribed);
+            userToBeUnsubscribed.Subscribtions.Remove(userToBeUnsubscribedFrom);
+
+            this.usersRepo.Update(userToBeUnsubscribedFrom);
+        }
     }
 }

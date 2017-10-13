@@ -22,9 +22,9 @@ namespace VlogRoom.Web.Controllers
             this.videoDataService = videoDataService;
         }
 
-        public ActionResult Index(string id)
+        public ActionResult Single(string id)
         {
-            var video = MappingService.Provider.Map<VideoDataViewModel>(this.videoDataService.GetVideoByServiceId(id));
+            var video = MappingService.Provider.Map<SingleVideoViewModel>(this.videoDataService.GetVideoByServiceId(id));
             return this.View("Video", video);
         }
 
@@ -53,6 +53,17 @@ namespace VlogRoom.Web.Controllers
         {
             var video = this.videoDataService.GetVideoByServiceId(videoId);
             this.videoDataService.RemoveVideo(video);
+            return this.RedirectToAction("Account", "Users");
+        }
+
+        [SaveChanges]
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> HardDeleteVideo(string videoId)
+        {
+            var video = this.videoDataService.GetVideoByServiceId(videoId);
+            await this.videoDataService.HardRemoveVideo(video);
             return this.RedirectToAction("Account", "Users");
         }
     }

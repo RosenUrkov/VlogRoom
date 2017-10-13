@@ -59,7 +59,7 @@ namespace VlogRoom.Services.Common
             {
                 ServiceVideoId = videoInsertRequest.ResponseBody.Id,
                 ServiceListItemId = videoServiceId,
-                ImageUrl = videoInsertRequest.ResponseBody.Snippet.Thumbnails.Default__.Url,
+                ImageUrl = videoInsertRequest.ResponseBody.Snippet.Thumbnails.High.Url,
                 Description = videoInsertRequest.ResponseBody.Snippet.Description,
                 Duration = displayDuration,
                 Title = videoInsertRequest.ResponseBody.Snippet.Title,

@@ -1,0 +1,18 @@
+﻿@model VideoDataViewModel
+
+<div class="col-md-2 resent-grid recommended-grid sports-recommended-grid">
+    <div class="resent-grid-img recommended-grid-img">
+        <a href="@(Url.Action<VideosController>(c => c.Single(Model.ServiceVideoId )))"><img src="@Model.ImageUrl" alt="" /></a>
+        <div class="time small-time sports-tome">
+            <p>@Model.Duration</p>
+        </div>
+        <div class="clck sports-clock">
+            <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+        </div>
+    </div>
+    <div class="resent-grid-info recommended-grid-info">
+        <h5><a href="@(Url.Action<VideosController>(c => c.Single(Model.ServiceVideoId )))" class="title">@Model.Title</a></h5>
+        <p class="author"><a href="@(Url.Action<UsersController>(c => c.Room(Model.OwnerId)))" class="author">@Model.OwnerUsername</a></p>
+        <p class="views">@Model.Views views</p>
+    </div>
+</div>

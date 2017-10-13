@@ -27,14 +27,11 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <div class="top-search">
-                    @using (Html.BeginForm<HomeController>())
+                    @using (Html.BeginForm<HomeController>(c => c.Search(null), FormMethod.Get, null, new { @class = "navbar-form navbar-right" }))
                     {
-
-                    }
-                    <form class="navbar-form navbar-right">
-                        <input type="text" class="form-control" placeholder="Search...">
+                        <input type="text" name="searchPattern" class="form-control" placeholder="Search...">
                         <input type="submit" value=" ">
-                    </form>
+                    }
                 </div>
                 @Html.Partial("_LoginPartial")
             </div>

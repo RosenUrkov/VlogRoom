@@ -1,0 +1,15 @@
+﻿@model SearchCollectionsViewModel
+
+@foreach (var room in Model.FoundUsers)
+{
+    <div class="col-md-12">
+        <a href="@(Url.Action<UsersController>(c => c.Room(room.Id)))">@room.RoomName</a>
+    </div>
+    <br />
+}
+
+@foreach (var video in Model.FoundVideos)
+{
+    @Html.Partial("_RecommendedVideo", video);
+    <br />
+}

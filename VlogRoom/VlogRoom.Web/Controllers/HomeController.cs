@@ -15,11 +15,15 @@ namespace VlogRoom.Web.Controllers
     public class HomeController : Controller
     {
         private readonly IVideoDataService videoDataService;
+        private readonly IUserDataService userDataService;
 
         public HomeController(IUserDataService userDataService, IVideoDataService videoDataService)
         {
             Guard.WhenArgument(videoDataService, "videoDataService").IsNull().Throw();
+            Guard.WhenArgument(userDataService, "userDataService").IsNull().Throw();
+
             this.videoDataService = videoDataService;
+            this.userDataService = userDataService;
         }
 
         public ActionResult Index()
@@ -30,7 +34,14 @@ namespace VlogRoom.Web.Controllers
 
             return View(videoCollectionsModel);
         }
+        
+        public ActionResult Search(string searchPattern)
+        {
+            var searchCollectionsModel = new SearchCollectionsViewModel();
+            searchCollectionsModel.FoundUsers = this.userDataService.GetAllUsers(searchPattern).Map<User, UserDataSearchResult>();
+            searchCollectionsModel.FoundVideos = this.videoDataService.GetAllVideos(searchPattern).Map<Video, VideoDataViewModel>();
 
-
+            return View(searchCollectionsModel);
+        }
     }
 }

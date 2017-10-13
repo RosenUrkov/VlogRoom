@@ -14,7 +14,7 @@ namespace VlogRoom.Services.Data.Contracts
 
         Video GetVideoBtServiceIdWithDeleted(string serviceVideoId);
 
-        IEnumerable<Video> GetAllVideos();
+        IEnumerable<Video> GetAllVideos(string searchPattern = "");
 
         IEnumerable<Video> GetAllVideosWithDeleted();
 

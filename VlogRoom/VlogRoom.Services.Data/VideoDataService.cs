@@ -40,9 +40,14 @@ namespace VlogRoom.Services.Data
             return this.videosRepo.AllAndDeleted.FirstOrDefault(x => x.ServiceVideoId == serviceVideoId);
         }
 
-        public IEnumerable<Video> GetAllVideos()
+        public IEnumerable<Video> GetAllVideos(string searchPattern = "")
         {
-            return this.videosRepo.All.AsEnumerable();
+            searchPattern = searchPattern.ToLower();
+
+            return this.videosRepo.All
+                .Where(x => x.Title.ToLower().Contains(searchPattern) ||
+                            x.Description.ToLower().Contains(searchPattern))
+                .AsEnumerable();
         }
 
         public IEnumerable<Video> GetAllVideosWithDeleted()

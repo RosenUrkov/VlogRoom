@@ -13,6 +13,8 @@ namespace VlogRoom.Services.Data.Contracts
 
         User GetUserByUsername(string username);
 
+        IEnumerable<User> GetAllUsers(string searchPattern = "");
+
         User RenameRoom(User user, string newName);
 
         void Subscribe(User userToBeSubscribed, User userToSubscribeTo);

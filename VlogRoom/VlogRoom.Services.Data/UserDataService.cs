@@ -27,15 +27,25 @@ namespace VlogRoom.Services.Data
         public User GetUserByUsername(string username)
         {
             return this.usersRepo.All.FirstOrDefault(x => x.UserName == username);
-        } 
-        
+        }
+
+        public IEnumerable<User> GetAllUsers(string searchPattern = "")
+        {
+            searchPattern = searchPattern.ToLower();
+
+            return this.usersRepo.All
+                .Where(x => x.RoomName.ToLower().Contains(searchPattern) ||
+                            x.UserName.ToLower().Contains(searchPattern))
+                .AsEnumerable();
+        }
+
         public User RenameRoom(User user, string newName)
         {
             user.RoomName = newName;
             this.usersRepo.Update(user);
             return user;
         }
-        
+
         public void Subscribe(User userToBeSubscribed, User userToSubscribeTo)
         {
             userToSubscribeTo.Subscribers.Add(userToBeSubscribed);

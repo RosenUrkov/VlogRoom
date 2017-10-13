@@ -1,6 +1,6 @@
 ﻿@model VlogRoom.Web.Models.VideoDataViewModel
 
-<div class="col-md-3 resent-grid recommended-grid">
+<div class="col-md-12 resent-grid recommended-grid">
     <div class="resent-grid-img recommended-grid-img">
         <a href="@(Url.Action<VlogRoom.Web.Controllers.VideosController>(c => c.Single(Model.ServiceVideoId )))"><img src="@Model.ImageUrl" alt="" /></a>
         <div class="time small-time">

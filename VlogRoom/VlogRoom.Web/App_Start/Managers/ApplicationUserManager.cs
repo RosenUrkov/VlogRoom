@@ -27,7 +27,7 @@ namespace VlogRoom.Web.App_Start.Managers
             manager.UserValidator = new UserValidator<User>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
-                RequireUniqueEmail = true
+                RequireUniqueEmail = true,                 
             };
 
             // Configure validation logic for passwords

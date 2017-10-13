@@ -9,7 +9,8 @@ namespace VlogRoom.Web.Common.Constants
     public static class GlobalConstants
     {
         public const string SuccessMessage = "Success";
-
         public const string ErrorMessage = "Error";
+
+        public const string AdministrationRoleName = "Admin";
     }
 }

@@ -24,6 +24,16 @@ namespace VlogRoom.Services.Data
             return this.usersRepo.All.FirstOrDefault(x => x.Id == userId);
         }
 
+        public void UpdateUser(User user)
+        {
+            this.usersRepo.Update(user);
+        }
+
+        public void DeleteUser(User user)
+        {
+            this.usersRepo.Delete(user);
+        }
+
         public User GetUserByUsername(string username)
         {
             return this.usersRepo.All.FirstOrDefault(x => x.UserName == username);
@@ -37,6 +47,11 @@ namespace VlogRoom.Services.Data
                 .Where(x => x.RoomName.ToLower().Contains(searchPattern) ||
                             x.UserName.ToLower().Contains(searchPattern))
                 .AsEnumerable();
+        }
+
+        public IEnumerable<User> GetAllUsersWithDeleted()
+        {
+            return this.usersRepo.AllAndDeleted.AsEnumerable();
         }
 
         public User RenameRoom(User user, string newName)

@@ -1,0 +1,41 @@
+﻿<legend>Users Grid</legend>
+<div class="body-content">
+    @(Html.Kendo().Grid<UserManageViewModel>()
+        .Name("UsersManage")
+        .Columns(columns =>
+        {
+            columns.Bound(m => m.Id);
+            columns.Bound(m => m.Email);
+            columns.Bound(m => m.RoomName);
+            columns.Bound(m => m.CreatedOn);
+            columns.Bound(m => m.ModifiedOn);
+            columns.Bound(m => m.IsDeleted);
+            columns.Bound(m => m.DeletedOn);
+
+            columns.Command(command => { command.Edit(); command.Destroy(); }).Width(250);
+        })
+        .Editable(editable =>
+        {
+            editable.Mode(GridEditMode.InLine);
+        })
+        .Pageable(c =>
+        {
+            c.Refresh(true);
+            c.PageSizes(true);
+        })
+        .Sortable()
+        .DataSource(source =>
+        {
+            source.Ajax()
+            .Model(m =>
+            {
+                m.Id(c => c.Id);
+                //m.Field(model => model.RoomName).Editable(false);
+            })
+            .Read(c => c.Action<UsersManageController>(z => z.ReadUsers(null))).PageSize(5)
+            .Update(c => c.Action<UsersManageController>(z => z.UpdateUser(null)))
+            .Destroy(c => c.Action<UsersManageController>(z => z.DeleteUser(null)));
+        })
+    .Filterable(f => f.Mode(GridFilterMode.Menu))
+    .Deferred())
+</div>

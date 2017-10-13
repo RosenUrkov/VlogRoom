@@ -13,7 +13,13 @@ namespace VlogRoom.Services.Data.Contracts
 
         User GetUserByUsername(string username);
 
+        void UpdateUser(User user);
+
+        void DeleteUser(User user);
+
         IEnumerable<User> GetAllUsers(string searchPattern = "");
+
+        IEnumerable<User> GetAllUsersWithDeleted();
 
         User RenameRoom(User user, string newName);
 

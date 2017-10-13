@@ -22,10 +22,17 @@ namespace VlogRoom.Web.Controllers
             this.videoDataService = videoDataService;
         }
 
-        public ActionResult Single(string id)
+        public ActionResult Watch(string id)
         {
             var video = MappingService.Provider.Map<SingleVideoViewModel>(this.videoDataService.GetVideoByServiceId(id));
             return this.View("Video", video);
+        }
+
+        [SaveChanges]
+        [AjaxOnly]
+        public ActionResult CommentVideo()
+        {
+            throw new NotImplementedException();
         }
 
         [Authorize]

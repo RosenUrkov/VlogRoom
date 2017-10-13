@@ -2,7 +2,7 @@
 
 <div class="col-md-3 resent-grid recommended-grid slider-first">
     <div class="resent-grid-img recommended-grid-img">
-        <a href="@(Url.Action<VlogRoom.Web.Controllers.VideosController>(c => c.Single(Model.ServiceVideoId)))"><img src="@Model.ImageUrl" alt="" /></a>
+        <a href="@(Url.Action<VlogRoom.Web.Controllers.VideosController>(c => c.Watch(Model.ServiceVideoId)))"><img src="@Model.ImageUrl" alt="" /></a>
         <div class="time small-time slider-time">
             <p>@Model.Duration</p>
         </div>
@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="resent-grid-info recommended-grid-info">
-        <h5><a href="@(Url.Action<VlogRoom.Web.Controllers.VideosController>(c => c.Single(Model.ServiceVideoId )))" class="title">@Model.Title</a></h5>
+        <h5><a href="@(Url.Action<VlogRoom.Web.Controllers.VideosController>(c => c.Watch(Model.ServiceVideoId )))" class="title">@Model.Title</a></h5>
         <div class="slid-bottom-grids">
             <div class="slid-bottom-grid">
                 <p class="author author-info"><a href="@(Url.Action<UsersController>(c => c.Room(Model.OwnerId)))" class="author">@Model.OwnerRoomName</a></p>

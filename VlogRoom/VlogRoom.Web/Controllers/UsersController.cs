@@ -65,17 +65,6 @@ namespace VlogRoom.Web.Controllers
             return new EmptyResult();
         }
 
-        [Authorize]
-        public ActionResult DailyFeed()
-        {
-            var currentUser = this.userDataService.GetUserByUsername(this.User.Identity.Name);
-            var model = currentUser.Subscribers
-                .SelectMany(x => x.Videos)
-                .Where(x => !x.IsDeleted && x.CreatedOn.Value.Day == DateTime.Now.Day);
-
-            throw new NotImplementedException();
-        }
-
         [SaveChanges]
         [Authorize]
         [HttpPost]

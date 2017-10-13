@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstractions\BaseModel.cs" />
+    <Compile Include="Comment.cs" />
     <Compile Include="Contracts\IAuditable.cs" />
     <Compile Include="Contracts\IDeletable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

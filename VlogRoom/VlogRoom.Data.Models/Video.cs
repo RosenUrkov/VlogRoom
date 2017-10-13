@@ -10,6 +10,11 @@ namespace VlogRoom.Data.Models
 {
     public class Video : BaseModel, IAuditable, IDeletable
     {
+        public Video()
+        {
+            this.Comments = new HashSet<Comment>();
+        }
+
         public string ServiceVideoId { get; set; }
 
         public string ServiceListItemId { get; set; }
@@ -25,5 +30,7 @@ namespace VlogRoom.Data.Models
         public string ImageUrl { get; set; }
 
         public virtual User User { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

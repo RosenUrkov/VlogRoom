@@ -77,6 +77,10 @@
     <Compile Include="Migrations\201710121438044_Update video and user models.Designer.cs">
       <DependentUpon>201710121438044_Update video and user models.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710131411514_Added user room name.cs" />
+    <Compile Include="Migrations\201710131411514_Added user room name.Designer.cs">
+      <DependentUpon>201710131411514_Added user room name.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MsSqlDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -113,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710121438044_Update video and user models.resx">
       <DependentUpon>201710121438044_Update video and user models.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710131411514_Added user room name.resx">
+      <DependentUpon>201710131411514_Added user room name.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

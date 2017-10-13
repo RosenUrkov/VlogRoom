@@ -13,7 +13,7 @@ namespace VlogRoom.Web.Models
     {
         public string Id { get; set; }
 
-        public string UserName { get; set; }
+        public string RoomName { get; set; }
 
         public IEnumerable<string> SubscribtionsNames { get; set; }
 
@@ -22,7 +22,8 @@ namespace VlogRoom.Web.Models
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
             configuration.CreateMap<User, UserDataViewModel>()
-                .ForMember(x => x.SubscribtionsNames, c => c.MapFrom(y => y.Subscribers.Select(z => z.UserName)));
+                .ForMember(x => x.SubscribtionsNames, c => c.MapFrom(y => y.Subscribers.Select(z => z.UserName)))
+                .ForMember(x => x.Videos, c => c.MapFrom(y => y.Videos.Where(z => !z.IsDeleted)));
         }
     }
 }

@@ -1,8 +1,11 @@
 ﻿@model VlogRoom.Web.Models.VideoDataViewModel
 
-<div class="col-md-4 resent-grid recommended-grid slider-top-grids">
+<div class="col-md-4 resent-grid recommended-grid slider-top-grids recent-video">
     <div class="resent-grid-img recommended-grid-img">
-        <a href="@(Url.Action<VideosController>(c => c.Single(Model.ServiceVideoId )))"><img src="@Model.ImageUrl" alt="" /></a>
+        <a href="@(Url.Action<VideosController>(c => c.Single(Model.ServiceVideoId )))">
+            <span class="glyphicon glyphicon-play-circle play-circle"></span>
+            <img src="@Model.ImageUrl" alt="" />
+        </a>
         <div class="time">
             <p>@Model.Duration</p>
         </div>
@@ -13,7 +16,7 @@
     <div class="resent-grid-info recommended-grid-info">
         <h3><a href="@(Url.Action<VideosController>(c => c.Single(Model.ServiceVideoId )))" class="title title-info">@Model.Title</a></h3>
         <ul>
-            <li><p class="author author-info"><a href="@(Url.Action<UsersController>(c => c.Room(Model.OwnerId)))" class="author">@Model.OwnerUsername</a></p></li>
+            <li><p class="author author-info"><a href="@(Url.Action<UsersController>(c => c.Room(Model.OwnerId)))" class="author">@Model.OwnerRoomName</a></p></li>
             <li class="right-list"><p class="views views-info">@Model.Views views</p></li>
         </ul>
     </div>

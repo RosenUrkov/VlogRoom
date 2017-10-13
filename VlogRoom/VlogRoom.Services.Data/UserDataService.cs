@@ -27,12 +27,14 @@ namespace VlogRoom.Services.Data
         public User GetUserByUsername(string username)
         {
             return this.usersRepo.All.FirstOrDefault(x => x.UserName == username);
-        }
-
-        public IEnumerable<User> GetAllUsers()
+        } 
+        
+        public User RenameRoom(User user, string newName)
         {
-            return this.usersRepo.All.AsEnumerable();
-        }  
+            user.RoomName = newName;
+            this.usersRepo.Update(user);
+            return user;
+        }
         
         public void Subscribe(User userToBeSubscribed, User userToSubscribeTo)
         {

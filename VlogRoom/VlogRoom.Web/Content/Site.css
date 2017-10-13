@@ -1,1 +1,33 @@
-﻿
+﻿.edit-username,.save-username,.remove-button,.play-circle {
+    visibility: hidden;
+    cursor: pointer;
+}
+
+.username:hover .edit-username,.save-username {
+    visibility: visible;
+}
+
+.remove-button{
+    color: red;
+}
+
+.play-circle {
+    color: #21DEEF;
+    position: absolute !important;
+    font-size: 13em !important;
+    top: 20% !important;
+    left: 29% !important;
+}
+
+.author:hover {
+    text-decoration: underline;
+    text-decoration-color: #21DEEF;
+}
+
+.recent-video:hover .play-circle{
+    visibility: visible;
+}
+
+.user-video:hover .remove-button {
+    visibility: visible;
+}

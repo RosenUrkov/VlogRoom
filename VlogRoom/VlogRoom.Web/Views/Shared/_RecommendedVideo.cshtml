@@ -13,7 +13,7 @@
     <div class="resent-grid-info recommended-grid-info video-info-grid">
         <h5><a href="@(Url.Action<VlogRoom.Web.Controllers.VideosController>(c => c.Single(Model.ServiceVideoId )))" class="title">@Model.Title</a></h5>
         <ul>
-            <li><p class="author author-info"><a href="@(Url.Action<UsersController>(c => c.Room(Model.OwnerId)))" class="author">@Model.OwnerUsername</a></p></li>
+            <li><p class="author author-info"><a href="@(Url.Action<UsersController>(c => c.Room(Model.OwnerId)))" class="author">@Model.OwnerRoomName</a></p></li>
             <li class="right-list"><p class="views views-info">@Model.Views views</p></li>
         </ul>
     </div>

@@ -48,12 +48,12 @@ namespace VlogRoom.Web.Controllers
         [SaveChanges]
         [Authorize]
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [AjaxOnly]
         public ActionResult DeleteVideo(string videoId)
         {
             var video = this.videoDataService.GetVideoByServiceId(videoId);
             this.videoDataService.RemoveVideo(video);
-            return this.RedirectToAction("Account", "Users");
+            return new EmptyResult();
         }
 
         [SaveChanges]

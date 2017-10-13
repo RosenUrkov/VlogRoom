@@ -14,7 +14,7 @@
         <h5><a href="@(Url.Action<VlogRoom.Web.Controllers.VideosController>(c => c.Single(Model.ServiceVideoId )))" class="title">@Model.Title</a></h5>
         <div class="slid-bottom-grids">
             <div class="slid-bottom-grid">
-                <p class="author author-info"><a href="@(Url.Action<UsersController>(c => c.Room(Model.OwnerId)))" class="author">@Model.OwnerUsername</a></p>
+                <p class="author author-info"><a href="@(Url.Action<UsersController>(c => c.Room(Model.OwnerId)))" class="author">@Model.OwnerRoomName</a></p>
             </div>
             <div class="slid-bottom-grid slid-bottom-right">
                 <p class="views views-info">@Model.Views views</p>

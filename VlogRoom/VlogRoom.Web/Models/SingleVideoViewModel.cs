@@ -22,14 +22,14 @@ namespace VlogRoom.Web.Models
         [DisplayFormat(DataFormatString = "{0:dd-MMM-yy}")]
         public DateTime? CreatedOn { get; set; }
 
-        public string OwnerUsername { get; set; }
+        public string OwnerRoomName { get; set; }
 
         public string OwnerId { get; set; }
 
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
             configuration.CreateMap<Video, VideoDataViewModel>()
-                .ForMember(x => x.OwnerUsername, c => c.MapFrom(y => y.User.UserName))
+                .ForMember(x => x.OwnerRoomName, c => c.MapFrom(y => y.User.RoomName))
                 .ForMember(x => x.OwnerId, c => c.MapFrom(y => y.User.Id));
         }
     }

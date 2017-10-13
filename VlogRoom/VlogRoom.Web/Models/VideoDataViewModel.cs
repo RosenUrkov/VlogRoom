@@ -21,14 +21,16 @@ namespace VlogRoom.Web.Models
 
         public string ImageUrl { get; set; }
 
-        public string OwnerUsername { get; set; }
+        public string OwnerRoomName { get; set; }
 
         public string OwnerId { get; set; }
+
+        public bool IsPrivate { get; set; }
 
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
             configuration.CreateMap<Video, VideoDataViewModel>()
-                .ForMember(x => x.OwnerUsername, c => c.MapFrom(y => y.User.UserName))
+                .ForMember(x => x.OwnerRoomName, c => c.MapFrom(y => y.User.RoomName))
                 .ForMember(x => x.OwnerId, c => c.MapFrom(y => y.User.Id));
         }
     }

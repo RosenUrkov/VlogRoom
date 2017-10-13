@@ -19,6 +19,7 @@ namespace VlogRoom.Data.Models
             this.Videos = new HashSet<Video>();
             this.Subscribers = new HashSet<User>();
             this.Subscribtions = new HashSet<User>();
+            this.RoomName = "New room";
         }
 
         [DataType(DataType.DateTime)]
@@ -32,6 +33,8 @@ namespace VlogRoom.Data.Models
 
         [DataType(DataType.DateTime)]
         public DateTime? DeletedOn { get; set; }
+
+        public string RoomName { get; set; }
 
         public virtual ICollection<Video> Videos { get; set; }
 

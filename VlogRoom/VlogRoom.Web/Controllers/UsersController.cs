@@ -43,16 +43,35 @@ namespace VlogRoom.Web.Controllers
         public ActionResult Account()
         {
             var user = this.userDataService.GetUserByUsername(this.User.Identity.Name);
+            Guard.WhenArgument(user, "user").IsNull().Throw();
+
             var userModel = MappingService.Provider.Map<UserDataViewModel>(user);
+            foreach (var video in userModel.Videos)
+            {
+                video.IsPrivate = true;
+            }
 
             return View(userModel);
+        }
+
+        [SaveChanges]
+        [Authorize]
+        [AjaxOnly]
+        [HttpPost]
+        public ActionResult RenameRoom(string newName)
+        {
+            var user = this.userDataService.GetUserByUsername(this.User.Identity.Name);
+            var renamedUser = this.userDataService.RenameRoom(user, newName);
+            return new EmptyResult();
         }
 
         [Authorize]
         public ActionResult DailyFeed()
         {
             var currentUser = this.userDataService.GetUserByUsername(this.User.Identity.Name);
-            var model = currentUser.Subscribers.SelectMany(x => x.Videos).Where(x => x.CreatedOn.Value.Day == DateTime.Now.Day);
+            var model = currentUser.Subscribers
+                .SelectMany(x => x.Videos)
+                .Where(x => !x.IsDeleted && x.CreatedOn.Value.Day == DateTime.Now.Day);
 
             throw new NotImplementedException();
         }

@@ -5,8 +5,8 @@
         <div class="recommended">
             <div class="recommended-grids english-grid">
                 <div class="recommended-info">
-                    <div class="heading">
-                        <h3>@Model.UserName</h3>
+                    <div class="heading" id="@Model.Id">
+                        <h3>@Model.RoomName</h3>
                     </div>
                     @if (Request.IsAuthenticated)
                     {
@@ -16,7 +16,7 @@
                                 using (Html.BeginForm<UsersController>(c => c.UnsubscribeFromUser(Model.Id), FormMethod.Post, null, new { id = "subscribe-form" }))
                                 {
                                     @Html.AntiForgeryToken();
-                                    <a href="#" class="play-icon" id="subscribe-button">Unsubscribe</a>
+                                    <a href="#" class="play-icon" id="unsubscribe-button">Unsubscribe</a>
                                 }
                             }
                             else

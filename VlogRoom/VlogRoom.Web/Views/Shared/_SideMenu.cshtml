@@ -1,4 +1,4 @@
-﻿<div class="col-sm-3 col-md-2 sidebar hidden">
+﻿<div class="col-sm-3 col-md-2 sidebar">
     <div class="top-navigation">
         <div class="t-menu">MENU</div>
         <div class="t-img">
@@ -12,10 +12,16 @@
             <li><a href="@(Url.Action<UsersController>(x=> x.Account()))" class="sub-icon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Account</a></li>
             @if (User.IsInRole(GlobalConstants.AdministrationRoleName))
             {
-                <li><a href="@(Url.Action<VlogRoom.Web.Areas.Administration.Controllers.UsersManageController>(x => x.Index()))" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-sunglasses" aria-hidden="true"></span>Administration</a></li>
+                <li><a href="#" class="administration"><span class="glyphicon glyphicon-home glyphicon-sunglasses" aria-hidden="true"></span>Administration<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
+                <ul class="cl-effect-2">
+                    <li><a href="@(Url.Action<VlogRoom.Web.Areas.Administration.Controllers.UsersManageController>(x => x.Index()))"><span class="glyphicon glyphicon-home glyphicon-wrench" aria-hidden="true"></span>Users</a></li>
+                    <li><a href="@(Url.Action<VlogRoom.Web.Areas.Administration.Controllers.VideosManageController>(x => x.Index()))"><span class="glyphicon glyphicon-home glyphicon-wrench" aria-hidden="true"></span>Videos</a></li>
+                </ul>
             }
-            <li><a href="@(Url.Action<UsersController>(x=> x.Account()))" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-exclamation-sign" aria-hidden="true"></span>Notifications</a></li>
             <li><a href="@(Url.Action<UsersController>(x=> x.Account()))" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-fire" aria-hidden="true"></span>Subscriptions</a></li>
+            <li><a href="#" class="notifications"><span class="glyphicon glyphicon-home glyphicon-exclamation-sign" aria-hidden="true"></span>Notifications<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
+            <ul class="cl-effect-1">
+            </ul>
         </ul>
         <div class="side-bottom">
             x

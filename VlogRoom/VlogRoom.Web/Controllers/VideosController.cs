@@ -24,7 +24,11 @@ namespace VlogRoom.Web.Controllers
 
         public ActionResult Single(string id)
         {
-            var video = MappingService.Provider.Map<SingleVideoViewModel>(this.videoDataService.GetVideoByServiceId(id));
+            var video = this.videoDataService.GetVideoByServiceId(id);
+            video.Views += 1;
+            this.videoDataService.UpdateVideo(video);
+
+            var videoModel = MappingService.Provider.Map<SingleVideoViewModel>(video);
             return this.View("Video", video);
         }
 

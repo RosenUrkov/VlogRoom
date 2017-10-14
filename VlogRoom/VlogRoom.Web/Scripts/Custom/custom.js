@@ -33,7 +33,7 @@ $(() => {
         $("#upload-form").submit();
     });
 
-    $(".container").on("click", "#subscribe-button", (ev) => {
+    $(".container").on("click", "#subscribe-button,#unsubscribe-button", (ev) => {
         ev.preventDefault();
         $("#subscribe-form").submit();
     });
@@ -79,4 +79,9 @@ $(() => {
             data: JSON.stringify({ videoId })
         });
     });
+});
+
+$(() => {
+    $(".container").on("click", "li a.notifications", () => $("ul.cl-effect-1").slideToggle(300));
+    $(".container").on("click", "li a.administration", () => $("ul.cl-effect-2").slideToggle(300));
 });

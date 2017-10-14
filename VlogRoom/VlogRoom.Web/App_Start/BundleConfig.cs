@@ -19,10 +19,14 @@ namespace VlogRoom.Web
                         "~/Scripts/Kendo/kendo.web.min.js",
                         "~/Scripts/Kendo/kendo.aspnetmvc.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/signalr").Include(
+                           "~/Scripts/jquery.signalR*"));
+
             bundles.Add(new ScriptBundle("~/bundles/template").Include(
                         "~/Scripts/Template/responsiveslides.min.js",
                         "~/Scripts/toastr.min.js",
-                        "~/Scripts/Custom/custom.js"));
+                        "~/Scripts/Custom/custom.js",
+                        "~/Scripts/Custom/notifications.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.

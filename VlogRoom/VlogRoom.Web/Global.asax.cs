@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using VlogRoom.Data;
+using VlogRoom.Data.Migrations;
 using VlogRoom.Web.App_Start;
 
 namespace VlogRoom.Web
@@ -17,7 +18,7 @@ namespace VlogRoom.Web
         protected void Application_Start()
         {
             // create the database on the application start
-            Database.SetInitializer<MsSqlDbContext>(null);
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MsSqlDbContext, Configuration>());
 
             log4net.Config.XmlConfigurator.Configure();
             AutoMapperConfig.Initialize(Assembly.GetExecutingAssembly());

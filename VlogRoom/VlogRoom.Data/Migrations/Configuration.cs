@@ -8,7 +8,7 @@ namespace VlogRoom.Data.Migrations
     using System.Linq;
     using VlogRoom.Data.Models;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<VlogRoom.Data.MsSqlDbContext>
+    public sealed class Configuration : DbMigrationsConfiguration<VlogRoom.Data.MsSqlDbContext>
     {
         public Configuration()
         {

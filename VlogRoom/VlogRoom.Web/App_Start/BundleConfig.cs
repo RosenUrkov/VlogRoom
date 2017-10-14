@@ -45,7 +45,7 @@ namespace VlogRoom.Web
 
             bundles.Add(new StyleBundle("~/Content/kendo-css").Include(
                       "~/Content/Kendo/kendo.blueopal.min.css",
-                      "~/Content/Kendo/kendo.commin.min.css"));
+                      "~/Content/Kendo/kendo.common.min.css"));
         }
     }
 }

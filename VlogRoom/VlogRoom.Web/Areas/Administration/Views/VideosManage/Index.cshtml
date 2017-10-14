@@ -1,1 +1,51 @@
-﻿
+﻿<div class="body-content">
+    <h2>Videos Grid</h2>
+    @(Html.Kendo().Grid<VideoManageViewModel>()
+        .Name("VideosManage")
+        .Columns(columns =>
+        {
+            columns.Bound(m => m.Id);
+            columns.Bound(m => m.Title);
+            columns.Bound(m => m.ServiceVideoId);
+            columns.Bound(m => m.Views);
+            columns.Bound(m => m.OwnerId);
+            columns.Bound(m => m.OwnerUsername);
+            columns.Bound(m => m.OwnerRoomName);
+            columns.Bound(m => m.CreatedOn);
+            columns.Bound(m => m.ModifiedOn);
+            columns.Bound(m => m.DeletedOn);
+            columns.Bound(m => m.IsDeleted);
+
+            columns.Command(command => { command.Edit(); command.Destroy(); });
+        })
+        .Editable(editable =>
+        {
+            editable.Mode(GridEditMode.InLine);
+        })
+        .Pageable(c =>
+        {
+            c.Refresh(true);
+            c.PageSizes(true);
+        })
+        .Sortable()
+        .DataSource(source =>
+        {
+            source.Ajax()
+            .Model(m =>
+            {
+                m.Id(c => c.Id);
+                m.Field(model => model.Id).Editable(false);
+                m.Field(model => model.CreatedOn).Editable(false);
+                m.Field(model => model.ModifiedOn).Editable(false);
+                m.Field(model => model.DeletedOn).Editable(false);
+                m.Field(model => model.OwnerId).Editable(false);
+                m.Field(model => model.OwnerUsername).Editable(false);
+                m.Field(model => model.OwnerRoomName).Editable(false);
+            })
+            .Read(c => c.Action<VideosManageController>(z => z.ReadVideos(null))).PageSize(5)
+            .Update(c => c.Action<VideosManageController>(z => z.UpdateVideo(null)))
+            .Destroy(c => c.Action<VideosManageController>(z => z.HardDeleteVideo(null)));
+        })
+    .Filterable(f => f.Mode(GridFilterMode.Menu))
+    .Deferred())
+</div>

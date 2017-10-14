@@ -35,7 +35,7 @@ namespace VlogRoom.Services.Data
             return this.videosRepo.All.FirstOrDefault(x => x.ServiceVideoId == serviceVideoId);
         }
 
-        public Video GetVideoBtServiceIdWithDeleted(string serviceVideoId)
+        public Video GetVideoByServiceIdWithDeleted(string serviceVideoId)
         {
             return this.videosRepo.AllAndDeleted.FirstOrDefault(x => x.ServiceVideoId == serviceVideoId);
         }
@@ -82,6 +82,11 @@ namespace VlogRoom.Services.Data
             video.User = user;
 
             this.videosRepo.Add(video);
+        }
+
+        public void UpdateVideo(Video video)
+        {
+            this.videosRepo.Update(video);
         }
 
         public void RemoveVideo(Video video)

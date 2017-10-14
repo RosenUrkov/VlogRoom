@@ -11,6 +11,8 @@ namespace VlogRoom.Services.Data.Contracts
     {
         User GetUserById(string userId);
 
+        User GetUserByIdWithDeleted(string userId);
+
         User GetUserByUsername(string username);
 
         void UpdateUser(User user);

@@ -12,7 +12,7 @@ namespace VlogRoom.Services.Data.Contracts
     {
         Video GetVideoByServiceId(string serviceVideoId);
 
-        Video GetVideoBtServiceIdWithDeleted(string serviceVideoId);
+        Video GetVideoByServiceIdWithDeleted(string serviceVideoId);
 
         IEnumerable<Video> GetAllVideos(string searchPattern = "");
 
@@ -25,6 +25,8 @@ namespace VlogRoom.Services.Data.Contracts
         IEnumerable<Video> GetRecommendedVideos(User currentUser, int count);
 
         Task AddVideo(Stream videoStream, string videoTitle, string videoDescription, string ownerUsername);
+
+        void UpdateVideo(Video video);
 
         void RemoveVideo(Video video);
 

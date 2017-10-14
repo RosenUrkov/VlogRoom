@@ -1,18 +1,20 @@
-﻿<legend>Users Grid</legend>
-<div class="body-content">
+﻿<div class="body-content">
+    <h2>Users Grid</h2>
     @(Html.Kendo().Grid<UserManageViewModel>()
         .Name("UsersManage")
         .Columns(columns =>
         {
             columns.Bound(m => m.Id);
+            columns.Bound(m => m.UserName);
             columns.Bound(m => m.Email);
             columns.Bound(m => m.RoomName);
             columns.Bound(m => m.CreatedOn);
             columns.Bound(m => m.ModifiedOn);
-            columns.Bound(m => m.IsDeleted);
             columns.Bound(m => m.DeletedOn);
+            columns.Bound(m => m.IsDeleted);
+            columns.Bound(m => m.IsAdmin);
 
-            columns.Command(command => { command.Edit(); command.Destroy(); }).Width(250);
+            columns.Command(command => command.Edit());
         })
         .Editable(editable =>
         {
@@ -30,11 +32,13 @@
             .Model(m =>
             {
                 m.Id(c => c.Id);
-                //m.Field(model => model.RoomName).Editable(false);
+                m.Field(model => model.Id).Editable(false);
+                m.Field(model => model.CreatedOn).Editable(false);
+                m.Field(model => model.ModifiedOn).Editable(false);
+                m.Field(model => model.DeletedOn).Editable(false);
             })
             .Read(c => c.Action<UsersManageController>(z => z.ReadUsers(null))).PageSize(5)
-            .Update(c => c.Action<UsersManageController>(z => z.UpdateUser(null)))
-            .Destroy(c => c.Action<UsersManageController>(z => z.DeleteUser(null)));
+            .Update(c => c.Action<UsersManageController>(z => z.UpdateUser(null)));
         })
     .Filterable(f => f.Mode(GridFilterMode.Menu))
     .Deferred())

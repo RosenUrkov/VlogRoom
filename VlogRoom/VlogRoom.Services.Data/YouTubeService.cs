@@ -45,7 +45,7 @@ namespace VlogRoom.Services.Common
             VideosResource.InsertMediaUpload videoInsertRequest;
             using (videoStream)
             {
-                videoInsertRequest = this.youTubeService.Videos.Insert(video, "snippet", videoStream, "video/*");
+                videoInsertRequest = this.youTubeService.Videos.Insert(video, "snippet,status", videoStream, "video/*");
                 await videoInsertRequest.UploadAsync();
             }
 

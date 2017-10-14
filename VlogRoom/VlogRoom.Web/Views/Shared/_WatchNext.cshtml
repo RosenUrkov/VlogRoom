@@ -1,0 +1,13 @@
+﻿@model VideoDataViewModel
+
+<div class="single-right-grids">
+    <div class="col-md-4 single-right-grid-left">
+        <a href="@(Url.Action<VideosController>(c => c.Watch(Model.ServiceVideoId )))"><img src="@Model.ImageUrl" alt="" /></a>
+    </div>
+    <div class="col-md-8 single-right-grid-right">
+        <a href="@(Url.Action<VideosController>(c => c.Watch(Model.ServiceVideoId )))" class="title"> @Model.Title</a>
+        <p class="author"><a href="@(Url.Action<UsersController>(c => c.Room(Model.OwnerId)))" class="author">@Model.OwnerRoomName</a></p>
+        <p class="views">@Model.Views views</p>
+    </div>
+    <div class="clearfix"> </div>
+</div>

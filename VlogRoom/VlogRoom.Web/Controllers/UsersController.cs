@@ -46,11 +46,6 @@ namespace VlogRoom.Web.Controllers
             Guard.WhenArgument(user, "user").IsNull().Throw();
 
             var userModel = MappingService.Provider.Map<UserDataViewModel>(user);
-            foreach (var video in userModel.Videos)
-            {
-                video.IsPrivate = true;
-            }
-
             return View(userModel);
         }
 

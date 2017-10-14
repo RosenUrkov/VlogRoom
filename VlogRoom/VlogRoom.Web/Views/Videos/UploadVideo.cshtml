@@ -1,29 +1,31 @@
-﻿<!-- upload -->
-<div class="upload">
-    <!-- container -->
-    <div class="container">
-        <div class="upload-grids">
-            <input type="text" name="videoTitle" class="form-control" placeholder="Video title" />
-            <div class="upload-right">
-                <div class="upload-file">
-                    <div class="services-icon">
-                        <span class="glyphicon glyphicon-open" aria-hidden="true"></span>
-                    </div>
-                    @using (Html.BeginForm("UploadVideo", "Videos", FormMethod.Post, new { enctype = "multipart/form-data", id = "upload-form" }))
-                    {
-                        @Html.AntiForgeryToken();
+﻿<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+    <!-- upload -->
+    <div class="upload">
+        <!-- container -->
+        <div class="container">
+            <div class="upload-grids">
+                <input type="text" name="videoTitle" class="form-control" placeholder="Enter video title" />
+                <div class="upload-right">
+                    <div class="upload-file">
+                        <div class="services-icon">
+                            <span class="glyphicon glyphicon-open" aria-hidden="true"></span>
+                        </div>
+                        @using (Html.BeginForm("UploadVideo", "Videos", FormMethod.Post, new { enctype = "multipart/form-data", id = "upload-form" }))
+                        {
+                            @Html.AntiForgeryToken();
 
-                        <input type="file" name="video" value="Choose file.." id="upload-input" />
-                    }
+                            <input type="file" name="video" value="Choose file.." id="upload-input" />
+                        }
+                    </div>
+                    <div class="upload-info">
+                        <h5>Select video to upload</h5>
+                        <span>but first</span>
+                        <p>Add propper title and description</p>
+                    </div>
                 </div>
-                <div class="upload-info">
-                    <h5>Select files to upload</h5>
-                    <span>or</span>
-                    <p>Drag and drop files</p>
-                </div>
+                <input type="text" name="videoDescription" class="form-control" placeholder="Enter video description" />
             </div>
-            <input type="text" name="videoDescription" class="form-control" placeholder="Video description" />
         </div>
+        <!-- //container -->
     </div>
-    <!-- //container -->
 </div>

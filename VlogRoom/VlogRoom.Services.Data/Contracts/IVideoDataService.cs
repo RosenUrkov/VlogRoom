@@ -22,6 +22,8 @@ namespace VlogRoom.Services.Data.Contracts
 
         IEnumerable<Video> GetMostViralVideos(int count);
 
+        IEnumerable<Video> GetNewsFeed(User user);
+
         IEnumerable<Video> GetRecommendedVideos(User currentUser, int count);
 
         Task AddVideo(Stream videoStream, string videoTitle, string videoDescription, string ownerUsername);

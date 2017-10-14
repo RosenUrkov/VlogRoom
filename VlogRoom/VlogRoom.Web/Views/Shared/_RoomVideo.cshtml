@@ -3,13 +3,13 @@
 <div id="@Model.ServiceVideoId" class="col-md-2 resent-grid recommended-grid sports-recommended-grid user-video">
     <div class="resent-grid-img recommended-grid-img">
         <a href="@(Url.Action<VideosController>(c => c.Watch(Model.ServiceVideoId )))">
-            <span class="glyphicon glyphicon-remove remove-button"></span>
+            <span class="glyphicon glyphicon-remove remove-button pull-right"></span>
             <img src="@Model.ImageUrl" alt="" />
         </a>
     </div>
     <div class="resent-grid-info recommended-grid-info">
         <h5><a href="@(Url.Action<VideosController>(c => c.Watch(Model.ServiceVideoId )))" class="title">@Model.Title</a></h5>
         <p class="author"><a href="@(Url.Action<UsersController>(c => c.Room(Model.OwnerId)))" class="author">@Model.OwnerRoomName</a></p>
-        <p class="views">@Model.Views views</p>
+        <p class="views"><span class="glyphicon glyphicon-eye-open"></span> @Model.Views views</p>
     </div>
 </div>

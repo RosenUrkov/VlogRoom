@@ -55,6 +55,14 @@ namespace VlogRoom.Services.Data
             return this.videosRepo.AllAndDeleted.AsEnumerable();
         }
 
+        public IEnumerable<Video> GetNewsFeed(User user)
+        {
+            return user.Subscribtions
+                .SelectMany(x => x.Videos)
+                .Where(x => !x.IsDeleted && x.CreatedOn.Value.Day == DateTime.Now.Day)
+                .AsEnumerable();
+        }
+
         public IEnumerable<Video> GetMostRecentVideos(int count)
         {
             return this.videosRepo.All.OrderByDescending(x => x.CreatedOn).Take(count).AsEnumerable();

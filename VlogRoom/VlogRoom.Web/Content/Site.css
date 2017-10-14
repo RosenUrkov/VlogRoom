@@ -9,6 +9,7 @@
 
 .remove-button {
     color: red;
+    font-size: 2em !important;
 }
 
 .play-circle {
@@ -16,7 +17,7 @@
     position: absolute !important;
     font-size: 13em !important;
     top: 20% !important;
-    left: 29% !important;
+    left: 34% !important;
 }
 
 .author:hover {
@@ -24,7 +25,7 @@
     text-decoration-color: #21DEEF;
 }
 
-.recent-video:hover .play-circle {
+.play-video:hover .play-circle {
     visibility: visible;
 }
 

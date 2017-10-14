@@ -23,8 +23,6 @@ namespace VlogRoom.Web.Models
 
         public string OwnerId { get; set; }
 
-        public bool IsPrivate { get; set; }
-
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
             configuration.CreateMap<Video, VideoDataViewModel>()

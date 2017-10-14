@@ -7,7 +7,7 @@ namespace VlogRoom.Web.Models
 {
     public class SearchCollectionsViewModel
     {
-        public IEnumerable<UserDataSearchResult> FoundUsers { get; set; }
+        public IEnumerable<UserDataSearchResultViewModel> FoundUsers { get; set; }
 
         public IEnumerable<VideoDataViewModel> FoundVideos { get; set; }
     }

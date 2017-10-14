@@ -28,7 +28,7 @@ namespace VlogRoom.Web.Models
 
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
-            configuration.CreateMap<Video, VideoDataViewModel>()
+            configuration.CreateMap<Video, SingleVideoViewModel>()
                 .ForMember(x => x.OwnerRoomName, c => c.MapFrom(y => y.User.RoomName))
                 .ForMember(x => x.OwnerId, c => c.MapFrom(y => y.User.Id));
         }

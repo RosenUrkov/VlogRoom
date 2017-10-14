@@ -1,0 +1,7 @@
+﻿@model IEnumerable<VideoDataViewModel>
+
+<legend>Daily Feed</legend>
+@foreach (var video in Model)
+{
+    @Html.Partial("_VideoData", video);
+}

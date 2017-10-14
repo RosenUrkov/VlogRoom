@@ -18,7 +18,7 @@
                     <li><a href="@(Url.Action<VlogRoom.Web.Areas.Administration.Controllers.VideosManageController>(x => x.Index()))"><span class="glyphicon glyphicon-home glyphicon-wrench" aria-hidden="true"></span>Videos</a></li>
                 </ul>
             }
-            <li><a href="@(Url.Action<UsersController>(x=> x.Account()))" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-fire" aria-hidden="true"></span>Subscriptions</a></li>
+            <li><a href="@(Url.Action<VideosController>(x=> x.NewsFeed()))" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-fire" aria-hidden="true"></span>Subscriptions</a></li>
             <li><a href="#" class="notifications"><span class="glyphicon glyphicon-home glyphicon-exclamation-sign" aria-hidden="true"></span>Notifications<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
             <ul class="cl-effect-1">
             </ul>

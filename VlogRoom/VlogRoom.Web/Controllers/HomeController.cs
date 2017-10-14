@@ -38,7 +38,7 @@ namespace VlogRoom.Web.Controllers
         public ActionResult Search(string searchPattern)
         {
             var searchCollectionsModel = new SearchCollectionsViewModel();
-            searchCollectionsModel.FoundUsers = this.userDataService.GetAllUsers(searchPattern).Map<User, UserDataSearchResult>();
+            searchCollectionsModel.FoundUsers = this.userDataService.GetAllUsers(searchPattern).Map<User, UserDataSearchResultViewModel>();
             searchCollectionsModel.FoundVideos = this.videoDataService.GetAllVideos(searchPattern).Map<Video, VideoDataViewModel>();
 
             return View(searchCollectionsModel);

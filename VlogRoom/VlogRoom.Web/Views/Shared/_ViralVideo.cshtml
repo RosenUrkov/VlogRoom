@@ -1,8 +1,11 @@
 ﻿@model VlogRoom.Web.Models.VideoDataViewModel
 
-<div class="col-md-3 resent-grid recommended-grid slider-first">
+<div class="col-md-3 resent-grid recommended-grid slider-first play-video">
     <div class="resent-grid-img recommended-grid-img">
-        <a href="@(Url.Action<VlogRoom.Web.Controllers.VideosController>(c => c.Watch(Model.ServiceVideoId)))"><img src="@Model.ImageUrl" alt="" /></a>
+        <a href="@(Url.Action<VlogRoom.Web.Controllers.VideosController>(c => c.Watch(Model.ServiceVideoId)))">
+            <span class="glyphicon glyphicon-play-circle play-circle"></span>
+            <img src="@Model.ImageUrl" alt="" />
+        </a>
     </div>
     <div class="resent-grid-info recommended-grid-info">
         <h5><a href="@(Url.Action<VlogRoom.Web.Controllers.VideosController>(c => c.Watch(Model.ServiceVideoId )))" class="title">@Model.Title</a></h5>

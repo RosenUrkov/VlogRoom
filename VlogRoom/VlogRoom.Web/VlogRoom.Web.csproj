@@ -482,10 +482,11 @@
     <Compile Include="Models\ManageViewModels\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="Models\SearchCollectionsViewModel.cs" />
     <Compile Include="Models\SingleVideoViewModel.cs" />
-    <Compile Include="Models\UserDataSearchResult.cs" />
+    <Compile Include="Models\UserDataSearchResultViewModel.cs" />
     <Compile Include="Models\UserDataViewModel.cs" />
     <Compile Include="Models\VideoCollectionsViewModel.cs" />
     <Compile Include="Models\VideoDataViewModel.cs" />
+    <Compile Include="Models\WatchVideoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -682,12 +683,14 @@
     <Content Include="Views\Shared\_SideMenu.cshtml" />
     <Content Include="Views\Shared\_RecentVideo.cshtml" />
     <Content Include="Views\Shared\_ViralVideo.cshtml" />
-    <Content Include="Views\Shared\_RecommendedVideo.cshtml" />
+    <Content Include="Views\Shared\_VideoDataOverall.cshtml" />
     <Content Include="Views\Videos\Video.cshtml" />
     <Content Include="Views\Videos\UploadVideo.cshtml" />
     <Content Include="Views\Shared\_RoomVideo.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Home\Chat.cshtml" />
+    <Content Include="Views\Shared\_WatchNext.cshtml" />
+    <Content Include="Views\Videos\NewsFeed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

@@ -6,7 +6,7 @@
             <div class="recommended-grids english-grid">
                 <div class="recommended-info">
                     <div class="heading" id="@Model.Id">
-                        <h3>@Model.RoomName</h3>
+                        <h1>@Model.RoomName</h1>
                     </div>
                     @if (Request.IsAuthenticated)
                     {
@@ -34,7 +34,7 @@
 
                 @foreach (var video in Model.Videos)
                 {
-                    @Html.Partial("_RoomVideo", video);
+                    @Html.Partial("_VideoDataOverall", video);
                 }
 
                 <div class="clearfix"> </div>

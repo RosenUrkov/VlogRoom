@@ -1,13 +1,13 @@
-﻿.edit-username,.save-username,.remove-button,.play-circle {
+﻿.edit-username, .save-username, .remove-button, .play-circle {
     visibility: hidden;
     cursor: pointer;
 }
 
-.username:hover .edit-username,.save-username {
+.username:hover .edit-username, .save-username {
     visibility: visible;
 }
 
-.remove-button{
+.remove-button {
     color: red;
 }
 
@@ -24,7 +24,7 @@
     text-decoration-color: #21DEEF;
 }
 
-.recent-video:hover .play-circle{
+.recent-video:hover .play-circle {
     visibility: visible;
 }
 
@@ -32,6 +32,18 @@
     visibility: visible;
 }
 
-/*#loader{
-    display: none;
-}*/
+#loader {
+    position: absolute;
+    top: -10%;
+    width: 100%;
+    height: 120%;
+    z-index: 999999;
+    background-color: white;
+    opacity: 0.8;
+}
+
+#loader-gif{
+    position: relative;
+    left: 48%;
+    top: 38%;
+}

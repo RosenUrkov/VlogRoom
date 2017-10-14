@@ -34,6 +34,7 @@ $(() => {
     });
 
     $(".container").on("change", "#upload-input", () => {
+        $('#loader').show();
         $("#upload-form").submit();
     });
 

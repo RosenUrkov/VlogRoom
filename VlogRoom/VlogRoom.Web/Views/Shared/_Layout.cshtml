@@ -39,6 +39,10 @@
         </div>
     </nav>
     <div class="container body-content">
+        <div id="loader">
+            <img src="~/Content/Loader/ajax-loader.gif" alt="Loader" />
+        </div>
+
         @if (Request.IsAuthenticated)
         {
             @Html.Partial("_SideMenu")

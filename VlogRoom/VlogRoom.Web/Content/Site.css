@@ -31,3 +31,7 @@
 .user-video:hover .remove-button {
     visibility: visible;
 }
+
+/*#loader{
+    display: none;
+}*/

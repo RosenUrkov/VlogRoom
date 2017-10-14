@@ -445,6 +445,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Areas\Administration\Controllers\UsersManageController.cs" />
+    <Compile Include="Areas\Administration\Controllers\VideosManageController.cs" />
+    <Compile Include="Areas\Administration\Models\UserManageViewModel.cs" />
+    <Compile Include="Areas\Administration\Models\VideoManageViewModel.cs" />
     <Compile Include="Contracts\IHaveCustomMappings.cs" />
     <Compile Include="Contracts\IMap.cs" />
     <Compile Include="Contracts\IServiceLocator.cs" />
@@ -458,6 +462,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hubs\Notifications.cs" />
     <Compile Include="Models\AccountViewModels\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="Models\AccountViewModels\ExternalLoginListViewModel.cs" />
     <Compile Include="Models\AccountViewModels\ForgotPasswordViewModel.cs" />
@@ -510,8 +515,9 @@
     <Content Include="Content\Kendo\fonts\DejaVu\LICENSE.txt" />
     <Content Include="Content\Kendo\fonts\glyphs\KendoUIGlyphs.svg" />
     <Content Include="Content\Kendo\fonts\glyphs\WebComponentsIcons.svg" />
-    <Content Include="Content\Kendo\kendo.black.min.css" />
+    <Content Include="Content\Kendo\kendo.blueopal.min.css" />
     <Content Include="Content\Kendo\kendo.common.min.css" />
+    <Content Include="Content\Loader\ajax-loader.gif" />
     <Content Include="Content\Template\dashboard.css" />
     <Content Include="Content\Template\template.css" />
     <Content Include="Content\toastr.css" />
@@ -562,7 +568,6 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Administration\Views\web.config" />
     <Content Include="App_Data\client_secret.json" />
-    <Content Include="Content\Kendo\kendo.black.min.css.map" />
     <Content Include="Content\Kendo\kendo.common.min.css.map" />
     <Content Include="Content\Kendo\fonts\DejaVu\DejaVuSans-Bold.ttf" />
     <Content Include="Content\Kendo\fonts\DejaVu\DejaVuSans-BoldOblique.ttf" />
@@ -589,9 +594,14 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Kendo\kendo.blueopal.min.css.map" />
+    <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Administration\Views\UsersManage\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\VideosManage\Index.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\Custom\custom.js" />
+    <Content Include="Scripts\Custom\notifications.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />
     <Content Include="Scripts\jquery-3.2.1.slim.js" />
@@ -607,7 +617,6 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\Kendo\jquery.min.js" />
     <Content Include="Scripts\Kendo\kendo.aspnetmvc.min.js" />
     <Content Include="Scripts\Kendo\kendo.web.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -652,7 +661,6 @@
     <Content Include="Views\Users\Room.cshtml" />
     <Content Include="Scripts\Kendo\kendo.aspnetmvc.min.js.map" />
     <Content Include="Scripts\Kendo\kendo.web.min.js.map" />
-    <Content Include="Scripts\Kendo\jquery.min.map" />
     <Content Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Currency.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
@@ -677,9 +685,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
-    <Folder Include="Areas\Administration\Controllers\" />
-    <Folder Include="Areas\Administration\Models\" />
-    <Folder Include="Areas\Administration\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

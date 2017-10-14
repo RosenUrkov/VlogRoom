@@ -1,4 +1,8 @@
 ﻿$(() => {
+    $('#loader').hide();
+});
+
+$(() => {
     size_li = $("#myList li").length;
     x = 1;
     $('#myList li:lt(' + x + ')').show();
@@ -50,6 +54,8 @@ $(() => {
     });
 
     $(".container").on("click", ".save-username", () => {
+        $('#loader').show();
+
         const newName = $(".username-input").val();
         $(".username-input").replaceWith($("<span>").addClass("username-value").text(newName));
         $(".author").text(newName);
@@ -64,11 +70,14 @@ $(() => {
             url: "/Users/RenameRoom",
             type: "POST",
             contentType: 'application/json',
-            data: JSON.stringify({ newName })
+            data: JSON.stringify({ newName }),
+            success: () => $('#loader').hide()
         });
     });
 
     $(".container").on("click", ".remove-button", (ev) => {
+        $('#loader').show();
+
         ev.preventDefault();
         const videoId = $(".user-video").remove().attr("id");
 
@@ -76,7 +85,8 @@ $(() => {
             url: "/Videos/DeleteVideo",
             type: "POST",
             contentType: 'application/json',
-            data: JSON.stringify({ videoId })
+            data: JSON.stringify({ videoId }),
+            success: () => $('#loader').hide()
         });
     });
 });

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using VlogRoom.Web.Common.Constants;
 
 namespace VlogRoom.Web.Common.Attributes
 {
@@ -13,6 +14,7 @@ namespace VlogRoom.Web.Common.Attributes
         {
             if (filterContext.HttpContext.User.Identity.IsAuthenticated)
             {
+                filterContext.Controller.TempData[GlobalConstants.SuccessMessage] = $"You are alredy logged in!";
                 filterContext.HttpContext.Response.Redirect("/");
             }
         }

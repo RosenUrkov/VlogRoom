@@ -13,10 +13,12 @@ using VlogRoom.Web.App_Start.Managers;
 using VlogRoom.Web.Models.AccountViewModels;
 using VlogRoom.Data.Models;
 using VlogRoom.Web.Common.Constants;
+using VlogRoom.Web.Common.Attributes;
 
 namespace VlogRoom.Web.Controllers
 {
     [Authorize]
+    [AlreadyLoggedIn]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;

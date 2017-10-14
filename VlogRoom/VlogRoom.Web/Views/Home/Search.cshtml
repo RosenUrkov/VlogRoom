@@ -1,15 +1,9 @@
-﻿@model SearchCollectionsViewModel
+﻿@model IEnumerable<VideoDataViewModel>
 
-@foreach (var room in Model.FoundUsers)
-{
-    <div class="col-md-12">
-        <a href="@(Url.Action<UsersController>(c => c.Room(room.Id)))">@room.RoomName</a>
-    </div>
-    <br />
-}
-
-@foreach (var video in Model.FoundVideos)
-{
-    @Html.Partial("_VideoData", video);
-    <br />
-}
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h2>Search results:</h2>
+    @foreach (var video in Model)
+    {
+        @Html.Partial("_VideoData", video);
+    }
+</div>

@@ -19,7 +19,7 @@ namespace VlogRoom.Services.Data.Contracts
 
         void DeleteUser(User user);
 
-        IEnumerable<User> GetAllUsers(string searchPattern = "");
+        IEnumerable<User> GetAllUsers();
 
         IEnumerable<User> GetAllUsersWithDeleted();
 

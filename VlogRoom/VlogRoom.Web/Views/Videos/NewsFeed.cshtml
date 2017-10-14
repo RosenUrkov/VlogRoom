@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<VideoDataViewModel>
 
-<legend>Daily Feed</legend>
-@foreach (var video in Model)
-{
-    @Html.Partial("_VideoData", video);
-}
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h2>Daily Feed</h2>
+    @foreach (var video in Model)
+    {
+        @Html.Partial("_VideoData", video);
+    }    
+</div>

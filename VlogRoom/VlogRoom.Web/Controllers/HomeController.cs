@@ -34,14 +34,11 @@ namespace VlogRoom.Web.Controllers
 
             return View(videoCollectionsModel);
         }
-        
+
         public ActionResult Search(string searchPattern)
         {
-            var searchCollectionsModel = new SearchCollectionsViewModel();
-            searchCollectionsModel.FoundUsers = this.userDataService.GetAllUsers(searchPattern).Map<User, UserDataSearchResultViewModel>();
-            searchCollectionsModel.FoundVideos = this.videoDataService.GetAllVideos(searchPattern).Map<Video, VideoDataViewModel>();
-
-            return View(searchCollectionsModel);
+            var videosModel = this.videoDataService.GetAllVideos(searchPattern).Map<Video, VideoDataViewModel>();
+            return View(videosModel);
         }
     }
 }

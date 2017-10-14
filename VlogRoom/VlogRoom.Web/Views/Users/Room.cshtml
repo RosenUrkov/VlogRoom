@@ -10,7 +10,7 @@
                     </div>
                     @if (Request.IsAuthenticated)
                     {
-                        <div class="heading-right">
+                        <div class="heading heading-right">
                             @if (Model.SubscribtionsNames.Any(x => x == User.Identity.Name))
                             {
                                 using (Html.BeginForm<UsersController>(c => c.UnsubscribeFromUser(Model.Id), FormMethod.Post, null, new { id = "subscribe-form" }))
@@ -34,7 +34,7 @@
 
                 @foreach (var video in Model.Videos)
                 {
-                    @Html.Partial("_VideoDataOverall", video);
+                    @Html.Partial("_VideoData", video);
                 }
 
                 <div class="clearfix"> </div>

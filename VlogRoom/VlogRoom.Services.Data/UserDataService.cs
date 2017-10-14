@@ -42,16 +42,11 @@ namespace VlogRoom.Services.Data
         public void DeleteUser(User user)
         {
             this.usersRepo.Delete(user);
-        }        
+        }
 
-        public IEnumerable<User> GetAllUsers(string searchPattern = "")
+        public IEnumerable<User> GetAllUsers()
         {
-            searchPattern = searchPattern.ToLower();
-
-            return this.usersRepo.All
-                .Where(x => x.RoomName.ToLower().Contains(searchPattern) ||
-                            x.UserName.ToLower().Contains(searchPattern))
-                .AsEnumerable();
+            return this.usersRepo.All.AsEnumerable();
         }
 
         public IEnumerable<User> GetAllUsersWithDeleted()

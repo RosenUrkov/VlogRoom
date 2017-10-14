@@ -1,4 +1,4 @@
-﻿<div class="body-content">
+﻿<<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h2>Videos Grid</h2>
     @(Html.Kendo().Grid<VideoManageViewModel>()
         .Name("VideosManage")
@@ -8,7 +8,6 @@
             columns.Bound(m => m.Title);
             columns.Bound(m => m.ServiceVideoId);
             columns.Bound(m => m.Views);
-            columns.Bound(m => m.OwnerId);
             columns.Bound(m => m.OwnerUsername);
             columns.Bound(m => m.OwnerRoomName);
             columns.Bound(m => m.CreatedOn);
@@ -38,7 +37,6 @@
                 m.Field(model => model.CreatedOn).Editable(false);
                 m.Field(model => model.ModifiedOn).Editable(false);
                 m.Field(model => model.DeletedOn).Editable(false);
-                m.Field(model => model.OwnerId).Editable(false);
                 m.Field(model => model.OwnerUsername).Editable(false);
                 m.Field(model => model.OwnerRoomName).Editable(false);
             })

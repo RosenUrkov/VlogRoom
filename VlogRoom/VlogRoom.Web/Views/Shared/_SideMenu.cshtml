@@ -9,22 +9,31 @@
     <div class="drop-navigation drop-navigation">
         <ul class="nav nav-sidebar">
             <li class="active"><a href="@(Url.Action<HomeController>(x=> x.Index()))" class="home-icon"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-            <li><a href="@(Url.Action<UsersController>(x=> x.Account()))" class="sub-icon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Account</a></li>
-            @if (User.IsInRole(GlobalConstants.AdministrationRoleName))
+            @if (Request.IsAuthenticated)
             {
-                <li><a href="#" class="administration"><span class="glyphicon glyphicon-home glyphicon-sunglasses" aria-hidden="true"></span>Administration<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
-                <ul class="cl-effect-2">
-                    <li><a href="@(Url.Action<VlogRoom.Web.Areas.Administration.Controllers.UsersManageController>(x => x.Index()))"><span class="glyphicon glyphicon-home glyphicon-wrench" aria-hidden="true"></span>Users</a></li>
-                    <li><a href="@(Url.Action<VlogRoom.Web.Areas.Administration.Controllers.VideosManageController>(x => x.Index()))"><span class="glyphicon glyphicon-home glyphicon-wrench" aria-hidden="true"></span>Videos</a></li>
-                </ul>
+                <li><a href="@(Url.Action<UsersController>(x => x.Account()))" class="sub-icon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Account</a></li>
+                if (User.IsInRole(GlobalConstants.AdministrationRoleName))
+                {
+                    <li><a href="#" class="administration"><span class="glyphicon glyphicon-home glyphicon-sunglasses" aria-hidden="true"></span>Administration<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
+                    <ul class="cl-effect-2">
+                        <li><a href="@(Url.Action<VlogRoom.Web.Areas.Administration.Controllers.UsersManageController>(x => x.Index()))"><span class="glyphicon glyphicon-home glyphicon-wrench" aria-hidden="true"></span>Users</a></li>
+                        <li><a href="@(Url.Action<VlogRoom.Web.Areas.Administration.Controllers.VideosManageController>(x => x.Index()))"><span class="glyphicon glyphicon-home glyphicon-wrench" aria-hidden="true"></span>Videos</a></li>
+                    </ul>
+                }
+                <li><a href="@(Url.Action<VideosController>(x => x.NewsFeed()))" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-fire" aria-hidden="true"></span>Subscriptions</a></li>
+                <li><a href="#" class="notifications"><span class="glyphicon glyphicon-home glyphicon-exclamation-sign" aria-hidden="true"></span>Notifications<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
             }
-            <li><a href="@(Url.Action<VideosController>(x=> x.NewsFeed()))" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-fire" aria-hidden="true"></span>Subscriptions</a></li>
-            <li><a href="#" class="notifications"><span class="glyphicon glyphicon-home glyphicon-exclamation-sign" aria-hidden="true"></span>Notifications<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
-            <ul class="cl-effect-1">
-            </ul>
+            <ul class="cl-effect-1"></ul>
         </ul>
         <div class="side-bottom">
-            x
+            <div class="side-bottom-icons">
+                <ul class="nav2">
+                    <li><a href="#" class="facebook"> </a></li>
+                    <li><a href="#" class="facebook twitter"> </a></li>
+                    <li><a href="#" class="facebook chrome"> </a></li>
+                    <li><a href="#" class="facebook dribbble"> </a></li>
+                </ul>
+            </div>
             <div class="copyright">
                 <p>Copyright © 2015 My Play. All Rights Reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
             </div>

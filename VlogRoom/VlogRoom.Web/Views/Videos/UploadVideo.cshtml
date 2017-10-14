@@ -4,26 +4,27 @@
         <!-- container -->
         <div class="container">
             <div class="upload-grids">
-                <input type="text" name="videoTitle" class="form-control" placeholder="Enter video title" />
-                <div class="upload-right">
-                    <div class="upload-file">
-                        <div class="services-icon">
-                            <span class="glyphicon glyphicon-open" aria-hidden="true"></span>
-                        </div>
-                        @using (Html.BeginForm("UploadVideo", "Videos", FormMethod.Post, new { enctype = "multipart/form-data", id = "upload-form" }))
-                        {
+                @using (Html.BeginForm("UploadVideo", "Videos", FormMethod.Post, new { enctype = "multipart/form-data", id = "upload-form" }))
+                {
+                    <input type="text" name="videoTitle" class="form-control" placeholder="Enter video title" />
+                    <div class="upload-right">
+                        <div class="upload-file">
+                            <div class="services-icon">
+                                <span class="glyphicon glyphicon-open" aria-hidden="true"></span>
+                            </div>
+
                             @Html.AntiForgeryToken();
 
                             <input type="file" name="video" value="Choose file.." id="upload-input" />
-                        }
+                        </div>
+                        <div class="upload-info">
+                            <h5>Select video to upload</h5>
+                            <span>but first</span>
+                            <p>Add propper title and description</p>
+                        </div>
                     </div>
-                    <div class="upload-info">
-                        <h5>Select video to upload</h5>
-                        <span>but first</span>
-                        <p>Add propper title and description</p>
-                    </div>
-                </div>
-                <input type="text" name="videoDescription" class="form-control" placeholder="Enter video description" />
+                    <input type="text" name="videoDescription" class="form-control" placeholder="Enter video description" />
+                }
             </div>
         </div>
         <!-- //container -->

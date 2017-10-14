@@ -19,8 +19,6 @@ namespace VlogRoom.Web.Areas.Administration.Models
 
         public int Views { get; set; }
 
-        public string OwnerId { get; set; }
-
         public string OwnerUsername { get; set; }
 
         public string OwnerRoomName { get; set; }
@@ -36,7 +34,6 @@ namespace VlogRoom.Web.Areas.Administration.Models
         public void CreateMappings(IMapperConfigurationExpression configuration)
         {
             configuration.CreateMap<Video, VideoManageViewModel>()
-                .ForMember(x => x.OwnerId, c => c.MapFrom(y => y.User.Id))
                 .ForMember(x => x.OwnerUsername, c => c.MapFrom(y => y.User.UserName))
                 .ForMember(x => x.OwnerRoomName, c => c.MapFrom(y => y.User.RoomName));
         }

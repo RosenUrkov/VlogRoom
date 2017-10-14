@@ -46,7 +46,9 @@ namespace VlogRoom.Services.Data
 
             return this.videosRepo.All
                 .Where(x => x.Title.ToLower().Contains(searchPattern) ||
-                            x.Description.ToLower().Contains(searchPattern))
+                            x.Description.ToLower().Contains(searchPattern) ||
+                            x.User.UserName.ToLower().Contains(searchPattern) ||
+                            x.User.RoomName.ToLower().Contains(searchPattern))
                 .AsEnumerable();
         }
 

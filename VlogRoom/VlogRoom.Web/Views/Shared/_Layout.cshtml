@@ -42,11 +42,8 @@
             <div class="clearfix"> </div>
         </div>
     </nav>
-    <div class="container body-content">  
-        @if (Request.IsAuthenticated)
-        {
-            @Html.Partial("_SideMenu")
-        }
+    <div class="container body-content">
+        @Html.Partial("_SideMenu")
 
         @RenderBody()
         <hr />

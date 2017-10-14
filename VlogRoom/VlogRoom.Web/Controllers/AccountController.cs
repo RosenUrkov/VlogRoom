@@ -12,6 +12,7 @@ using VlogRoom.Web.Models;
 using VlogRoom.Web.App_Start.Managers;
 using VlogRoom.Web.Models.AccountViewModels;
 using VlogRoom.Data.Models;
+using VlogRoom.Web.Common.Constants;
 
 namespace VlogRoom.Web.Controllers
 {
@@ -75,6 +76,8 @@ namespace VlogRoom.Web.Controllers
             {
                 return View(model);
             }
+
+            this.TempData[GlobalConstants.SuccessMessage] = "Logged in successfully!";
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
@@ -159,13 +162,14 @@ namespace VlogRoom.Web.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
+                    this.TempData[GlobalConstants.SuccessMessage] = "Registered successfully!";
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
@@ -395,6 +399,8 @@ namespace VlogRoom.Web.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+
+            this.TempData[GlobalConstants.SuccessMessage] = "Goodbye!";
             return RedirectToAction("Index", "Home");
         }
 

@@ -10,6 +10,7 @@ using VlogRoom.Services.Common;
 using VlogRoom.Services.Data;
 using VlogRoom.Services.Data.Contracts;
 using VlogRoom.Web.Common.Attributes;
+using VlogRoom.Web.Common.Constants;
 using VlogRoom.Web.Common.Extensions;
 using VlogRoom.Web.Models;
 
@@ -57,6 +58,8 @@ namespace VlogRoom.Web.Controllers
         {
             var user = this.userDataService.GetUserByUsername(this.User.Identity.Name);
             var renamedUser = this.userDataService.RenameRoom(user, newName);
+
+            this.TempData[GlobalConstants.SuccessMessage] = "Room renamed successfully!";
             return new EmptyResult();
         }
 
@@ -70,6 +73,8 @@ namespace VlogRoom.Web.Controllers
             var userToBeSubscribedTo = this.userDataService.GetUserById(userId);
 
             this.userDataService.Subscribe(currentUser, userToBeSubscribedTo);
+
+            this.TempData[GlobalConstants.SuccessMessage] = $"You subscribed to {userToBeSubscribedTo.RoomName}!";
             return this.Redirect(Request.UrlReferrer.ToString());
         }
 
@@ -83,6 +88,8 @@ namespace VlogRoom.Web.Controllers
             var userToBeUnsubscribedFrom = this.userDataService.GetUserById(userId);
 
             this.userDataService.Unsubscribe(currentUser, userToBeUnsubscribedFrom);
+
+            this.TempData[GlobalConstants.SuccessMessage] = $"You unsubscribed from {userToBeUnsubscribedFrom.RoomName}!";
             return this.Redirect(Request.UrlReferrer.ToString());
         }
     }

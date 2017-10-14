@@ -25,6 +25,10 @@
     text-decoration-color: #21DEEF;
 }
 
+.toast-message{
+    font-size: 1.5em;
+}
+
 .play-video:hover .play-circle {
     visibility: visible;
 }
@@ -57,5 +61,9 @@
     background-image: url('/Images/topContentBg.jpg') !important;
     background-size: 100%;
     background-repeat: no-repeat;
+}
+
+.register-form,.login-form{
+    font-size: 1.5em;
 }
 

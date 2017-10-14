@@ -9,6 +9,7 @@ using VlogRoom.Data.Models;
 using VlogRoom.Services.Common;
 using VlogRoom.Services.Data.Contracts;
 using VlogRoom.Web.Common.Attributes;
+using VlogRoom.Web.Common.Constants;
 using VlogRoom.Web.Common.Extensions;
 using VlogRoom.Web.Models;
 
@@ -66,6 +67,8 @@ namespace VlogRoom.Web.Controllers
         public async Task<ActionResult> UploadVideo(HttpPostedFileBase video, string videoTitle, string videoDescription)
         {
             await this.videoDataService.AddVideo(video.InputStream, videoTitle, videoDescription, this.User.Identity.Name);
+
+            this.TempData[GlobalConstants.SuccessMessage] = "Video uploaded successfully!";
             return this.RedirectToAction("Account", "Users");
         }
 
@@ -77,6 +80,8 @@ namespace VlogRoom.Web.Controllers
         {
             var video = this.videoDataService.GetVideoByServiceId(videoId);
             this.videoDataService.RemoveVideo(video);
+
+            this.TempData[GlobalConstants.SuccessMessage] = "Video deleted successfully!";
             return new EmptyResult();
         }
 

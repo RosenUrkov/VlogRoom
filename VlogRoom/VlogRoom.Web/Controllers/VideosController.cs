@@ -22,7 +22,7 @@ namespace VlogRoom.Web.Controllers
             this.videoDataService = videoDataService;
         }
 
-        public ActionResult Single(string id)
+        public ActionResult Watch(string id)
         {
             var video = this.videoDataService.GetVideoByServiceId(id);
             video.Views += 1;
@@ -30,6 +30,13 @@ namespace VlogRoom.Web.Controllers
 
             var videoModel = MappingService.Provider.Map<SingleVideoViewModel>(video);
             return this.View("Video", video);
+        }
+
+        [SaveChanges]
+        [AjaxOnly]
+        public ActionResult CommentVideo()
+        {
+            throw new NotImplementedException();
         }
 
         [Authorize]

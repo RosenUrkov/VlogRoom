@@ -29,16 +29,9 @@ namespace VlogRoom.Web.Controllers
             this.videoDataService.UpdateVideo(video);
 
             var videoModel = MappingService.Provider.Map<SingleVideoViewModel>(video);
-            return this.View("Video", video);
+            return this.View("Video", videoModel);
         }
-
-        [SaveChanges]
-        [AjaxOnly]
-        public ActionResult CommentVideo()
-        {
-            throw new NotImplementedException();
-        }
-
+        
         [Authorize]
         [HttpGet]
         public ActionResult UploadVideo()

@@ -6,12 +6,6 @@
             <span class="glyphicon glyphicon-remove remove-button"></span>
             <img src="@Model.ImageUrl" alt="" />
         </a>
-        <div class="time small-time sports-tome">
-            <p>@Model.Duration</p>
-        </div>
-        <div class="clck sports-clock">
-            <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-        </div>
     </div>
     <div class="resent-grid-info recommended-grid-info">
         <h5><a href="@(Url.Action<VideosController>(c => c.Watch(Model.ServiceVideoId )))" class="title">@Model.Title</a></h5>

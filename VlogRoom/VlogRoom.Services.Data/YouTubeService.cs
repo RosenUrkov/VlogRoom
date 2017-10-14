@@ -45,15 +45,11 @@ namespace VlogRoom.Services.Common
             VideosResource.InsertMediaUpload videoInsertRequest;
             using (videoStream)
             {
-                videoInsertRequest = this.youTubeService.Videos.Insert(video, "snippet,status,contentDetails", videoStream, "video/*");
+                videoInsertRequest = this.youTubeService.Videos.Insert(video, "snippet", videoStream, "video/*");
                 await videoInsertRequest.UploadAsync();
             }
 
             var videoServiceId = this.AddVideoToThePlaylist(videoInsertRequest.ResponseBody.Id);
-            var duration = XmlConvert.ToTimeSpan(videoInsertRequest.ResponseBody.ContentDetails.Duration);
-            var displayDuration = (duration.Hours < 1 ? "" : duration.Hours.ToString() + ":") +
-                                   duration.Minutes + ":" +
-                                  (duration.Seconds < 10 ? "0" + duration.Seconds : duration.Seconds.ToString());
 
             var videoModel = new VlogRoom.Data.Models.Video()
             {
@@ -61,7 +57,6 @@ namespace VlogRoom.Services.Common
                 ServiceListItemId = videoServiceId,
                 ImageUrl = videoInsertRequest.ResponseBody.Snippet.Thumbnails.High.Url,
                 Description = videoInsertRequest.ResponseBody.Snippet.Description,
-                Duration = displayDuration,
                 Title = videoInsertRequest.ResponseBody.Snippet.Title,
                 Views = 0,
             };

@@ -23,9 +23,9 @@ namespace VlogRoom.Web
                            "~/Scripts/jquery.signalR*"));
 
             bundles.Add(new ScriptBundle("~/bundles/template").Include(
+                        "~/Scripts/Custom/custom.js",
                         "~/Scripts/Template/responsiveslides.min.js",
                         "~/Scripts/toastr.min.js",
-                        "~/Scripts/Custom/custom.js",
                         "~/Scripts/Custom/notifications.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're

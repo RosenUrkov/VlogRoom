@@ -47,3 +47,13 @@
     left: 48%;
     top: 38%;
 }
+
+.container {
+    width: 100%;    
+}
+
+.background {
+    background-image: url('/Images/topContentBg.jpg') !important;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}

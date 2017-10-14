@@ -3,12 +3,6 @@
 <div class="col-md-3 resent-grid recommended-grid">
     <div class="resent-grid-img recommended-grid-img">
         <a href="@(Url.Action<VlogRoom.Web.Controllers.VideosController>(c => c.Watch(Model.ServiceVideoId )))"><img src="@Model.ImageUrl" alt="" /></a>
-        <div class="time small-time">
-            <p>@Model.Duration</p>
-        </div>
-        <div class="clck small-clck">
-            <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-        </div>
     </div>
     <div class="resent-grid-info recommended-grid-info video-info-grid">
         <h5><a href="@(Url.Action<VlogRoom.Web.Controllers.VideosController>(c => c.Watch(Model.ServiceVideoId )))" class="title">@Model.Title</a></h5>

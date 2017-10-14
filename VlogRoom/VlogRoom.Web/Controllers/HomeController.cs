@@ -29,8 +29,8 @@ namespace VlogRoom.Web.Controllers
         public ActionResult Index()
         {
             var videoCollectionsModel = new VideoCollectionsViewModel();
-            videoCollectionsModel.RecentVideos = this.videoDataService.GetMostRecentVideos(5).Map<Video, VideoDataViewModel>();
-            videoCollectionsModel.ViralVideos = this.videoDataService.GetMostViralVideos(5).Map<Video, VideoDataViewModel>().ToList();
+            videoCollectionsModel.RecentVideos = this.videoDataService.GetMostRecentVideos(3).Map<Video, VideoDataViewModel>();
+            videoCollectionsModel.ViralVideos = this.videoDataService.GetMostViralVideos(8).Map<Video, VideoDataViewModel>().ToList();
 
             return View(videoCollectionsModel);
         }

@@ -539,10 +539,8 @@
     <Content Include="Images\13.png" />
     <Content Include="Images\9.png" />
     <Content Include="Images\behance.png" />
-    <Content Include="Images\bg-image.jpg" />
     <Content Include="Images\ch1.png" />
     <Content Include="Images\comment.png" />
-    <Content Include="Images\download.jpg" />
     <Content Include="Images\dribbble.png" />
     <Content Include="Images\fb.png" />
     <Content Include="Images\fb1.png" />
@@ -551,7 +549,6 @@
     <Content Include="Images\like.png" />
     <Content Include="Images\lines.png" />
     <Content Include="Images\linkedin.png" />
-    <Content Include="Images\logo.jpg" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\mv.png" />
     <Content Include="Images\pinterest.png" />
@@ -559,7 +556,6 @@
     <Content Include="Images\pr2.png" />
     <Content Include="Images\rss.png" />
     <Content Include="Images\select-arrow.png" />
-    <Content Include="Images\site-background.jpg" />
     <Content Include="Images\social.png" />
     <Content Include="Images\themes.png" />
     <Content Include="Images\topContentBg.jpg" />
@@ -605,6 +601,8 @@
     <Content Include="Areas\Administration\Views\UsersManage\Index.cshtml" />
     <Content Include="Areas\Administration\Views\VideosManage\Index.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
+    <None Include="Properties\PublishProfiles\vlogroom - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\vlogroom - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\Custom\custom.js" />
     <Content Include="Scripts\Custom\notifications.js" />

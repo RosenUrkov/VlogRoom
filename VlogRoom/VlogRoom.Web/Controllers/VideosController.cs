@@ -33,10 +33,10 @@ namespace VlogRoom.Web.Controllers
         public ActionResult Watch(string id)
         {
             var video = this.videoDataService.GetVideoByServiceId(id);
-            if (video is null)
+            if (video == null)
             {
                 this.TempData[GlobalConstants.ErrorMessage] = GlobalConstants.InvalidVideoMessage;
-                this.RedirectToAction("Index", "Home");
+                return this.RedirectToAction("Index", "Home");
             }
 
             video.Views += 1;
@@ -71,9 +71,15 @@ namespace VlogRoom.Web.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> UploadVideo(HttpPostedFileBase video, string videoTitle, string videoDescription)
+        public async Task<ActionResult> UploadVideo(UploadVideoViewModel video)
         {
-            await this.videoDataService.AddVideo(video.InputStream, videoTitle, videoDescription, this.User.Identity.Name);
+            if (!this.ModelState.IsValid)
+            {
+                this.TempData[GlobalConstants.ErrorMessage] = GlobalConstants.InvalidUploadVideoMessage;
+                return this.RedirectToAction("Index", "Home");
+            }
+
+            await this.videoDataService.AddVideo(video.VideoFile.InputStream, video.VideoTitle, video.VideoDescription, this.User.Identity.Name);
 
             this.TempData[GlobalConstants.SuccessMessage] = "Video uploaded successfully!";
             return this.RedirectToAction("Account", "Users");
@@ -86,10 +92,10 @@ namespace VlogRoom.Web.Controllers
         public ActionResult DeleteVideo(string videoId)
         {
             var video = this.videoDataService.GetVideoByServiceId(videoId);
-            if (video is null)
+            if (video == null)
             {
                 this.TempData[GlobalConstants.ErrorMessage] = GlobalConstants.InvalidDeleteVideoMessage;
-                this.RedirectToAction("Account", "Users");
+                return this.RedirectToAction("Account", "Users");
             }
 
             this.videoDataService.RemoveVideo(video);

@@ -30,23 +30,35 @@ namespace VlogRoom.Web.Controllers
 
         public ActionResult Index()
         {
-            var videoCollectionsModel = new VideoCollectionsViewModel();
-            videoCollectionsModel.RecentVideos = this.videoDataService.GetMostRecentVideos(3).Map<Video, VideoDataViewModel>();
-            videoCollectionsModel.ViralVideos = this.videoDataService.GetMostViralVideos(8).Map<Video, VideoDataViewModel>().ToList();
-
-            return View(videoCollectionsModel);
+            return View();
         }
 
         public ActionResult Search(string searchPattern)
         {
-            if(searchPattern == null || Regex.IsMatch(searchPattern, GlobalConstants.AlphaNumericalPattern))
+            if (searchPattern == null || !Regex.IsMatch(searchPattern, GlobalConstants.AlphaNumericalPattern))
             {
                 this.TempData[GlobalConstants.ErrorMessage] = GlobalConstants.InvalidSearchPatternMessage;
-                this.RedirectToAction("Index");
+                return this.RedirectToAction("Index");
             }
 
             var videosModel = this.videoDataService.GetAllVideos(searchPattern).Map<Video, VideoDataViewModel>();
             return View(videosModel);
+        }
+
+        [ChildActionOnly]
+        [OutputCache(Duration = 60)]
+        public ActionResult GetRecentVideos()
+        {
+            var recentVideos = this.videoDataService.GetMostRecentVideos(3).Map<Video, VideoDataViewModel>();
+            return this.PartialView("_RecentVideos", recentVideos);
+        }
+
+        [ChildActionOnly]
+        [OutputCache(Duration = 60)]
+        public ActionResult GetViralVideos()
+        {
+            var viralVideos = this.videoDataService.GetMostViralVideos(8).Map<Video, VideoDataViewModel>().ToList();
+            return this.PartialView("_ViralVideos", viralVideos);
         }
     }
 }

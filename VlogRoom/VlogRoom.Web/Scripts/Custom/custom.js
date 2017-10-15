@@ -75,6 +75,10 @@ $(() => {
             success: () => {
                 $('#loader').hide();
                 toastr.info("Room renamed successfully!");
+            },
+            error: () => {
+                $('#loader').hide();
+                toastr.error("Invalid room name!");
             }
         });
         
@@ -94,6 +98,10 @@ $(() => {
             success: () => {
                 $('#loader').hide();
                 toastr.info("Video deleted successfully!");
+            },
+            error: () => {
+                $('#loader').hide();
+                toastr.error("Invalid video command!");
             }
         });
     });

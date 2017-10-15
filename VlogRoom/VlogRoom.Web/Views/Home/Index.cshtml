@@ -1,42 +1,8 @@
-﻿@model VideoCollectionsViewModel
-
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+﻿<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <div class="main-grids">
-        <div class="top-grids">
-            <div class="recommended-info">
-                <h2>Recent Videos</h2>
-            </div>
-            @foreach (var video in Model.RecentVideos)
-            {
-                @Html.Partial("_RecentVideo", video);
-            }
-            <div class="clearfix"> </div>
-        </div>
+        @(Html.Action<HomeController>(x=>x.GetRecentVideos()))
         <div class="recommended">
-            <div class="recommended-grids">
-                <div class="recommended-info">
-                    <h2>Viral Videos</h2>
-                </div>
-                <div id="top" class="callbacks_container">
-                    <ul class="rslides" id="slider3">
-                        @{
-                            for (int i = 0; i < Model.ViralVideos.Count / 4; i++)
-                            {
-                                <li>
-                                    <div class="animated-grids">
-                                        @for (int j = 0; j < 4; j++)
-                                        {
-                                            @Html.Partial("_ViralVideo", Model.ViralVideos[i * 4 + j]);
-                                        }
-
-                                        <div class="clearfix"> </div>
-                                    </div>
-                                </li>
-                            }
-                        }
-                    </ul>
-                </div>
-            </div>
+            @(Html.Action<HomeController>(x => x.GetViralVideos()))           
         </div>
     </div>
 </div>

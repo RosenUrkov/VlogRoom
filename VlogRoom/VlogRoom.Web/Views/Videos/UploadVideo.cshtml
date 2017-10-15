@@ -1,4 +1,6 @@
-﻿<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+﻿@model UploadVideoViewModel
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
     <!-- upload -->
     <div class="upload">
         <!-- container -->
@@ -8,14 +10,15 @@
                 {
                     @Html.AntiForgeryToken();
 
-                    <input type="text" name="videoTitle" class="form-control" placeholder="Enter video title" />
+                    @Html.EditorFor(x => x.VideoTitle);
+                    @Html.ValidationMessageFor(x => x.VideoTitle);
                     <div class="upload-right">
                         <div class="upload-file">
                             <div class="services-icon">
                                 <span class="glyphicon glyphicon-open" aria-hidden="true"></span>
                             </div>
-
-                            <input type="file" name="video" value="Choose file.." id="upload-input" />
+                            @Html.EditorFor(x => x.VideoFile)
+                            @Html.ValidationMessageFor(x => x.VideoFile);
                         </div>
                         <div class="upload-info">
                             <h5>Select video to upload</h5>
@@ -23,10 +26,15 @@
                             <p>Add propper title and description</p>
                         </div>
                     </div>
-                    <input type="text" name="videoDescription" class="form-control" placeholder="Enter video description" />
+                    @Html.EditorFor(x => x.VideoDescription);
+                    @Html.ValidationMessageFor(x => x.VideoDescription);
                 }
             </div>
         </div>
         <!-- //container -->
     </div>
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

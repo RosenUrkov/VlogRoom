@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -29,10 +30,10 @@ namespace VlogRoom.Web.Controllers
         public ActionResult Room(string id)
         {
             var user = this.userDataService.GetUserById(id);
-            if (user is null)
+            if (user == null)
             {
                 this.TempData[GlobalConstants.ErrorMessage] = GlobalConstants.InvalidRoomMessage;
-                this.RedirectToAction("Index", "Home");
+                return this.RedirectToAction("Index", "Home");
             }
 
             if (this.User.Identity.IsAuthenticated && user.UserName == this.User.Identity.Name)
@@ -60,11 +61,20 @@ namespace VlogRoom.Web.Controllers
         [HttpPost]
         public ActionResult RenameRoom(string newName)
         {
+            if (newName == null ||
+                newName.Length < GlobalConstants.RoomNameMinLength ||
+                newName.Length > GlobalConstants.RoomNameMaxLength ||
+                !Regex.IsMatch(newName, GlobalConstants.AlphaNumericalPattern))
+            {
+                this.TempData[GlobalConstants.ErrorMessage] = GlobalConstants.RoomNameErrorMessage;
+                return this.RedirectToAction("Index", "Home");
+            }
+
             var user = this.userDataService.GetUserByUsername(this.User.Identity.Name);
             Guard.WhenArgument(user, "user").IsNull().Throw();
 
-            this.userDataService.RenameRoom(user, newName);            
-            return new EmptyResult();
+            this.userDataService.RenameRoom(user, newName);
+            return this.Content(newName);
         }
 
         [SaveChanges]
@@ -77,10 +87,10 @@ namespace VlogRoom.Web.Controllers
             Guard.WhenArgument(currentUser, "currentUser").IsNull().Throw();
 
             var userToBeSubscribedTo = this.userDataService.GetUserById(userId);
-            if (userToBeSubscribedTo is null)
+            if (userToBeSubscribedTo == null)
             {
                 this.TempData[GlobalConstants.ErrorMessage] = GlobalConstants.InvalidSubscriptionMessage;
-                this.Redirect(Request.UrlReferrer.ToString());
+                return this.Redirect(Request.UrlReferrer.ToString());
             }
 
             this.userDataService.Subscribe(currentUser, userToBeSubscribedTo);
@@ -99,10 +109,10 @@ namespace VlogRoom.Web.Controllers
             Guard.WhenArgument(currentUser, "currentUser").IsNull().Throw();
 
             var userToBeUnsubscribedFrom = this.userDataService.GetUserById(userId);
-            if (userToBeUnsubscribedFrom is null)
+            if (userToBeUnsubscribedFrom == null)
             {
                 this.TempData[GlobalConstants.ErrorMessage] = GlobalConstants.InvalidSubscriptionMessage;
-                this.Redirect(Request.UrlReferrer.ToString());
+                return this.Redirect(Request.UrlReferrer.ToString());
             }
 
             this.userDataService.Unsubscribe(currentUser, userToBeUnsubscribedFrom);

@@ -453,6 +453,7 @@
     <Compile Include="Contracts\IMap.cs" />
     <Compile Include="Contracts\IServiceLocator.cs" />
     <Compile Include="Contracts\IUserManager.cs" />
+    <Compile Include="Models\UploadVideoViewModel.cs" />
     <Compile Include="Providers\ServiceLocator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -483,7 +484,6 @@
     <Compile Include="Models\ManageViewModels\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="Models\SingleVideoViewModel.cs" />
     <Compile Include="Models\UserDataViewModel.cs" />
-    <Compile Include="Models\VideoCollectionsViewModel.cs" />
     <Compile Include="Models\VideoDataViewModel.cs" />
     <Compile Include="Models\WatchVideoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -690,10 +690,13 @@
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Shared\_WatchNext.cshtml" />
     <Content Include="Views\Videos\NewsFeed.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Title.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Description.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\VideoFile.cshtml" />
+    <Content Include="Views\Shared\_RecentVideos.cshtml" />
+    <Content Include="Views\Shared\_ViralVideos.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Code\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

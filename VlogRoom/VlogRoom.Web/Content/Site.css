@@ -21,7 +21,7 @@
     position: absolute !important;
     font-size: 13em !important;
     top: 20% !important;
-    left: 34% !important;
+    left: 31% !important;
 }
 
 .author:hover {
@@ -53,8 +53,8 @@
 
 #loader-gif{
     position: relative;
-    left: 48%;
-    top: 38%;
+    left: 50%;
+    top: 50%;
 }
 
 .container {

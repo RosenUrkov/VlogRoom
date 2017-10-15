@@ -26,19 +26,19 @@ namespace VlogRoom.Web.Common.Constants
 
         public const string EmailErrorMessage = "Invalid email!";
 
-        public const int UserNameMinLength = 5;
+        public const int UserNameMinLength = 3;
         public const int UserNameMaxLength = 20;
         public const string UserNameErrorMessage = "Invalid username!";
         
-        public const int RoomNameMinLength = 5;
+        public const int RoomNameMinLength = 3;
         public const int RoomNameMaxLength = 20;
         public const string RoomNameErrorMessage = "Invalid room name!";
 
-        public const int VideoTitleMinLength = 5;
+        public const int VideoTitleMinLength = 3;
         public const int VideoTitleMaxLength = 15;
         public const string VideoTitleErrorMessage = "Incorrect video title!";
         
-        public const int VideoDesctiptionMinLength = 4;
+        public const int VideoDesctiptionMinLength = 3;
         public const int VideoDescriptionMaxLength = 20;
         public const string VideoDescriptionErrorMessage = "Incorrect video description!";
         
@@ -51,6 +51,6 @@ namespace VlogRoom.Web.Common.Constants
         public const string InvalidSubscriptionMessage = "The user that you want to subscribe/unsubscribe to does not exist!";
         public const string InvalidVideoMessage = "The video you want to see does not exist or is deleted!";
         public const string InvalidDeleteVideoMessage = "The video you want to delete does not exist or is deleted!";
-
+        public const string InvalidUploadVideoMessage = "Invalid video for uploading!";
     }
 }

@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VlogRoom.Services.Data.Tests
+namespace VlogRoom.Services.Data.Tests.UserDataServiceTests
 {
     [TestFixture]
-    public class Sample
+    public class GetUserByIdShould
     {
         [Test]
-        public void SampleTest()
+        public void CallUsersRepoAllMethodOnce()
         {
             Assert.AreEqual(1, 1);
         }

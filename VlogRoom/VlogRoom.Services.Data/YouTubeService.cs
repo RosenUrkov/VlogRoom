@@ -18,11 +18,12 @@ using System.Xml;
 using Bytes2you.Validation;
 using VlogRoom.Services.Data.Contracts;
 using VlogRoom.Web.Common.Constants;
+using System.Web.Hosting;
 
 namespace VlogRoom.Services.Common
 {
     public class YouTubeService : IYouTubeService
-    {  
+    {
         private Google.Apis.YouTube.v3.YouTubeService youTubeService;
         private readonly IVideoFactory videoFactory;
 
@@ -76,7 +77,7 @@ namespace VlogRoom.Services.Common
         {
             UserCredential credential;
             using (var stream = new FileStream(
-                AppDomain.CurrentDomain.BaseDirectory + "/App_Data/client_secret.json",
+                HostingEnvironment.MapPath("~/App_Data/client_secret.json"),
                 FileMode.Open, FileAccess.Read))
             {
                 credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(

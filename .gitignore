@@ -4,7 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # Custom
-App_Data/
+# App_Data/
 
 # User-specific files
 *.suo

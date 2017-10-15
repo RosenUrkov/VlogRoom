@@ -56,7 +56,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserDataServiceTests\DeleteUserShould.cs" />
+    <Compile Include="UserDataServiceTests\GetAllUsersShould.cs" />
+    <Compile Include="UserDataServiceTests\GetAllUsersWithDeletedShould.cs" />
     <Compile Include="UserDataServiceTests\GetUserByIdShould.cs" />
+    <Compile Include="UserDataServiceTests\GetUserByIdWithDeletedShould.cs" />
+    <Compile Include="UserDataServiceTests\GetUserByUsernameShould.cs" />
+    <Compile Include="UserDataServiceTests\RenameRoomShould.cs" />
+    <Compile Include="UserDataServiceTests\SubscribeShould.cs" />
+    <Compile Include="UserDataServiceTests\UnsubscribeShould.cs" />
+    <Compile Include="UserDataServiceTests\UpdateUserShould.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

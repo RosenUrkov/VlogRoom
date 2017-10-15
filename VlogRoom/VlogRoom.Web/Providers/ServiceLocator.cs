@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using VlogRoom.Web.Contracts;
 
-namespace VlogRoom.Web.Common
+namespace VlogRoom.Web.Providers
 {
     // my supermix of patterns and antipatterns in 20 lines
     public class ServiceLocator : IServiceLocator

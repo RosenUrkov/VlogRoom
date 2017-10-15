@@ -1,9 +1,9 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 using VlogRoom.Services.Common.Contracts;
-using VlogRoom.Web.Common;
 using VlogRoom.Web.Common.ActionFilters;
 using VlogRoom.Web.Common.Attributes;
+using VlogRoom.Web.Providers;
 
 namespace VlogRoom.Web
 {

@@ -33,6 +33,8 @@ namespace VlogRoom.Web.Controllers
         public ActionResult Watch(string id)
         {
             var video = this.videoDataService.GetVideoByServiceId(id);
+            Guard.WhenArgument(video, "video").IsNull().Throw();
+
             video.Views += 1;
             this.videoDataService.UpdateVideo(video);
 
@@ -48,8 +50,9 @@ namespace VlogRoom.Web.Controllers
         public ActionResult NewsFeed()
         {
             var currentUser = this.userDataService.GetUserByUsername(this.User.Identity.Name);
-            var newsFeed = this.videoDataService.GetNewsFeed(currentUser).Map<Video, VideoDataViewModel>();
+            Guard.WhenArgument(currentUser, "currentUser").IsNull().Throw();
 
+            var newsFeed = this.videoDataService.GetNewsFeed(currentUser).Map<Video, VideoDataViewModel>();
             return View(newsFeed);
         }
 
@@ -79,8 +82,9 @@ namespace VlogRoom.Web.Controllers
         public ActionResult DeleteVideo(string videoId)
         {
             var video = this.videoDataService.GetVideoByServiceId(videoId);
-            this.videoDataService.RemoveVideo(video);
-            
+            Guard.WhenArgument(video, "video").IsNull().Throw();
+
+            this.videoDataService.RemoveVideo(video);            
             return new EmptyResult();
         }
 
@@ -91,6 +95,8 @@ namespace VlogRoom.Web.Controllers
         public async Task<ActionResult> HardDeleteVideo(string videoId)
         {
             var video = this.videoDataService.GetVideoByServiceId(videoId);
+            Guard.WhenArgument(video, "video").IsNull().Throw();
+
             await this.videoDataService.HardRemoveVideo(video);
             return this.RedirectToAction("Account", "Users");
         }

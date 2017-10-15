@@ -17,7 +17,7 @@ namespace VlogRoom.Data.Models
         private const int RoomNameMinLength = 5;
         private const int RoomNameMaxLength = 20;
         private const string RoomNameErrorMessage = "Invalid room name!";
-        private const string RoomNamePattern = @"^[\w\s]+$";
+        private const string RoomNamePattern = "^[a-zA-Z0-9 _]+$";
 
         public User() : base()
         {

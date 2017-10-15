@@ -13,12 +13,12 @@ namespace VlogRoom.Data.Models
     {
         private const int VideoTitleMinLength = 5;
         private const int VideoTitleMaxLength = 15;
-        private const string VideoTitlePattern = @"^[\w\s]+$";
+        private const string VideoTitlePattern = "^[a-zA-Z0-9 _]+$";
         private const string VideoTitleErrorMessage = "Incorrect video title!";
 
         private const int VideoDesctiptionMinLength = 4;
         private const int VideoDescriptionMaxLength = 20;
-        private const string VideoDescriptionPattern = @"^[\w\s]+$";
+        private const string VideoDescriptionPattern = "^[a-zA-Z0-9 _]+$";
         private const string VideoDescriptionErrorMessage = "Incorrect video description!";
 
         private const int ViewsMinRange = 0;

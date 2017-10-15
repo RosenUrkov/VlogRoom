@@ -20,7 +20,7 @@ namespace VlogRoom.Web.Controllers
     {
         private readonly IUserDataService userDataService;
 
-        public UsersController(IUserDataService userDataService, IVideoDataService videoDataService)
+        public UsersController(IUserDataService userDataService)
         {
             Guard.WhenArgument(userDataService, "userDataService").IsNull().Throw();
             this.userDataService = userDataService;
@@ -57,8 +57,9 @@ namespace VlogRoom.Web.Controllers
         public ActionResult RenameRoom(string newName)
         {
             var user = this.userDataService.GetUserByUsername(this.User.Identity.Name);
-            var renamedUser = this.userDataService.RenameRoom(user, newName);
-            
+            Guard.WhenArgument(user, "user").IsNull().Throw();
+
+            this.userDataService.RenameRoom(user, newName);            
             return new EmptyResult();
         }
 
@@ -69,7 +70,10 @@ namespace VlogRoom.Web.Controllers
         public ActionResult SubscribeToUser(string userId)
         {
             var currentUser = this.userDataService.GetUserByUsername(this.User.Identity.Name);
+            Guard.WhenArgument(currentUser, "currentUser").IsNull().Throw();
+
             var userToBeSubscribedTo = this.userDataService.GetUserById(userId);
+            Guard.WhenArgument(userToBeSubscribedTo, "userToBeSubscribedTo").IsNull().Throw();
 
             this.userDataService.Subscribe(currentUser, userToBeSubscribedTo);
 
@@ -84,7 +88,10 @@ namespace VlogRoom.Web.Controllers
         public ActionResult UnsubscribeFromUser(string userId)
         {
             var currentUser = this.userDataService.GetUserByUsername(this.User.Identity.Name);
+            Guard.WhenArgument(currentUser, "currentUser").IsNull().Throw();
+
             var userToBeUnsubscribedFrom = this.userDataService.GetUserById(userId);
+            Guard.WhenArgument(userToBeUnsubscribedFrom, "userToBeUnsubscribedFrom").IsNull().Throw();
 
             this.userDataService.Unsubscribe(currentUser, userToBeUnsubscribedFrom);
 

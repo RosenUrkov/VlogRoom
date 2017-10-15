@@ -1,4 +1,5 @@
-﻿using Kendo.Mvc.Extensions;
+﻿using Bytes2you.Validation;
+using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using System.Web.Mvc;
 using VlogRoom.Data.Models;
@@ -17,6 +18,7 @@ namespace VlogRoom.Web.Areas.Administration.Controllers
 
         public VideosManageController(IVideoDataService videoDataService)
         {
+            Guard.WhenArgument(videoDataService, "videoDataService").IsNull().Throw();
             this.videoDataService = videoDataService;
         }
 
@@ -27,6 +29,8 @@ namespace VlogRoom.Web.Areas.Administration.Controllers
 
         public ActionResult ReadVideos([DataSourceRequest] DataSourceRequest request)
         {
+            Guard.WhenArgument(request, "request").IsNull().Throw();
+
             var usersModel = this.videoDataService
                 .GetAllVideosWithDeleted()
                 .Map<Video, VideoManageViewModel>()

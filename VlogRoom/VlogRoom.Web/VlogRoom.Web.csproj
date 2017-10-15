@@ -452,7 +452,8 @@
     <Compile Include="Contracts\IHaveCustomMappings.cs" />
     <Compile Include="Contracts\IMap.cs" />
     <Compile Include="Contracts\IServiceLocator.cs" />
-    <Compile Include="Common\ServiceLocator.cs" />
+    <Compile Include="Contracts\IUserManager.cs" />
+    <Compile Include="Providers\ServiceLocator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -486,6 +487,7 @@
     <Compile Include="Models\VideoDataViewModel.cs" />
     <Compile Include="Models\WatchVideoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\UserManager.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -18,6 +18,7 @@ using VlogRoom.Web.Areas.Administration.Models;
 using VlogRoom.Web.Common.Attributes;
 using VlogRoom.Web.Common.Constants;
 using VlogRoom.Web.Common.Extensions;
+using VlogRoom.Web.Contracts;
 
 namespace VlogRoom.Web.Areas.Administration.Controllers
 {
@@ -25,15 +26,15 @@ namespace VlogRoom.Web.Areas.Administration.Controllers
     public class UsersManageController : Controller
     {
         private readonly IUserDataService userDataService;
-        private readonly UserManager<User> userManager;
+        private readonly IUserManager userManager;
 
-        public UsersManageController(IUserDataService userDataService, DbContext context)
+        public UsersManageController(IUserDataService userDataService, IUserManager userManager)
         {
             Guard.WhenArgument(userDataService, "userDataService").IsNull().Throw();
-            this.userDataService = userDataService;
+            Guard.WhenArgument(userManager, "userManager").IsNull().Throw();
 
-            var userStore = new UserStore<User>(context);
-            this.userManager = new UserManager<User>(userStore);
+            this.userDataService = userDataService;
+            this.userManager = userManager;
         }
 
         public ActionResult Index()
@@ -43,6 +44,8 @@ namespace VlogRoom.Web.Areas.Administration.Controllers
 
         public ActionResult ReadUsers([DataSourceRequest] DataSourceRequest request)
         {
+            Guard.WhenArgument(request, "request").IsNull().Throw();
+
             var usersModel = this.userDataService
                 .GetAllUsersWithDeleted()
                 .Map<User, UserManageViewModel>()

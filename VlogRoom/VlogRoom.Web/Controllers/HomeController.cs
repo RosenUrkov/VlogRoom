@@ -17,15 +17,11 @@ namespace VlogRoom.Web.Controllers
     public class HomeController : Controller
     {
         private readonly IVideoDataService videoDataService;
-        private readonly IUserDataService userDataService;
 
-        public HomeController(IUserDataService userDataService, IVideoDataService videoDataService)
+        public HomeController(IVideoDataService videoDataService)
         {
             Guard.WhenArgument(videoDataService, "videoDataService").IsNull().Throw();
-            Guard.WhenArgument(userDataService, "userDataService").IsNull().Throw();
-
             this.videoDataService = videoDataService;
-            this.userDataService = userDataService;
         }
 
         public ActionResult Index()
@@ -35,7 +31,7 @@ namespace VlogRoom.Web.Controllers
 
         public ActionResult Search(string searchPattern)
         {
-            if (searchPattern == null || !Regex.IsMatch(searchPattern, GlobalConstants.AlphaNumericalPattern))
+            if (string.IsNullOrEmpty(searchPattern) || !Regex.IsMatch(searchPattern, GlobalConstants.AlphaNumericalPattern))
             {
                 this.TempData[GlobalConstants.ErrorMessage] = GlobalConstants.InvalidSearchPatternMessage;
                 return this.RedirectToAction("Index");

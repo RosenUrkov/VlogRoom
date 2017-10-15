@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bytes2you.Validation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,7 @@ namespace VlogRoom.Services.Data
 
         public UserDataService(IEfRepository<User> usersRepo)
         {
+            Guard.WhenArgument(usersRepo, "usersRepo").IsNull().Throw();
             this.usersRepo = usersRepo;
         }
 
@@ -36,11 +38,13 @@ namespace VlogRoom.Services.Data
 
         public void UpdateUser(User user)
         {
+            Guard.WhenArgument(user, "user").IsNull().Throw();
             this.usersRepo.Update(user);
         }
 
         public void DeleteUser(User user)
         {
+            Guard.WhenArgument(user, "user").IsNull().Throw();
             this.usersRepo.Delete(user);
         }
 
@@ -56,6 +60,8 @@ namespace VlogRoom.Services.Data
 
         public User RenameRoom(User user, string newName)
         {
+            Guard.WhenArgument(user, "user").IsNull().Throw();
+
             user.RoomName = newName;
             this.usersRepo.Update(user);
             return user;
@@ -63,6 +69,9 @@ namespace VlogRoom.Services.Data
 
         public void Subscribe(User userToBeSubscribed, User userToSubscribeTo)
         {
+            Guard.WhenArgument(userToBeSubscribed, "userToBeSubscribed").IsNull().Throw();
+            Guard.WhenArgument(userToSubscribeTo, "userToSubscribeTo").IsNull().Throw();
+
             userToSubscribeTo.Subscribers.Add(userToBeSubscribed);
             userToBeSubscribed.Subscribtions.Add(userToSubscribeTo);
 
@@ -71,6 +80,9 @@ namespace VlogRoom.Services.Data
 
         public void Unsubscribe(User userToBeUnsubscribed, User userToBeUnsubscribedFrom)
         {
+            Guard.WhenArgument(userToBeUnsubscribed, "userToBeUnsubscribed").IsNull().Throw();
+            Guard.WhenArgument(userToBeUnsubscribedFrom, "userToBeUnsubscribedFrom").IsNull().Throw();
+
             userToBeUnsubscribedFrom.Subscribers.Remove(userToBeUnsubscribed);
             userToBeUnsubscribed.Subscribtions.Remove(userToBeUnsubscribedFrom);
 

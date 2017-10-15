@@ -15,6 +15,8 @@ using System.Threading;
 using Google.Apis.Auth.OAuth2.Flows;
 using Google.Apis.Auth.OAuth2.Responses;
 using System.Xml;
+using Bytes2you.Validation;
+using VlogRoom.Services.Data.Contracts;
 
 namespace VlogRoom.Services.Common
 {
@@ -24,19 +26,29 @@ namespace VlogRoom.Services.Common
         private const string ApiKey = "AIzaSyCOpBHSZp8jqgImoRnY7ErzrsnMhibTGxU";
         private const string PlayListId = "PLuAZD7L_R_m20wOxJPjRRgjMAJSbXIoeL";
 
+        private const string CategoryId = "22";
+        private const string PrivacyStatus = "private";
+
         private Google.Apis.YouTube.v3.YouTubeService youTubeService;
+
+        public YouTubeService()
+        {
+
+        }
 
         public async Task<VlogRoom.Data.Models.Video> UploadVideo(Stream videoStream, string videoTitle, string videoDescription)
         {
+            Guard.WhenArgument(videoStream, "videoStream").IsNull().Throw();
+            
             await this.Authorize();
 
             var snippet = new VideoSnippet();
             snippet.Title = videoTitle;
             snippet.Description = videoDescription;
-            snippet.CategoryId = "22";
+            snippet.CategoryId = CategoryId;
 
             var status = new VideoStatus();
-            status.PrivacyStatus = "private";
+            status.PrivacyStatus = PrivacyStatus;
 
             var video = new Video();
             video.Snippet = snippet;
@@ -64,14 +76,14 @@ namespace VlogRoom.Services.Common
             return videoModel;
         }
 
-        public async Task DeleteVideo(VlogRoom.Data.Models.Video videoData)
+        public async Task DeleteVideo(VlogRoom.Data.Models.Video video)
         {
             await this.Authorize();
 
-            var playlistItemsDeleteRequest = this.youTubeService.PlaylistItems.Delete(videoData.ServiceListItemId);
+            var playlistItemsDeleteRequest = this.youTubeService.PlaylistItems.Delete(video.ServiceListItemId);
             playlistItemsDeleteRequest.Execute();
 
-            this.DeleteVideoFromService(videoData.ServiceVideoId);
+            this.DeleteVideoFromService(video.ServiceVideoId);
         }
 
         private async Task Authorize()

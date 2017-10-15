@@ -75,9 +75,11 @@ namespace VlogRoom.Services.Data
             return this.videosRepo.All.OrderByDescending(x => x.Views).Take(count).AsEnumerable();
         }
 
-        public IEnumerable<Video> GetRecommendedVideos(User currentUser, int count)
+        public IEnumerable<Video> GetRecommendedVideos(User user, int count)
         {
-            return currentUser
+            Guard.WhenArgument(user, "user").IsNull().Throw();
+
+            return user
                 .Subscribtions
                 .SelectMany(x => x.Videos)
                 .OrderByDescending(x => x.CreatedOn)
@@ -86,6 +88,7 @@ namespace VlogRoom.Services.Data
 
         public async Task AddVideo(Stream videoStream, string videoTitle, string videoDescription, string ownerUsername)
         {
+            Guard.WhenArgument(videoStream, "videoStream").IsNull().Throw();
             var video = await this.youTubeService.UploadVideo(videoStream, videoTitle, videoDescription);
 
             var user = this.usersRepo.All.FirstOrDefault(x => x.UserName == ownerUsername);
@@ -96,16 +99,20 @@ namespace VlogRoom.Services.Data
 
         public void UpdateVideo(Video video)
         {
+            Guard.WhenArgument(video, "video").IsNull().Throw();
             this.videosRepo.Update(video);
         }
 
         public void RemoveVideo(Video video)
         {
+            Guard.WhenArgument(video, "video").IsNull().Throw();
             this.videosRepo.Delete(video);
         }
 
         public async Task HardRemoveVideo(Video video)
         {
+            Guard.WhenArgument(video, "video").IsNull().Throw();
+
             await this.youTubeService.DeleteVideo(video);
             this.videosRepo.HardDelete(video);
         }

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using VlogRoom.Services.Common.Contracts;
+using VlogRoom.Web.Common.Constants;
 
 namespace VlogRoom.Web.Common.ActionFilters
 {
@@ -22,7 +23,7 @@ namespace VlogRoom.Web.Common.ActionFilters
         public void OnException(ExceptionContext filterContext)
         {
             logger.Log(
-                string.Format("Exception occured on route {0} with message '{1}' and stack trace {2}",
+                string.Format(GlobalConstants.LoggingTemplate,
                 filterContext.HttpContext.Request.RawUrl,
                 filterContext.Exception.Message,
                 filterContext.Exception.StackTrace));

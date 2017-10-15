@@ -14,7 +14,7 @@ namespace VlogRoom.Web.Common.Attributes
         {
             if (filterContext.HttpContext.User.Identity.IsAuthenticated)
             {
-                filterContext.Controller.TempData[GlobalConstants.SuccessMessage] = $"You are alredy logged in!";
+                filterContext.Controller.TempData[GlobalConstants.SuccessMessage] = GlobalConstants.AlreadyLoggedInMessage;
                 filterContext.HttpContext.Response.Redirect("/");
             }
         }

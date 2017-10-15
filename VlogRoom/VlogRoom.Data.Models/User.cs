@@ -14,6 +14,11 @@ namespace VlogRoom.Data.Models
 {
     public class User : IdentityUser, IAuditable, IDeletable
     {
+        private const int RoomNameMinLength = 5;
+        private const int RoomNameMaxLength = 20;
+        private const string RoomNameErrorMessage = "Invalid room name!";
+        private const string RoomNamePattern = @"^[\w\s]+$";
+
         public User() : base()
         {
             this.Videos = new HashSet<Video>();
@@ -34,6 +39,9 @@ namespace VlogRoom.Data.Models
         [DataType(DataType.DateTime)]
         public DateTime? DeletedOn { get; set; }
 
+        [Required]
+        [StringLength(RoomNameMaxLength, MinimumLength = RoomNameMinLength)]
+        [RegularExpression(RoomNamePattern, ErrorMessage = RoomNameErrorMessage)]
         public string RoomName { get; set; }
 
         public virtual ICollection<Video> Videos { get; set; }

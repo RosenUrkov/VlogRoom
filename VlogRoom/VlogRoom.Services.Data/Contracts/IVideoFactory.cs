@@ -13,12 +13,12 @@ namespace VlogRoom.Services.Data.Contracts
 
         VideoSnippet CreateVideoSnippet(string title, string description, string categoryId);
 
-        VideoSnippet CreateVideoStatus(string privacyStatus);
+        VideoStatus CreateVideoStatus(string privacyStatus);
 
         ResourceId CreateResourceId(string kind, string videoId);
 
-        PlaylistItem CreatePlaylistItem(string snippet);
+        PlaylistItem CreatePlaylistItem(PlaylistItemSnippet snippet);
 
-        PlaylistItemSnippet CreatePlaylistItemSnippet(string playListId, int position, string resourceId);
+        PlaylistItemSnippet CreatePlaylistItemSnippet(string playListId, int position, ResourceId resourceId);
     }
 }

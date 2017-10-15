@@ -7,6 +7,10 @@
     visibility: visible;
 }
 
+.save-username,.edit-username{
+    padding-left: 0.8em;
+}
+
 .remove-button {
     color: red;
     font-size: 2em !important;

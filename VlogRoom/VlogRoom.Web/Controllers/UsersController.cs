@@ -58,8 +58,7 @@ namespace VlogRoom.Web.Controllers
         {
             var user = this.userDataService.GetUserByUsername(this.User.Identity.Name);
             var renamedUser = this.userDataService.RenameRoom(user, newName);
-
-            this.TempData[GlobalConstants.SuccessMessage] = "Room renamed successfully!";
+            
             return new EmptyResult();
         }
 

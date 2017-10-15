@@ -18,7 +18,6 @@ using VlogRoom.Web.Common.Attributes;
 namespace VlogRoom.Web.Controllers
 {
     [Authorize]
-    [AlreadyLoggedIn]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -61,6 +60,7 @@ namespace VlogRoom.Web.Controllers
         //
         // GET: /Account/Login
         [AllowAnonymous]
+        [AlreadyLoggedIn]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
@@ -72,6 +72,7 @@ namespace VlogRoom.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [AlreadyLoggedIn]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
@@ -79,7 +80,7 @@ namespace VlogRoom.Web.Controllers
                 return View(model);
             }
 
-            this.TempData[GlobalConstants.SuccessMessage] = "Logged in successfully!";
+            this.TempData[GlobalConstants.SuccessMessage] = "Hello!";
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
@@ -145,6 +146,7 @@ namespace VlogRoom.Web.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
+        [AlreadyLoggedIn]
         public ActionResult Register()
         {
             return View();
@@ -155,6 +157,7 @@ namespace VlogRoom.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [AlreadyLoggedIn]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)

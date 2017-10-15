@@ -72,8 +72,12 @@ $(() => {
             type: "POST",
             contentType: 'application/json',
             data: JSON.stringify({ newName }),
-            success: () => $('#loader').hide()
+            success: () => {
+                $('#loader').hide();
+                toastr.info("Room renamed successfully!");
+            }
         });
+        
     });
 
     $(".container").on("click", ".remove-button", (ev) => {
@@ -87,7 +91,10 @@ $(() => {
             type: "POST",
             contentType: 'application/json',
             data: JSON.stringify({ videoId }),
-            success: () => $('#loader').hide()
+            success: () => {
+                $('#loader').hide();
+                toastr.info("Video deleted successfully!");
+            }
         });
     });
 });

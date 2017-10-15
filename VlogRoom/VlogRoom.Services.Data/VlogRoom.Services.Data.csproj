@@ -95,8 +95,10 @@
   <ItemGroup>
     <Compile Include="Contracts\IUserDataService.cs" />
     <Compile Include="Contracts\IVideoDataService.cs" />
+    <Compile Include="Contracts\IVideoFactory.cs" />
     <Compile Include="Contracts\IYouTubeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\VideoFactory.cs" />
     <Compile Include="UserDataService.cs" />
     <Compile Include="VideoDataService.cs" />
     <Compile Include="YouTubeService.cs" />
@@ -118,6 +120,10 @@
     <ProjectReference Include="..\VlogRoom.Services.Common\VlogRoom.Services.Common.csproj">
       <Project>{7CD7D964-594B-4668-94CA-1073A858A581}</Project>
       <Name>VlogRoom.Services.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VlogRoom.Web.Common\VlogRoom.Web.Common.csproj">
+      <Project>{CA1E1BCC-1FD1-4099-9F08-C81F02F28085}</Project>
+      <Name>VlogRoom.Web.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

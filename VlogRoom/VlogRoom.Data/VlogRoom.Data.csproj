@@ -89,6 +89,10 @@
     <Compile Include="Migrations\201710141939007_Removed duration from video model.Designer.cs">
       <DependentUpon>201710141939007_Removed duration from video model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710150946288_Added data validation.cs" />
+    <Compile Include="Migrations\201710150946288_Added data validation.Designer.cs">
+      <DependentUpon>201710150946288_Added data validation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MsSqlDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -134,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710141939007_Removed duration from video model.resx">
       <DependentUpon>201710141939007_Removed duration from video model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710150946288_Added data validation.resx">
+      <DependentUpon>201710150946288_Added data validation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

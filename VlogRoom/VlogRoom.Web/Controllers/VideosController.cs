@@ -80,8 +80,7 @@ namespace VlogRoom.Web.Controllers
         {
             var video = this.videoDataService.GetVideoByServiceId(videoId);
             this.videoDataService.RemoveVideo(video);
-
-            this.TempData[GlobalConstants.SuccessMessage] = "Video deleted successfully!";
+            
             return new EmptyResult();
         }
 

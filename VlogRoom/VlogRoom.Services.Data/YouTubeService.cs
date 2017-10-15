@@ -17,42 +17,29 @@ using Google.Apis.Auth.OAuth2.Responses;
 using System.Xml;
 using Bytes2you.Validation;
 using VlogRoom.Services.Data.Contracts;
+using VlogRoom.Web.Common.Constants;
 
 namespace VlogRoom.Services.Common
 {
     public class YouTubeService : IYouTubeService
-    {
-        private const string ApplicationName = "VlogRoom";
-        private const string ApiKey = "AIzaSyCOpBHSZp8jqgImoRnY7ErzrsnMhibTGxU";
-        private const string PlayListId = "PLuAZD7L_R_m20wOxJPjRRgjMAJSbXIoeL";
-
-        private const string CategoryId = "22";
-        private const string PrivacyStatus = "private";
-
+    {  
         private Google.Apis.YouTube.v3.YouTubeService youTubeService;
+        private readonly IVideoFactory videoFactory;
 
-        public YouTubeService()
+        public YouTubeService(IVideoFactory videoFactory)
         {
-
+            this.videoFactory = videoFactory;
         }
 
         public async Task<VlogRoom.Data.Models.Video> UploadVideo(Stream videoStream, string videoTitle, string videoDescription)
         {
             Guard.WhenArgument(videoStream, "videoStream").IsNull().Throw();
-            
+
             await this.Authorize();
 
-            var snippet = new VideoSnippet();
-            snippet.Title = videoTitle;
-            snippet.Description = videoDescription;
-            snippet.CategoryId = CategoryId;
-
-            var status = new VideoStatus();
-            status.PrivacyStatus = PrivacyStatus;
-
-            var video = new Video();
-            video.Snippet = snippet;
-            video.Status = status;
+            var snippet = this.videoFactory.CreateVideoSnippet(videoTitle, videoDescription, GlobalConstants.VideoCategoryId);
+            var status = this.videoFactory.CreateVideoStatus(GlobalConstants.VideoPrivacyStatus);
+            var video = this.videoFactory.CreateVideo(snippet, status);
 
             VideosResource.InsertMediaUpload videoInsertRequest;
             using (videoStream)
@@ -62,7 +49,6 @@ namespace VlogRoom.Services.Common
             }
 
             var videoServiceId = this.AddVideoToThePlaylist(videoInsertRequest.ResponseBody.Id);
-
             var videoModel = new VlogRoom.Data.Models.Video()
             {
                 ServiceVideoId = videoInsertRequest.ResponseBody.Id,
@@ -104,25 +90,17 @@ namespace VlogRoom.Services.Common
             this.youTubeService = new Google.Apis.YouTube.v3.YouTubeService(
                 new BaseClientService.Initializer()
                 {
-                    ApiKey = ApiKey,
-                    ApplicationName = ApplicationName,
+                    ApiKey = GlobalConstants.ProviderApiKey,
+                    ApplicationName = GlobalConstants.ProviderApplicationName,
                     HttpClientInitializer = credential,
                 });
         }
 
         private string AddVideoToThePlaylist(string videoId)
         {
-            ResourceId resourceId = new ResourceId();
-            resourceId.Kind = "youtube#video";
-            resourceId.VideoId = videoId;
-
-            var snippet = new PlaylistItemSnippet();
-            snippet.PlaylistId = PlayListId;
-            snippet.Position = 1;
-            snippet.ResourceId = resourceId;
-
-            var playlistItem = new PlaylistItem();
-            playlistItem.Snippet = snippet;
+            var resourceId = this.videoFactory.CreateResourceId("youtube#video", videoId);
+            var snippet = this.videoFactory.CreatePlaylistItemSnippet(GlobalConstants.ProviderPlayListId, 1, resourceId);
+            var playlistItem = this.videoFactory.CreatePlaylistItem(snippet);
 
             var playlistItemsInsertRequest = this.youTubeService.PlaylistItems.Insert(playlistItem, "snippet");
             var response = playlistItemsInsertRequest.Execute();

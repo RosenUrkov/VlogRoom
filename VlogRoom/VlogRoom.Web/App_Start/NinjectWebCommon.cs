@@ -23,6 +23,7 @@ namespace VlogRoom.Web.App_Start
     using VlogRoom.Services.Common;
     using System.Reflection;
     using VlogRoom.Services.Data;
+    using VlogRoom.Services.Data.Contracts;
 
     public static class NinjectWebCommon
     {

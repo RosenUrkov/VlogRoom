@@ -36,6 +36,8 @@
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.4.2.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="Moq, Version=4.7.137.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.7.137\lib\net45\Moq.dll</HintPath>
     </Reference>
@@ -64,6 +66,14 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VlogRoom.Data.Models\VlogRoom.Data.Models.csproj">
+      <Project>{37B99228-DD05-4117-B263-BFFE3411230F}</Project>
+      <Name>VlogRoom.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VlogRoom.Data\VlogRoom.Data.csproj">
+      <Project>{F17EB094-08A5-4AF6-831C-4B15A387ED9E}</Project>
+      <Name>VlogRoom.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VlogRoom.Services.Data\VlogRoom.Services.Data.csproj">
       <Project>{e30bbd6a-1bd0-427a-8d83-81e3336b2c3c}</Project>
       <Name>VlogRoom.Services.Data</Name>

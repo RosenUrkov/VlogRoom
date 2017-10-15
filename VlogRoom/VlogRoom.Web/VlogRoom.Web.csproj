@@ -563,6 +563,7 @@
     <Content Include="Images\twitter.png" />
     <Content Include="Images\u12.png" />
     <Content Include="Images\view.png" />
+    <Content Include="Images\vlogroom.png" />
     <Content Include="Images\whatsapp.png" />
     <Content Include="Libraries\Kendo.Mvc.dll" />
     <Content Include="Libraries\Kendo.Mvc.xml" />

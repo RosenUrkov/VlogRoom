@@ -2,11 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using VlogRoom.Data.Models;
 using VlogRoom.Services.Data.Contracts;
+using VlogRoom.Web.Common.Constants;
 using VlogRoom.Web.Common.Extensions;
 using VlogRoom.Web.Models;
 
@@ -37,6 +39,12 @@ namespace VlogRoom.Web.Controllers
 
         public ActionResult Search(string searchPattern)
         {
+            if(searchPattern == null || Regex.IsMatch(searchPattern, GlobalConstants.AlphaNumericalPattern))
+            {
+                this.TempData[GlobalConstants.ErrorMessage] = GlobalConstants.InvalidSearchPatternMessage;
+                this.RedirectToAction("Index");
+            }
+
             var videosModel = this.videoDataService.GetAllVideos(searchPattern).Map<Video, VideoDataViewModel>();
             return View(videosModel);
         }

@@ -45,5 +45,12 @@ namespace VlogRoom.Web.Common.Constants
         public const int ViewsMinRange = 0;
         public const int ViewsMaxRange = int.MaxValue;
         public const string ViewsErrorMessage = "Views value must be positive integer!";
+
+        public const string InvalidSearchPatternMessage = "Search pattern must contain only valid characters!";
+        public const string InvalidRoomMessage = "The room you want to enter does not exist!";
+        public const string InvalidSubscriptionMessage = "The user that you want to subscribe/unsubscribe to does not exist!";
+        public const string InvalidVideoMessage = "The video you want to see does not exist or is deleted!";
+        public const string InvalidDeleteVideoMessage = "The video you want to delete does not exist or is deleted!";
+
     }
 }

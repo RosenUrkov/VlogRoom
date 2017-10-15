@@ -33,7 +33,11 @@ namespace VlogRoom.Web.Controllers
         public ActionResult Watch(string id)
         {
             var video = this.videoDataService.GetVideoByServiceId(id);
-            Guard.WhenArgument(video, "video").IsNull().Throw();
+            if (video is null)
+            {
+                this.TempData[GlobalConstants.ErrorMessage] = GlobalConstants.InvalidVideoMessage;
+                this.RedirectToAction("Index", "Home");
+            }
 
             video.Views += 1;
             this.videoDataService.UpdateVideo(video);
@@ -82,23 +86,14 @@ namespace VlogRoom.Web.Controllers
         public ActionResult DeleteVideo(string videoId)
         {
             var video = this.videoDataService.GetVideoByServiceId(videoId);
-            Guard.WhenArgument(video, "video").IsNull().Throw();
+            if (video is null)
+            {
+                this.TempData[GlobalConstants.ErrorMessage] = GlobalConstants.InvalidDeleteVideoMessage;
+                this.RedirectToAction("Account", "Users");
+            }
 
-            this.videoDataService.RemoveVideo(video);            
+            this.videoDataService.RemoveVideo(video);
             return new EmptyResult();
-        }
-
-        [SaveChanges]
-        [Authorize]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> HardDeleteVideo(string videoId)
-        {
-            var video = this.videoDataService.GetVideoByServiceId(videoId);
-            Guard.WhenArgument(video, "video").IsNull().Throw();
-
-            await this.videoDataService.HardRemoveVideo(video);
-            return this.RedirectToAction("Account", "Users");
         }
     }
 }

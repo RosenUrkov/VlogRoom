@@ -27,6 +27,9 @@ namespace VlogRoom.Web.App_Start
 
     public static class NinjectWebCommon
     {
+        private static Type CommonServicesAssemblyType = typeof(LoggerService);
+        private static Type DataServicesAssemblyType = typeof(UserDataService);
+
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
@@ -84,8 +87,8 @@ namespace VlogRoom.Web.App_Start
 
             kernel.Bind(x =>
             {
-                x.From(Assembly.GetAssembly(typeof(LoggerService)).FullName,
-                    Assembly.GetAssembly(typeof(UserDataService)).FullName)
+                x.From(Assembly.GetAssembly(CommonServicesAssemblyType).FullName,
+                    Assembly.GetAssembly(DataServicesAssemblyType).FullName)
                  .SelectAllClasses()
                  .BindDefaultInterface();
             });

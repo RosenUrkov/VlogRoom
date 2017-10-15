@@ -6,14 +6,14 @@
             <div class="upload-grids">
                 @using (Html.BeginForm("UploadVideo", "Videos", FormMethod.Post, new { enctype = "multipart/form-data", id = "upload-form" }))
                 {
+                    @Html.AntiForgeryToken();
+
                     <input type="text" name="videoTitle" class="form-control" placeholder="Enter video title" />
                     <div class="upload-right">
                         <div class="upload-file">
                             <div class="services-icon">
                                 <span class="glyphicon glyphicon-open" aria-hidden="true"></span>
                             </div>
-
-                            @Html.AntiForgeryToken();
 
                             <input type="file" name="video" value="Choose file.." id="upload-input" />
                         </div>

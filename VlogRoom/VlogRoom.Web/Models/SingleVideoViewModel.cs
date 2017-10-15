@@ -19,7 +19,7 @@ namespace VlogRoom.Web.Models
 
         public int Views { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:dd-MMM-yy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MMM/yyyy HH:mm}")]
         public DateTime? CreatedOn { get; set; }
 
         public string OwnerRoomName { get; set; }

@@ -29,7 +29,11 @@ namespace VlogRoom.Web.Controllers
         public ActionResult Room(string id)
         {
             var user = this.userDataService.GetUserById(id);
-            Guard.WhenArgument(user, "user").IsNull().Throw();
+            if (user is null)
+            {
+                this.TempData[GlobalConstants.ErrorMessage] = GlobalConstants.InvalidRoomMessage;
+                this.RedirectToAction("Index", "Home");
+            }
 
             if (this.User.Identity.IsAuthenticated && user.UserName == this.User.Identity.Name)
             {
@@ -73,7 +77,11 @@ namespace VlogRoom.Web.Controllers
             Guard.WhenArgument(currentUser, "currentUser").IsNull().Throw();
 
             var userToBeSubscribedTo = this.userDataService.GetUserById(userId);
-            Guard.WhenArgument(userToBeSubscribedTo, "userToBeSubscribedTo").IsNull().Throw();
+            if (userToBeSubscribedTo is null)
+            {
+                this.TempData[GlobalConstants.ErrorMessage] = GlobalConstants.InvalidSubscriptionMessage;
+                this.Redirect(Request.UrlReferrer.ToString());
+            }
 
             this.userDataService.Subscribe(currentUser, userToBeSubscribedTo);
 
@@ -91,7 +99,11 @@ namespace VlogRoom.Web.Controllers
             Guard.WhenArgument(currentUser, "currentUser").IsNull().Throw();
 
             var userToBeUnsubscribedFrom = this.userDataService.GetUserById(userId);
-            Guard.WhenArgument(userToBeUnsubscribedFrom, "userToBeUnsubscribedFrom").IsNull().Throw();
+            if (userToBeUnsubscribedFrom is null)
+            {
+                this.TempData[GlobalConstants.ErrorMessage] = GlobalConstants.InvalidSubscriptionMessage;
+                this.Redirect(Request.UrlReferrer.ToString());
+            }
 
             this.userDataService.Unsubscribe(currentUser, userToBeUnsubscribedFrom);
 

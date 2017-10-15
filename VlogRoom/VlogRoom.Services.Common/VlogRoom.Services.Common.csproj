@@ -62,8 +62,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IDateService.cs" />
     <Compile Include="Contracts\ILoggerService.cs" />
     <Compile Include="Contracts\IMappingService.cs" />
+    <Compile Include="DateService.cs" />
     <Compile Include="LoggerService.cs" />
     <Compile Include="MappingService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

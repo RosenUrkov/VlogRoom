@@ -24,13 +24,11 @@ namespace VlogRoom.Services.Data.Contracts
 
         IEnumerable<Video> GetNewsFeed(User user);
 
-        IEnumerable<Video> GetRecommendedVideos(User currentUser, int count);
-
-        Task AddVideo(Stream videoStream, string videoTitle, string videoDescription, string ownerUsername);
+        Task AddVideo(Stream videoStream, string videoTitle, string videoDescription, User owner);
 
         void UpdateVideo(Video video);
 
-        void RemoveVideo(Video video);
+        void DeleteVideo(Video video);
 
         Task HardRemoveVideo(Video video);
     }

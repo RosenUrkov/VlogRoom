@@ -17,16 +17,13 @@ namespace VlogRoom.Services.Data
     {
         private readonly IYouTubeService youTubeService;
         private readonly IEfRepository<Video> videosRepo;
-        private readonly IEfRepository<User> usersRepo;
 
-        public VideoDataService(IEfRepository<Video> videosRepo, IEfRepository<User> usersRepo, IYouTubeService youTubeService)
+        public VideoDataService(IEfRepository<Video> videosRepo, IYouTubeService youTubeService)
         {
             Guard.WhenArgument(videosRepo, "videos repository").IsNull().Throw();
-            Guard.WhenArgument(usersRepo, "users repository").IsNull().Throw();
             Guard.WhenArgument(youTubeService, "youTubeService").IsNull().Throw();
 
             this.videosRepo = videosRepo;
-            this.usersRepo = usersRepo;
             this.youTubeService = youTubeService;
         }
 
@@ -59,9 +56,11 @@ namespace VlogRoom.Services.Data
 
         public IEnumerable<Video> GetNewsFeed(User user)
         {
+            Guard.WhenArgument(user, "user").IsNull().Throw();
+
             return user.Subscribtions
                 .SelectMany(x => x.Videos)
-                .Where(x => !x.IsDeleted && x.CreatedOn.Value.Day == DateTime.Now.Day)
+                .Where(x => !x.IsDeleted && x.CreatedOn.Value.Day == DateService.Provider.GetCurrentDate().Day)
                 .AsEnumerable();
         }
 
@@ -75,25 +74,14 @@ namespace VlogRoom.Services.Data
             return this.videosRepo.All.OrderByDescending(x => x.Views).Take(count).AsEnumerable();
         }
 
-        public IEnumerable<Video> GetRecommendedVideos(User user, int count)
-        {
-            Guard.WhenArgument(user, "user").IsNull().Throw();
-
-            return user
-                .Subscribtions
-                .SelectMany(x => x.Videos)
-                .OrderByDescending(x => x.CreatedOn)
-                .Take(count).AsEnumerable();
-        }
-
-        public async Task AddVideo(Stream videoStream, string videoTitle, string videoDescription, string ownerUsername)
+        public async Task AddVideo(Stream videoStream, string videoTitle, string videoDescription, User owner)
         {
             Guard.WhenArgument(videoStream, "videoStream").IsNull().Throw();
+            Guard.WhenArgument(owner, "owner").IsNull().Throw();
+
             var video = await this.youTubeService.UploadVideo(videoStream, videoTitle, videoDescription);
 
-            var user = this.usersRepo.All.FirstOrDefault(x => x.UserName == ownerUsername);
-            video.User = user;
-
+            video.User = owner;
             this.videosRepo.Add(video);
         }
 
@@ -103,7 +91,7 @@ namespace VlogRoom.Services.Data
             this.videosRepo.Update(video);
         }
 
-        public void RemoveVideo(Video video)
+        public void DeleteVideo(Video video)
         {
             Guard.WhenArgument(video, "video").IsNull().Throw();
             this.videosRepo.Delete(video);

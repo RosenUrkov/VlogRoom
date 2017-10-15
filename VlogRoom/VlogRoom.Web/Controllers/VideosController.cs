@@ -79,7 +79,10 @@ namespace VlogRoom.Web.Controllers
                 return this.RedirectToAction("Index", "Home");
             }
 
-            await this.videoDataService.AddVideo(video.VideoFile.InputStream, video.VideoTitle, video.VideoDescription, this.User.Identity.Name);
+            var currentUser = this.userDataService.GetUserByUsername(this.User.Identity.Name);
+            Guard.WhenArgument(currentUser, "currentUser").IsNull().Throw();
+
+            await this.videoDataService.AddVideo(video.VideoFile.InputStream, video.VideoTitle, video.VideoDescription, currentUser);
 
             this.TempData[GlobalConstants.SuccessMessage] = "Video uploaded successfully!";
             return this.RedirectToAction("Account", "Users");
@@ -98,7 +101,7 @@ namespace VlogRoom.Web.Controllers
                 return this.RedirectToAction("Account", "Users");
             }
 
-            this.videoDataService.RemoveVideo(video);
+            this.videoDataService.DeleteVideo(video);
             return new EmptyResult();
         }
     }

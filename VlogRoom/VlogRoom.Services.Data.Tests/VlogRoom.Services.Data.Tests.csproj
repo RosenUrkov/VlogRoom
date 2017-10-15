@@ -66,6 +66,17 @@
     <Compile Include="UserDataServiceTests\SubscribeShould.cs" />
     <Compile Include="UserDataServiceTests\UnsubscribeShould.cs" />
     <Compile Include="UserDataServiceTests\UpdateUserShould.cs" />
+    <Compile Include="VideoDataServiceTests\AddVideoShould.cs" />
+    <Compile Include="VideoDataServiceTests\DeleteVideoShould.cs" />
+    <Compile Include="VideoDataServiceTests\GetAllVideosShould.cs" />
+    <Compile Include="VideoDataServiceTests\GetAllVideosWithDeletedShould.cs" />
+    <Compile Include="VideoDataServiceTests\GetMostRecentVideosShould.cs" />
+    <Compile Include="VideoDataServiceTests\GetMostViralVideosShould.cs" />
+    <Compile Include="VideoDataServiceTests\GetNewsFeedShould.cs" />
+    <Compile Include="VideoDataServiceTests\GetVideoByServiceIdShould.cs" />
+    <Compile Include="VideoDataServiceTests\GetVideoByServiceIdWithDeletedShould.cs" />
+    <Compile Include="VideoDataServiceTests\HardRemoveVideoShould.cs" />
+    <Compile Include="VideoDataServiceTests\UpdateVideoShould.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -82,6 +93,10 @@
     <ProjectReference Include="..\VlogRoom.Data\VlogRoom.Data.csproj">
       <Project>{F17EB094-08A5-4AF6-831C-4B15A387ED9E}</Project>
       <Name>VlogRoom.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VlogRoom.Services.Common\VlogRoom.Services.Common.csproj">
+      <Project>{7CD7D964-594B-4668-94CA-1073A858A581}</Project>
+      <Name>VlogRoom.Services.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\VlogRoom.Services.Data\VlogRoom.Services.Data.csproj">
       <Project>{e30bbd6a-1bd0-427a-8d83-81e3336b2c3c}</Project>

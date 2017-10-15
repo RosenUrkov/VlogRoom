@@ -58,7 +58,7 @@ namespace VlogRoom.Web.Areas.Administration.Controllers
 
                 if (!video.IsDeleted && videoModel.IsDeleted)
                 {
-                    this.videoDataService.RemoveVideo(video);
+                    this.videoDataService.DeleteVideo(video);
                     videoModel.DeletedOn = video.DeletedOn;
                 }
             }

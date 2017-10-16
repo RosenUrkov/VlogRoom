@@ -12,7 +12,7 @@ namespace VlogRoom.Web
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
-            filters.Add(new LoggerFilter(ServiceLocator.Provider.GetService<ILoggerService>()));
+            //filters.Add(new LoggerFilter(ServiceLocator.Provider.GetService<ILoggerService>()));
         }
     }
 }

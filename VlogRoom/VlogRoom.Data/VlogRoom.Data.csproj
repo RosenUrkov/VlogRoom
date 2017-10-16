@@ -93,6 +93,10 @@
     <Compile Include="Migrations\201710150946288_Added data validation.Designer.cs">
       <DependentUpon>201710150946288_Added data validation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710160346401_Updated min-max string lengths of video properties.cs" />
+    <Compile Include="Migrations\201710160346401_Updated min-max string lengths of video properties.Designer.cs">
+      <DependentUpon>201710160346401_Updated min-max string lengths of video properties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MsSqlDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -141,6 +145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710150946288_Added data validation.resx">
       <DependentUpon>201710150946288_Added data validation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710160346401_Updated min-max string lengths of video properties.resx">
+      <DependentUpon>201710160346401_Updated min-max string lengths of video properties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -61,8 +61,6 @@ namespace VlogRoom.Services.Data.Tests.UserDataServiceTests
         public void ReturnNullIfThereIsNoSuchUser()
         {
             // arrange
-            var username = "username";
-
             var user = new User();
             user.UserName = "username";
 

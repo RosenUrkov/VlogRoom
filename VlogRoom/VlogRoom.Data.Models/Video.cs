@@ -11,14 +11,14 @@ namespace VlogRoom.Data.Models
 {
     public class Video : BaseModel, IAuditable, IDeletable
     {
-        private const int VideoTitleMinLength = 5;
-        private const int VideoTitleMaxLength = 15;
-        private const string VideoTitlePattern = "^[a-zA-Z0-9 _]+$";
+        private const int VideoTitleMinLength = 3;
+        private const int VideoTitleMaxLength = 50;
+        private const string VideoTitlePattern = "^[a-zA-Z0-9 _!.]+$";
         private const string VideoTitleErrorMessage = "Incorrect video title!";
 
-        private const int VideoDesctiptionMinLength = 4;
-        private const int VideoDescriptionMaxLength = 20;
-        private const string VideoDescriptionPattern = "^[a-zA-Z0-9 _]+$";
+        private const int VideoDesctiptionMinLength = 3;
+        private const int VideoDescriptionMaxLength = 70;
+        private const string VideoDescriptionPattern = "^[a-zA-Z0-9 _!.]+$";
         private const string VideoDescriptionErrorMessage = "Incorrect video description!";
 
         private const int ViewsMinRange = 0;

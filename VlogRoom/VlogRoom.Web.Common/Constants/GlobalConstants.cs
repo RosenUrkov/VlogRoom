@@ -12,7 +12,7 @@ namespace VlogRoom.Web.Common.Constants
         public const string ErrorMessage = "Error";
 
         public const string AdministrationRoleName = "Admin";
-        public const string AlphaNumericalPattern = "^[a-zA-Z0-9 _]+$";
+        public const string AlphaNumericalPattern = "^[a-zA-Z0-9 _!.]+$";
                
         public const string AlreadyLoggedInMessage = "You are alredy logged in!";
         public const string LoggingTemplate = "Exception occured on route {0} with message '{1}' and stack trace {2}";
@@ -35,11 +35,11 @@ namespace VlogRoom.Web.Common.Constants
         public const string RoomNameErrorMessage = "Invalid room name!";
 
         public const int VideoTitleMinLength = 3;
-        public const int VideoTitleMaxLength = 15;
+        public const int VideoTitleMaxLength = 50;
         public const string VideoTitleErrorMessage = "Incorrect video title!";
         
         public const int VideoDesctiptionMinLength = 3;
-        public const int VideoDescriptionMaxLength = 20;
+        public const int VideoDescriptionMaxLength = 70;
         public const string VideoDescriptionErrorMessage = "Incorrect video description!";
         
         public const int ViewsMinRange = 0;

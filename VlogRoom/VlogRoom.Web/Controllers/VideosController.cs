@@ -44,7 +44,7 @@ namespace VlogRoom.Web.Controllers
 
             var watchModel = new WatchVideoViewModel();
             watchModel.Video = MappingService.Provider.Map<SingleVideoViewModel>(video);
-            watchModel.WatchNext = this.videoDataService.GetMostViralVideos(5)
+            watchModel.WatchNext = this.videoDataService.GetMostViralVideos(6)
                                         .Where(x => x.Id != video.Id)
                                         .Map<Video, VideoDataViewModel>();
 

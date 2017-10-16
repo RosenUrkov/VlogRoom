@@ -601,7 +601,7 @@
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Administration\Views\UsersManage\Index.cshtml" />
     <Content Include="Areas\Administration\Views\VideosManage\Index.cshtml" />
-    <None Include="Properties\PublishProfiles\local.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\vlogroom - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\vlogroom - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />

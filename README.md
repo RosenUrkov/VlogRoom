@@ -20,7 +20,7 @@ interesting.
 
 ## Authors
 
-* **Rosen Urkov** - *Initial work* - [rosen.urkov](https://github.com/RosenUrkov)
+* **Rosen Urkov** - *Initial work* - [RosenUrkov](https://github.com/RosenUrkov)
 
 ## License
 

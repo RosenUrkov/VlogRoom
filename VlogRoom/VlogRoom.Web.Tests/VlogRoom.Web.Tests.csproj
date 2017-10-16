@@ -88,6 +88,7 @@
     <Compile Include="Controllers\UsersControllerTests\RoomShould.cs" />
     <Compile Include="Controllers\UsersControllerTests\SubscribeToUserShould.cs" />
     <Compile Include="Controllers\UsersControllerTests\UnsubscribeFromUser.cs" />
+    <Compile Include="Controllers\VideosControllerTests\DeleteVideoShould.cs" />
     <Compile Include="Controllers\VideosControllerTests\GetUploadShould.cs" />
     <Compile Include="Controllers\VideosControllerTests\NewsFeedShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

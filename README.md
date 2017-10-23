@@ -9,18 +9,10 @@ You only need to register if you dont have an account and you alredy can upload 
 After this go and customize your room name and check what the other vloggers talk about. Its pretty 
 interesting.
 
-## Application Demo
-- [**Live Preview**](https://vlogroom.azurewebsites.net)
-- [**Source code**](https://github.com/RosenUrkov/VlogRoom)
-
 ## Screenshots
 ![Homepage](./VlogRoom/VlogRoom.Web/Images/home.png)
 ![Video](./VlogRoom/VlogRoom.Web/Images/single.png)
 ![Uploading](./VlogRoom/VlogRoom.Web/Images/upload.png)
-
-## Authors
-
-* **Rosen Urkov** - *Initial work* - [RosenUrkov](https://github.com/RosenUrkov)
 
 ## License
 

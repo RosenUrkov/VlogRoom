@@ -14,10 +14,6 @@ interesting.
 ![Video](./VlogRoom/VlogRoom.Web/Images/single.png)
 ![Uploading](./VlogRoom/VlogRoom.Web/Images/upload.png)
 
-## Authors
-
-* **Rosen Urkov** - [RosenUrkov](https://github.com/RosenUrkov)
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
